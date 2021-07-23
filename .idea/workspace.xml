@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config>
+        <device id="pixel_2" />
+      </config>
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="info" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/bluetooth_app" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="138ae1ec-eec6-4acf-8df5-25a80c6e6b3b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_search_measure.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/app">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Enum" />
+        <option value="Class" />
+        <option value="Kotlin File" />
+        <option value="Kotlin Interface" />
+        <option value="resourceFile" />
+        <option value="Kotlin Class" />
+        <option value="layoutResourceFile" />
+      </list>
+    </option>
+  </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="KEY_STORE_PATH" value="$PROJECT_DIR$/Untitled" />
+    <option name="KEY_ALIAS" value="key" />
+    <option name="REMEMBER_PASSWORDS" value="true" />
+    <option name="BUILD_TARGET_KEY" value="apk" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="otg_app" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1k5RoevLP9BCDgv403mGrXKOuNK" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ApkExportedModule" value="Alfa-BOSCH.app" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_2_API_29" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-12-17T08:59:52.813Z" />
+    <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/app" />
+    <property name="ExportApk.BuildVariants" value="release" />
+    <property name="ExportApk.SignV1" value="true" />
+    <property name="ExportApk.SignV2" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android-custom-view/Users/lewan/Library/Android/sdk/sources/android-30/android/view/View.java_SELECTED" value="View" />
+    <property name="android-custom-view/Users/lewan/gradle/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.2.0/13e8ff89631c2e101eb6bddd12c2fb4bbd74b15d/appcompat-1.2.0-sources.jar!/androidx/appcompat/widget/AppCompatEditText.java_SELECTED" value="AppCompatEditText" />
+    <property name="android-custom-view/Users/lewan/gradle/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.2.0/13e8ff89631c2e101eb6bddd12c2fb4bbd74b15d/appcompat-1.2.0-sources.jar!/androidx/appcompat/widget/AppCompatImageButton.java_SELECTED" value="AppCompatImageButton" />
+    <property name="android-custom-view/Users/lewan/gradle/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
+    <property name="android-custom-view/Users/lewan/gradle/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.2.1/37d55d5141066b3d118d24232fa7025b65eb3a74/material-1.2.1-sources.jar!/com/google/android/material/card/MaterialCardView.java_SELECTED" value="MaterialCardView" />
+    <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/kotlin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/kotlin/dev/fabula/android/module" />
+    <property name="multi-representation-preview/Users/lewan/Library/Android/sdk/sources/android-30/android/view/View.java_selected" value="Custom views" />
+    <property name="multi-representation-preview/Users/lewan/gradle/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.2.0/13e8ff89631c2e101eb6bddd12c2fb4bbd74b15d/appcompat-1.2.0-sources.jar!/androidx/appcompat/widget/AppCompatEditText.java_selected" value="Custom views" />
+    <property name="multi-representation-preview/Users/lewan/gradle/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.2.0/13e8ff89631c2e101eb6bddd12c2fb4bbd74b15d/appcompat-1.2.0-sources.jar!/androidx/appcompat/widget/AppCompatImageButton.java_selected" value="Custom views" />
+    <property name="multi-representation-preview/Users/lewan/gradle/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_selected" value="Custom views" />
+    <property name="multi-representation-preview/Users/lewan/gradle/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.2.1/37d55d5141066b3d118d24232fa7025b65eb3a74/material-1.2.1-sources.jar!/com/google/android/material/card/MaterialCardView.java_selected" value="Custom views" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+  </component>
+  <component name="PsdUISettings">
+    <option name="MODULE_TAB" value="Signing Configs" />
+    <option name="LAST_EDITED_SIGNING_CONFIG" value="release" />
+    <option name="LAST_EDITED_BUILD_TYPE" value="debug" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="dev.fabula.android.measurements.list.model" />
+      <recent name="android.print" />
+      <recent name="dev.fabula.android.wire.carrier.di" />
+      <recent name="dev.fabula.android.measurements.type.model" />
+      <recent name="dev.fabula.android.wire.contact.model" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/kotlin/dev/fabula/android/module" />
+      <recent name="$PROJECT_DIR$/app/src/main/kotlin/dev/fabula/android/bluetooth" />
+      <recent name="$PROJECT_DIR$/app/src/main/kotlin/dev/fabula/android/devices" />
+      <recent name="$PROJECT_DIR$/app/src/main/kotlin/dev/fabula/android/profile" />
+    </key>
+    <key name="android.template.2062984980">
+      <recent name="dev.fabula.android.profile" />
+      <recent name="dev.fabula.android" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="dev.fabula.android.bluetooth" />
+      <recent name="dev.fabula.android.profile.bluetooth.exc" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/app/src/main/kotlin/dev/fabula/android/bosch/otg/di" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="Alfa-BOSCH.app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="138ae1ec-eec6-4acf-8df5-25a80c6e6b3b" name="Default Changelist" comment="" />
+      <created>1604988641817</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1604988641817</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/bluetooth_app" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="245" y="189" key="#PSD" timestamp="1626626566569">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="245" y="189" key="#PSD/0.0.1440.900@0.0.1440.900" timestamp="1626626566569" />
+    <state x="491" y="173" key="#com.intellij.ide.util.MemberChooser" timestamp="1625494127336">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="491" y="173" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1625494127336" />
+    <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1627017430359">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1627017430359" />
+    <state x="391" y="248" width="495" height="403" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1626362144657">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="391" y="248" width="495" height="403" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1626362144657" />
+    <state x="100" y="100" width="1240" height="700" key="AVDManager" timestamp="1623000785265">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="100" y="100" width="1240" height="700" key="AVDManager/0.0.1440.900@0.0.1440.900" timestamp="1623000785265" />
+    <state x="308" y="212" key="AndroidCreateResourceFileDialog" timestamp="1626877968688">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="308" y="212" key="AndroidCreateResourceFileDialog/0.0.1440.900@0.0.1440.900" timestamp="1626877968688" />
+    <state x="585" y="354" key="Github.ShareDialog" timestamp="1626626883411">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="585" y="354" key="Github.ShareDialog/0.0.1440.900@0.0.1440.900" timestamp="1626626883411" />
+    <state width="1398" height="75" key="GridCell.Tab.0.bottom" timestamp="1626973181275">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="102" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.132.1024.768@0.0.1440.900" timestamp="1623505995178" />
+    <state width="1398" height="75" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1626973181275" />
+    <state width="1398" height="410" key="GridCell.Tab.0.bottom/0.23.1440.812@0.23.1440.812" timestamp="1624904765946" />
+    <state width="1398" height="146" key="GridCell.Tab.0.bottom/0.23.1440.813@0.23.1440.813" timestamp="1626625866347" />
+    <state width="1398" height="75" key="GridCell.Tab.0.bottom/0.23.1440.815@0.23.1440.815" timestamp="1626971572512" />
+    <state width="1398" height="335" key="GridCell.Tab.0.bottom/0.23.1440.817@0.23.1440.817" timestamp="1625655773297" />
+    <state width="1398" height="163" key="GridCell.Tab.0.bottom/0.23.1440.821@0.23.1440.821" timestamp="1623895485946" />
+    <state width="1398" height="213" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1623586798679" />
+    <state width="1398" height="233" key="GridCell.Tab.0.bottom/0.23.1440.824@0.23.1440.824" timestamp="1623779980526" />
+    <state width="1398" height="75" key="GridCell.Tab.0.center" timestamp="1626973181275">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="211" key="GridCell.Tab.0.center/0.0.1440.838@0.0.1440.838" timestamp="1623901566195" />
+    <state width="1398" height="102" key="GridCell.Tab.0.center/0.0.1440.900/1440.132.1024.768@0.0.1440.900" timestamp="1623505995176" />
+    <state width="1398" height="75" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1626973181275" />
+    <state width="1398" height="410" key="GridCell.Tab.0.center/0.23.1440.812@0.23.1440.812" timestamp="1624904765945" />
+    <state width="1398" height="146" key="GridCell.Tab.0.center/0.23.1440.813@0.23.1440.813" timestamp="1626625866346" />
+    <state width="1398" height="75" key="GridCell.Tab.0.center/0.23.1440.815@0.23.1440.815" timestamp="1626971572511" />
+    <state width="1398" height="335" key="GridCell.Tab.0.center/0.23.1440.817@0.23.1440.817" timestamp="1625655773296" />
+    <state width="1398" height="163" key="GridCell.Tab.0.center/0.23.1440.821@0.23.1440.821" timestamp="1623895485945" />
+    <state width="1398" height="213" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1623586798677" />
+    <state width="1398" height="233" key="GridCell.Tab.0.center/0.23.1440.824@0.23.1440.824" timestamp="1623779980524" />
+    <state width="1398" height="75" key="GridCell.Tab.0.left" timestamp="1626973181274">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="211" key="GridCell.Tab.0.left/0.0.1440.838@0.0.1440.838" timestamp="1623901566187" />
+    <state width="1398" height="102" key="GridCell.Tab.0.left/0.0.1440.900/1440.132.1024.768@0.0.1440.900" timestamp="1623505995174" />
+    <state width="1398" height="75" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1626973181274" />
+    <state width="1398" height="410" key="GridCell.Tab.0.left/0.23.1440.812@0.23.1440.812" timestamp="1624904765943" />
+    <state width="1398" height="146" key="GridCell.Tab.0.left/0.23.1440.813@0.23.1440.813" timestamp="1626625866345" />
+    <state width="1398" height="75" key="GridCell.Tab.0.left/0.23.1440.815@0.23.1440.815" timestamp="1626971572510" />
+    <state width="1398" height="335" key="GridCell.Tab.0.left/0.23.1440.817@0.23.1440.817" timestamp="1625655773295" />
+    <state width="1398" height="163" key="GridCell.Tab.0.left/0.23.1440.821@0.23.1440.821" timestamp="1623895485944" />
+    <state width="1398" height="213" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1623586798675" />
+    <state width="1398" height="233" key="GridCell.Tab.0.left/0.23.1440.824@0.23.1440.824" timestamp="1623779980524" />
+    <state width="1398" height="75" key="GridCell.Tab.0.right" timestamp="1626973181275">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="102" key="GridCell.Tab.0.right/0.0.1440.900/1440.132.1024.768@0.0.1440.900" timestamp="1623505995177" />
+    <state width="1398" height="75" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1626973181275" />
+    <state width="1398" height="410" key="GridCell.Tab.0.right/0.23.1440.812@0.23.1440.812" timestamp="1624904765945" />
+    <state width="1398" height="146" key="GridCell.Tab.0.right/0.23.1440.813@0.23.1440.813" timestamp="1626625866346" />
+    <state width="1398" height="75" key="GridCell.Tab.0.right/0.23.1440.815@0.23.1440.815" timestamp="1626971572512" />
+    <state width="1398" height="335" key="GridCell.Tab.0.right/0.23.1440.817@0.23.1440.817" timestamp="1625655773297" />
+    <state width="1398" height="163" key="GridCell.Tab.0.right/0.23.1440.821@0.23.1440.821" timestamp="1623895485946" />
+    <state width="1398" height="213" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1623586798677" />
+    <state width="1398" height="233" key="GridCell.Tab.0.right/0.23.1440.824@0.23.1440.824" timestamp="1623779980525" />
+    <state x="229" y="89" key="SettingsEditor" timestamp="1626879142835">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="229" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1626879142835" />
+    <state x="515" y="235" key="chooseDestDirectoryDialog" timestamp="1623254089488">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="515" y="235" key="chooseDestDirectoryDialog/0.0.1440.900@0.0.1440.900" timestamp="1623254089488" />
+    <state x="757" y="143" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1623810375731">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="757" y="143" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1440.900@0.0.1440.900" timestamp="1623810375731" />
+    <state x="191" y="305" width="903" height="548" key="find.popup" timestamp="1627018259066">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="191" y="305" width="903" height="548" key="find.popup/0.0.1440.900/1440.132.1024.768@0.0.1440.900" timestamp="1623505987578" />
+    <state x="191" y="305" width="903" height="548" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1627018259065" />
+    <state x="460" y="170" key="git4idea.branch.GitSmartOperationDialog" timestamp="1626627020969">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="460" y="170" key="git4idea.branch.GitSmartOperationDialog/0.0.1440.900@0.0.1440.900" timestamp="1626627020969" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1626626878310">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1626626878310" />
+  </component>
+</project>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#e21f22</color>
+    <color name="primaryLightColor">#ff5e4c</color>
+    <color name="colorPrimaryDark">#a70000</color>
+    <color name="secondaryColor">#f6b809</color>
+    <color name="secondaryLightColor">#ffea4f</color>
+    <color name="secondaryDarkColor">#be8900</color>
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#ffffff</color>
+
+<!--    <color name="colorPrimary">#FFFFFF</color>-->
+<!--    <color name="colorPrimaryDark">#FFFFFF</color>-->
+    <color name="colorAccent">#DD717A</color>
+    <color name="colorWindowBackground">#E5E5E5</color>
+
+    <color name="color_input_background">#E1E1E1</color>
+
+    <color name="ic_launcher_background">#FFFFFF</color>
+
+    <color name="color_text_primary">#262626</color>
+    <color name="color_text_secondary">#838383</color>
+
+    <color name="color_button_normal">#DD717A</color>
+    <color name="color_button_lite">#EFB8D2</color>
+
+    <color name="color_button_normal_shadow">#11DD717A</color>
+    <color name="color_button_lite_shadow">#11EFB8D2</color>
+
+    <color name="color_ic_disable">#C5C5C5</color>
+    <color name="color_ic_normal">#DD717A</color>
+
+    <color name="color_dot_normal">#D6D6D6</color>
+    <color name="color_dot_active">#484848</color>
+
+    <color name="color_splash_bg">#DD717A</color>
+    <color name="color_splash_text">#FAF2E1</color>
+
+    <color name="color_button_navigation">#FF5A6E</color>
+
+    <color name="color_text_reference">#E8AB4E</color>
+
+
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+</resources>

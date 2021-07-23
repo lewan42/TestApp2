@@ -1,0 +1,171 @@
+<resources>
+    <string name="app_name">Альфа-Групп</string>
+
+    <!--    Экран профиля -->
+    <string name="profile">Профиль</string>
+    <string name="connected_device">Подключенное устройство:</string>
+    <string name="devices">Устройства</string>
+    <string name="disconnect">Отключить</string>
+    <string name="exit">Выйти</string>
+
+
+    <!--    Экран Устройств -->
+    <string name="devices_list">Список устройств</string>
+    <string name="to_scan">Сканировать</string>
+
+
+    <!--    /////////////////////////////////////////////-->
+
+    <string name="loading">Загрузка…</string>
+
+    <string name="message_no_data">Нет данных</string>
+
+    <string name="message_confirm_action">Подтвердите действие</string>
+    <string name="fill_station_name">Введите имя станции</string>
+    <string name="message_error_connection">Отсутствует соединение, проверьте подключение..</string>
+    <string name="message_error_unknown">Неизвестная ошибка, попробуйте позже..</string>
+
+    <string name="message_error_http_404">Не найдено ¯\_(ツ)_/¯</string>
+    <string name="message_error_http_401">Ошибка авторизации, попробуйте авторизоваться заново</string>
+    <string name="message_error_http_300x">Ошибка прокси, проверьте подключение..</string>
+    <string name="message_error_http_400x">Запрос прерван, попробуйте позже..</string>
+    <string name="message_error_http_500x">Работы на сервере, попробуйте позже..</string>
+    <string name="message_error_http_504x">Для отображения данных подключите интернет..</string>
+    <string name="message_error_http_unknown">Неизвестная ошибка, проверьте подключение..</string>
+    <string name="message_error_http">Ошибка авторизации</string>
+
+    <string name="message_error_api_404">Нет данных ¯\_(ツ)_/¯</string>
+
+    <string name="message_send_data">Отправка данных..</string>
+    <string name="message_data_send_complete">Данные отправлены успешно!</string>
+    <string name="message_send_data_failed">Отправка прервана!</string>
+    <string name="message_load_data_failed">Загрузка прервана!</string>
+    <string name="message_develop_state">В разработке..</string>
+    <string name="message_operation_not_supported">Операция не поддерживается</string>
+
+    <string name="action_try_now">Повторить</string>
+    <string name="action_close">Закрыть</string>
+    <string name="action_cancel">Отмена</string>
+    <string name="action_ok">OK</string>
+
+    <string name="settings">Настройки</string>
+
+    <string name="splash_text_0">Ощути себя\nчастью мира\nкрасоты и гармонии!</string>
+    <string name="splash_text_1">Всегда под рукой\nперсональные скидки,\nакции и новости</string>
+    <string name="splash_text_2">Нажмите для получения\nдисконтной карты</string>
+
+    <string name="auth_phone_input_mask" translatable="false">+# (###) ###-##-##</string>
+    <string name="auth_phone_input_hint" translatable="false">+X (XXX) XXX-XX-XX</string>
+    <string name="auth_phone_input_number">Введите номер телефона</string>
+    <string name="auth_phone_input_code">Введите код из уведомления или СМС</string>
+    <string name="auth_phone_approve_text">Согласен получать персональные новости и акции</string>
+    <string name="auth_phone_btn_get_card">Получить карту</string>
+    <string name="auth_code_input_code">Введите код подтверждения</string>
+    <string name="auth_code_input_hint" translatable="false">_ _ _ _</string>
+    <string name="auth_code_input_mask" translatable="false"># # # #</string>
+    <string name="auth_code_retry_timer">Отправить повторно\nчерез %s секунд</string>
+    <string name="auth_code_btn_retry">Отправить повторно</string>
+    <string name="auth_code_btn_next">Далее</string>
+    <string name="auth_code_retry_timer_wait">Недоступно! Дождитесь окончания таймера..</string>
+
+    <string name="default_notification_channel_id">push-channel-default</string>
+    <string name="default_notification_channel_name">Новости</string>
+    <string name="message_notifications_disabled">Уведомления отключены, мы отправим Вам СМС</string>
+
+    <string name="home_nav_bar_btn_home">Домой</string>
+    <string name="home_nav_bar_btn_sale">Акции</string>
+
+    <string name="app_shortcut_card_short">Акции</string>
+    <string name="app_shortcut_card_long">Акции и Скидки</string>
+    <string name="app_shortcut_card_disabled">Акциии и Скидки недоступны</string>
+    <string name="email">Email</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="sing_in">Войти</string>
+    <string name="choose_railway">Выберите железную дорогу</string>
+    <string name="choose_railway_section">Выберите участок</string>
+    <string name="choose_platform">Выберите платформу</string>
+    <string name="choose_object">Выберите объект</string>
+    <string name="crete_measurement">Создание измерения</string>
+    <string name="all">Все</string>
+    <string name="station">Станция</string>
+    <string name="peregon">Перегон</string>
+    <string name="support">Опора</string>
+    <string name="save">Сохранить</string>
+    <string name="measurements">Измерения: </string>
+    <string name="dimensions_of_the_end_fence">Габариты торцевого ограждения: </string>
+    <string name="bridge_crossing">Мостовой переход: </string>
+    <string name="dimensions_canopy">Измерение габаритов навеса:</string>
+    <string name="send">Отправить</string>
+    <string name="your_comment">Ваш коментарий</string>
+    <string name="seacrh">Поиск</string>
+    <string name="number_path">Номер пути:</string>
+    <string name="km_path">Километр пути:</string>
+    <string name="piket">Пикет:</string>
+    <string name="value">Величина</string>
+    <string name="length">Длина</string>
+    <string name="angle_of_slope">Угол наклона</string>
+    <string name="height">Высота</string>
+    <string name="platform">Платформа</string>
+    <string name="canopy">Навес</string>
+    <string name="bridge_cross">Мостовой переход</string>
+    <string name="add">Добавить</string>
+    <string name="measurement_dimensions_fence">Измерение габаритов торцевого ограждения</string>
+    <string name="russian_g">Г</string>
+    <string name="russian_v">В</string>
+    <string name="dimensions_bridge_crossing">Измерение мостового перехода</string>
+    <string name="dimensions_down">Измерения спусков</string>
+    <string name="supports">Опоры</string>
+    <string name="dimension">Измерение</string>
+    <string name="naming">Название:</string>
+    <string name="height_contact_wire_6000">Высота контактного провода</string>
+    <string name="zigzag_contact_wire_6000">Зигзаг контактного провода</string>
+    <string name="height_carrier_wire_6000">Высота несущего провода</string>
+    <string name="zigzag_carrier_wire_6000">Зигзаг несущего провода</string>
+
+    <string name="fill_in_all_fields">Заполните все поля</string>
+    <string name="need_create_measurement">Вы не сделали ни одного измерения</string>
+    <string name="data_added_success">Данные сохранены</string>
+    <string name="data_added_error">Ошибка сохранения данных</string>
+
+    <string name="data_sync_success">Данные синхронизированы</string>
+    <string name="data_sync_error">Ошибка синхронизирования данных</string>
+
+    <string name="create_measurement_for_north">Для сохранения необходимо создать измерение для северного торца</string>
+    <string name="create_measurement_for_center">Для сохранения необходимо создать измерение для центрального торца</string>
+    <string name="create_measurement_for_south">Для сохранения необходимо создать измерение для южного торца</string>
+
+    <string name="create_measurements">Для сохранения необходимо создать измерение для всех торцов</string>
+    <string name="create_support_success">Опора сохранена</string>
+    <string name="create_bridge_success">Мостовой переход сохранен</string>
+    <string name="error_dimension_count">Количество торцевых ограждений должно быть либо 2, либо 4. Проверьте панель управления.</string>
+    <string name="error_wires_count">Проверьте количество несущих и контактных проводов.</string>
+    <string name="error_wires">Проверьте корректность проводов в панели управления у данной опоры.</string>
+    <string name="check_connect_to_bosch">Не удалось подключиться к устройству Bosch 120c. Проверьте подключение.</string>
+    <string name="button_click_support">Нажмите кнопку сохранить для создания опоры</string>
+    <string name="button_click_bridge">Нажмите кнопку сохранить для создания мостового перехода</string>
+
+    <string name="data_otg_bosch_is_empty">Нет данных на устройстве Bosch</string>
+    <string name="data_ble_bosch_is_empty">Нет ни одного созданного измерения</string>
+
+    <string name="fill_input_angle">Введите уголь альфа</string>
+    <string name="fill_correct_input_angle">Введите корректный</string>
+
+
+    <string name="connected_to">Connected to </string>
+    <string name="no_device_connected">No device connected</string>
+    <string name="meter"> m</string>
+    <string name="action_settings">Settings</string>
+    <string name="select_device">"Select device from the list "</string>
+    <string name="refresh">Refresh</string>
+    <string name="paired_devices">Bluetooth Settings</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="request_location_permission">Разрешение на использование Bluetooth.</string>
+    <string name="location_permission_denied">Location access is denied. The application cannot use the Bluetooth feature and will not be able to connect to your Bosch device.</string>
+    <string name="bluetooth_on_denied">Switch on Bluetooth in order to discover and connect Bosch devices.</string>
+    <string name="user">Пользователь</string>
+    <string name="version">Версия</string>
+    <string name="device_is_connect">Устройство подключено</string>
+
+</resources>

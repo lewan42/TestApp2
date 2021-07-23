@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="tamado" >
+        <attr name="bottom_bar_bg_color" format="reference"/>
+        <attr name="ic_normal_color" format="reference"/>
+        <attr name="ic_active_color" format="reference"/>
+
+        <attr name="page_dot_normal_color" format="reference"/>
+        <attr name="page_dot_active_color" format="reference"/>
+
+        <attr name="button_enable_color" format="reference"/>
+        <attr name="button_disable_color" format="reference"/>
+        <attr name="button_text_color" format="reference"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:padding="5dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toRightOf="@+id/image"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <LinearLayout
+            android:id="@+id/date_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/content_margin_small"
+            android:paddingLeft="@dimen/content_margin_small">
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date: " />
+
+            <TextView
+                android:id="@+id/tv_date_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="24.04.1192" />
+
+        </LinearLayout>
+
+
+        <!--   -->
+
+
+        <LinearLayout
+            android:id="@+id/function_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/content_margin_small"
+            android:paddingLeft="@dimen/content_margin_small"
+            android:paddingTop="@dimen/content_margin_small">
+
+            <TextView
+                android:id="@+id/tv_function"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Function: " />
+
+            <TextView
+                android:id="@+id/tv_function_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lengthvkew" />
+
+        </LinearLayout>
+
+
+        <!--   -->
+
+
+        <LinearLayout
+            android:id="@+id/reference_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/content_margin_small"
+            android:paddingLeft="@dimen/content_margin_small"
+            android:paddingTop="@dimen/content_margin_small">
+
+            <TextView
+                android:id="@+id/tv_reference"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Reference: " />
+
+            <TextView
+                android:id="@+id/tv_reference_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lengthvkew" />
+
+        </LinearLayout>
+
+
+        <!--   -->
+
+
+        <LinearLayout
+            android:id="@+id/operation_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/content_margin_small"
+            android:paddingLeft="@dimen/content_margin_small"
+            android:paddingTop="@dimen/content_margin_small">
+
+            <TextView
+                android:id="@+id/tv_operation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Operation: " />
+
+            <TextView
+                android:id="@+id/tv_operation_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lengthvkew" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/measurement_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/content_margin_small"
+            android:paddingLeft="@dimen/content_margin_small"
+            android:paddingTop="@dimen/content_margin_small">
+
+            <TextView
+                android:id="@+id/tv_measurement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Measurement: " />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_measurement_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3.9347235: "
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_measurement_unit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="m"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_measurement_value"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_measurement_value1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3.9347235: "
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_measurement_unit1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="m"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_measurement_value1"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_measurement_value2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3.9347235: "
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_measurement_unit2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="m"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_measurement_value2"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_measurement_value3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3.9347235: "
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_measurement_unit3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="m"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_measurement_value3"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

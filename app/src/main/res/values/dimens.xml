@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="indent_container">20dp</dimen>
+
+    <dimen name="text_margin_small">4dp</dimen>
+    <dimen name="text_margin_normal">6dp</dimen>
+    <dimen name="text_margin_medium">8dp</dimen>
+    <dimen name="text_margin_large">12dp</dimen>
+
+    <dimen name="content_margin_small">8dp</dimen>
+    <dimen name="content_margin_normal">16dp</dimen>
+    <dimen name="content_margin_medium">24dp</dimen>
+    <dimen name="content_margin_large">32dp</dimen>
+
+    <dimen name="splash_title_text_size">20sp</dimen>
+    <dimen name="splash_subtitle_text_size">16sp</dimen>
+    <dimen name="splash_description_text_size">14sp</dimen>
+    <dimen name="splash_loading_text_size">18sp</dimen>
+
+    <dimen name="bottom_bar_ic_title_size">12sp</dimen>
+
+    <dimen name="toolbar_title_size">22sp</dimen>
+
+    <dimen name="screen_title_size">20sp</dimen>
+    <dimen name="screen_text_size">16sp</dimen>
+    <dimen name="screen_desc_size">14sp</dimen>
+    <dimen name="screen_button_text_size">18sp</dimen>
+
+    <dimen name="button_drawable_size_height">30dp</dimen>
+    <dimen name="button_drawable_corners_radius">6dp</dimen>
+    <dimen name="button_drawable_padding_bottom">6dp</dimen>
+    <dimen name="button_drawable_inset_top">2dp</dimen>
+
+
+
+    <dimen name="button_action_height">60dp</dimen>
+    <dimen name="button_action_height_normal">100dp</dimen>
+
+
+</resources>

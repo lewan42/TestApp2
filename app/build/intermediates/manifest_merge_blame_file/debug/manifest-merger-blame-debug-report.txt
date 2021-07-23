@@ -1,0 +1,493 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.alfa.group.bosch.android"
+4    android:versionCode="5"
+5    android:versionName="0.0.5d" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:6:5-67
+11-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:6:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:7:5-79
+12-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:7:22-76
+13    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+13-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:8:5-81
+13-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:8:22-78
+14    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+14-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:9:5-79
+14-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:9:22-76
+15    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+15-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:10:5-88
+15-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:10:22-85
+16    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+16-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:11:5-81
+16-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:11:22-78
+17    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+17-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:12:5-80
+17-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:12:22-77
+18    <uses-permission android:name="android.permission.BLUETOOTH" />
+18-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:14:5-68
+18-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:14:22-65
+19    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+19-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:15:5-74
+19-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:15:22-71
+20
+21    <uses-feature android:name="android.hardware.camera" />
+21-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:17:5-60
+21-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:17:19-57
+22
+23    <uses-permission android:name="android.permission.CAMERA" />
+23-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:19:5-65
+23-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:19:22-62
+24    <uses-permission android:name="android.permission.NFC" />
+24-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:21:5-62
+24-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:21:22-59
+25    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+25-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:23:5-85
+25-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:23:22-82
+26
+27    <uses-feature
+27-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:26:5-28:35
+28        android:name="android.hardware.camera.any"
+28-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:27:9-51
+29        android:required="true" />
+29-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:28:9-32
+30    <uses-feature
+30-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:29:5-31:36
+31        android:name="android.hardware.camera.autofocus"
+31-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:30:9-57
+32        android:required="true" />
+32-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:31:9-33
+33
+34    <uses-permission android:name="android.permission.WAKE_LOCK" />
+34-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:25:5-68
+34-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:25:22-65
+35    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+35-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:27:5-81
+35-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:27:22-78
+36    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+36-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:28:5-77
+36-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:28:22-74
+37
+38    <uses-feature
+38-->[com.google.android.gms:play-services-maps:17.0.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/c49f988695e89cd60930907666403e39/play-services-maps-17.0.0/AndroidManifest.xml:26:5-28:35
+39        android:glEsVersion="0x00020000"
+39-->[com.google.android.gms:play-services-maps:17.0.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/c49f988695e89cd60930907666403e39/play-services-maps-17.0.0/AndroidManifest.xml:27:9-41
+40        android:required="true" /> <!-- android:networkSecurityConfig="@xml/network_security_config" -->
+40-->[com.google.android.gms:play-services-maps:17.0.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/c49f988695e89cd60930907666403e39/play-services-maps-17.0.0/AndroidManifest.xml:28:9-32
+41    <application
+41-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:35:5-135:19
+42        android:name="dev.fabula.android.app.BaseApp"
+42-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:36:9-54
+43        android:allowBackup="true"
+43-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:37:9-35
+44        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+44-->[androidx.core:core:1.3.2] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/35818e56c03852f7c735aefe81314953/core-1.3.2/AndroidManifest.xml:24:18-86
+45        android:configChanges="orientation"
+45-->[com.github.jrvansuita:PickImage:v2.5] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/9be81a238a468974f1f2e1e45560f931/PickImage-v2.5/AndroidManifest.xml:19:9-44
+46        android:debuggable="true"
+47        android:icon="@mipmap/ic_launcher"
+47-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:38:9-43
+48        android:label="@string/app_name"
+48-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:39:9-41
+49        android:roundIcon="@mipmap/ic_launcher_round"
+49-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:40:9-54
+50        android:screenOrientation="portrait"
+50-->[com.github.jrvansuita:PickImage:v2.5] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/9be81a238a468974f1f2e1e45560f931/PickImage-v2.5/AndroidManifest.xml:21:9-45
+51        android:supportsRtl="true"
+51-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:41:9-35
+52        android:testOnly="true"
+53        android:theme="@style/Theme.AppTheme"
+53-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:42:9-46
+54        android:usesCleartextTraffic="true"
+54-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:43:9-44
+55        android:windowSoftInputMode="stateVisible|adjustPan" >
+55-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:44:9-61
+56        <provider
+56-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:47:9-58:20
+57            android:name="androidx.core.content.FileProvider"
+57-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:48:13-62
+58            android:authorities="com.package.name.fileproviders"
+58-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:49:13-65
+59            android:exported="false"
+59-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:50:13-37
+60            android:grantUriPermissions="true" >
+60-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:51:13-47
+61            <meta-data
+61-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:54:13-57:52
+62                android:name="android.support.FILE_PROVIDER_PATHS"
+62-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:55:17-67
+63                android:resource="@xml/provider_path" />
+63-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:56:17-54
+64        </provider>
+65
+66        <!-- <meta-data -->
+67        <!-- android:name="firebase_crashlytics_collection_enabled" -->
+68        <!-- android:value="false" /> -->
+69
+70        <activity
+70-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:65:9-98:20
+71            android:name="dev.fabula.android.app.ui.AppActivity"
+71-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:66:13-47
+72            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+72-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:67:13-83
+73            android:screenOrientation="portrait"
+73-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:68:13-49
+74            android:windowSoftInputMode="adjustResize" >
+74-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:69:13-55
+75            <meta-data
+75-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:71:13-73:57
+76                android:name="android.app.shortcuts"
+76-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:72:17-53
+77                android:resource="@xml/app_shortcuts" />
+77-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:73:17-54
+78
+79            <intent-filter>
+79-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:75:13-78:29
+80                <action android:name="android.intent.action.MAIN" />
+80-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:76:17-69
+80-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:76:25-66
+81
+82                <category android:name="android.intent.category.LAUNCHER" />
+82-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:77:17-77
+82-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:77:27-74
+83            </intent-filter>
+84            <intent-filter>
+84-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:79:13-88:29
+85                <action android:name="android.intent.action.VIEW" />
+85-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:80:17-69
+85-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:80:25-66
+86
+87                <category android:name="android.intent.category.DEFAULT" />
+87-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:82:17-76
+87-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:82:27-73
+88                <category android:name="android.intent.category.BROWSABLE" />
+88-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:83:17-78
+88-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:83:27-75
+89
+90                <data
+90-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:85:17-87:45
+91                    android:host="alfa-group.net"
+91-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:86:21-50
+92                    android:scheme="http" />
+92-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:87:21-42
+93            </intent-filter>
+94
+95            <!-- <intent-filter> -->
+96            <!-- <action android:name="android.nfc.action.NDEF_DISCOVERED"/> -->
+97            <!-- <action android:name="android.nfc.action.TAG_DISCOVERED"/> -->
+98
+99
+100            <!-- <category android:name="android.intent.category.DEFAULT"/> -->
+101            <!-- </intent-filter> -->
+102
+103            <intent-filter android:autoVerify="true" >
+103-->[app_navigation] /Users/lewan/Desktop/fabula-alfa-bosch/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/res/navigation/app_navigation.xml:558:9-561:75
+103-->[app_navigation] /Users/lewan/Desktop/fabula-alfa-bosch/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/res/navigation/app_navigation.xml:558:9-561:75
+104                <action android:name="android.intent.action.VIEW" />
+104-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:80:17-69
+104-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:80:25-66
+105
+106                <category android:name="android.intent.category.DEFAULT" />
+106-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:82:17-76
+106-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:82:27-73
+107                <category android:name="android.intent.category.BROWSABLE" />
+107-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:83:17-78
+107-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:83:27-75
+108
+109                <data android:scheme="http" />
+109-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:85:17-87:45
+109-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:87:21-42
+110                <data android:scheme="https" />
+110-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:85:17-87:45
+110-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:87:21-42
+111                <data android:host="alfa-group.net" />
+111-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:85:17-87:45
+111-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:86:21-50
+112                <data android:path="/home/page" />
+112-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:85:17-87:45
+112-->[app_navigation] /Users/lewan/Desktop/fabula-alfa-bosch/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/res/navigation/app_navigation.xml:558:9-561:75
+113            </intent-filter>
+114        </activity>
+115
+116        <!-- &lt;!&ndash; Set custom default icon. This is used when no icon is set for incoming notification messages. -->
+117        <!-- See README(https://goo.gl/l4GJaQ) for more. &ndash;&gt; -->
+118        <!-- <meta-data -->
+119        <!-- android:name="com.google.firebase.messaging.default_notification_icon" -->
+120        <!-- android:resource="@drawable/ic_nav_sale" /> -->
+121        <!-- &lt;!&ndash; Set color used with incoming notification messages. This is used when no color is set for the incoming -->
+122        <!-- notification message. See README(https://goo.gl/6BKBk7) for more. &ndash;&gt; -->
+123        <!-- <meta-data -->
+124        <!-- android:name="com.google.firebase.messaging.default_notification_color" -->
+125        <!-- android:resource="@color/colorAccent" /> -->
+126        <!-- <meta-data -->
+127        <!-- android:name="com.google.firebase.messaging.default_notification_channel_id" -->
+128        <!-- android:value="@string/default_notification_channel_id" /> -->
+129
+130
+131        <!-- <service -->
+132        <!-- android:name=".firebase.messaging.PushService" -->
+133        <!-- android:exported="false"> -->
+134        <!-- <intent-filter> -->
+135        <!-- <action android:name="com.google.firebase.MESSAGING_EVENT" /> -->
+136        <!-- </intent-filter> -->
+137        <!-- </service> -->
+138
+139        <service android:name="dev.fabula.android.bluetooth.bluetooth.BLEService" />
+139-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:122:9-67
+139-->/Users/lewan/Desktop/fabula-alfa-bosch/app/src/main/AndroidManifest.xml:122:18-64
+140
+141        <!-- <provider -->
+142        <!-- android:name="com.github.mjdev.libaums.storageprovider.UsbDocumentProvider" -->
+143        <!-- android:authorities="com.github.mjdev.libaums.storageprovider.documents" -->
+144        <!-- android:exported="true" -->
+145        <!-- android:grantUriPermissions="true" -->
+146        <!-- android:permission="android.permission.MANAGE_DOCUMENTS" -->
+147        <!-- android:enabled="@bool/isAtLeastKitKat"> -->
+148        <!-- <intent-filter> -->
+149        <!-- <action android:name="android.content.action.DOCUMENTS_PROVIDER" /> -->
+150        <!-- </intent-filter> -->
+151        <!-- </provider> -->
+152        <provider
+152-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:31:9-37:35
+153            android:name="androidx.work.impl.WorkManagerInitializer"
+153-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:32:13-69
+154            android:authorities="com.alfa.group.bosch.android.workmanager-init"
+154-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:33:13-68
+155            android:directBootAware="false"
+155-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:34:13-44
+156            android:exported="false"
+156-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:35:13-37
+157            android:multiprocess="true" />
+157-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:36:13-40
+158
+159        <service
+159-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:39:9-44:35
+160            android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"
+160-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:40:13-88
+161            android:directBootAware="false"
+161-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:41:13-44
+162            android:enabled="@bool/enable_system_alarm_service_default"
+162-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:42:13-72
+163            android:exported="false" />
+163-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:43:13-37
+164        <service
+164-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:45:9-51:35
+165            android:name="androidx.work.impl.background.systemjob.SystemJobService"
+165-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:46:13-84
+166            android:directBootAware="false"
+166-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:47:13-44
+167            android:enabled="@bool/enable_system_job_service_default"
+167-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:48:13-70
+168            android:exported="true"
+168-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:49:13-36
+169            android:permission="android.permission.BIND_JOB_SERVICE" />
+169-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:50:13-69
+170        <service
+170-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:52:9-57:35
+171            android:name="androidx.work.impl.foreground.SystemForegroundService"
+171-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:53:13-81
+172            android:directBootAware="false"
+172-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:54:13-44
+173            android:enabled="@bool/enable_system_foreground_service_default"
+173-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:55:13-77
+174            android:exported="false" />
+174-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:56:13-37
+175
+176        <receiver
+176-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:59:9-64:35
+177            android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"
+177-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:60:13-88
+178            android:directBootAware="false"
+178-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:61:13-44
+179            android:enabled="true"
+179-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:62:13-35
+180            android:exported="false" />
+180-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:63:13-37
+181        <receiver
+181-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:65:9-75:20
+182            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy"
+182-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:66:13-106
+183            android:directBootAware="false"
+183-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:67:13-44
+184            android:enabled="false"
+184-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:68:13-36
+185            android:exported="false" >
+185-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:69:13-37
+186            <intent-filter>
+186-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:71:13-74:29
+187                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+187-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:72:17-87
+187-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:72:25-84
+188                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+188-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:73:17-90
+188-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:73:25-87
+189            </intent-filter>
+190        </receiver>
+191        <receiver
+191-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:76:9-86:20
+192            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy"
+192-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:77:13-104
+193            android:directBootAware="false"
+193-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:78:13-44
+194            android:enabled="false"
+194-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:79:13-36
+195            android:exported="false" >
+195-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:80:13-37
+196            <intent-filter>
+196-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:82:13-85:29
+197                <action android:name="android.intent.action.BATTERY_OKAY" />
+197-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:83:17-77
+197-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:83:25-74
+198                <action android:name="android.intent.action.BATTERY_LOW" />
+198-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:84:17-76
+198-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:84:25-73
+199            </intent-filter>
+200        </receiver>
+201        <receiver
+201-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:87:9-97:20
+202            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy"
+202-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:88:13-104
+203            android:directBootAware="false"
+203-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:89:13-44
+204            android:enabled="false"
+204-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:90:13-36
+205            android:exported="false" >
+205-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:91:13-37
+206            <intent-filter>
+206-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:93:13-96:29
+207                <action android:name="android.intent.action.DEVICE_STORAGE_LOW" />
+207-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:94:17-83
+207-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:94:25-80
+208                <action android:name="android.intent.action.DEVICE_STORAGE_OK" />
+208-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:95:17-82
+208-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:95:25-79
+209            </intent-filter>
+210        </receiver>
+211        <receiver
+211-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:98:9-107:20
+212            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy"
+212-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:99:13-103
+213            android:directBootAware="false"
+213-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:100:13-44
+214            android:enabled="false"
+214-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:101:13-36
+215            android:exported="false" >
+215-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:102:13-37
+216            <intent-filter>
+216-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:104:13-106:29
+217                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+217-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:105:17-79
+217-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:105:25-76
+218            </intent-filter>
+219        </receiver>
+220        <receiver
+220-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:108:9-119:20
+221            android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver"
+221-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:109:13-88
+222            android:directBootAware="false"
+222-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:110:13-44
+223            android:enabled="false"
+223-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:111:13-36
+224            android:exported="false" >
+224-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:112:13-37
+225            <intent-filter>
+225-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:114:13-118:29
+226                <action android:name="android.intent.action.BOOT_COMPLETED" />
+226-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:115:17-79
+226-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:115:25-76
+227                <action android:name="android.intent.action.TIME_SET" />
+227-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:116:17-73
+227-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:116:25-70
+228                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+228-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:117:17-81
+228-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:117:25-78
+229            </intent-filter>
+230        </receiver>
+231        <receiver
+231-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:120:9-129:20
+232            android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver"
+232-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:121:13-99
+233            android:directBootAware="false"
+233-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:122:13-44
+234            android:enabled="@bool/enable_system_alarm_service_default"
+234-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:123:13-72
+235            android:exported="false" >
+235-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:124:13-37
+236            <intent-filter>
+236-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:126:13-128:29
+237                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies" />
+237-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:127:17-98
+237-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:127:25-95
+238            </intent-filter>
+239        </receiver>
+240        <receiver
+240-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:130:9-140:20
+241            android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver"
+241-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:131:13-78
+242            android:directBootAware="false"
+242-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:132:13-44
+243            android:enabled="true"
+243-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:133:13-35
+244            android:exported="true"
+244-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:134:13-36
+245            android:permission="android.permission.DUMP" >
+245-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:135:13-57
+246            <intent-filter>
+246-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:137:13-139:29
+247                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
+247-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:138:17-88
+247-->[androidx.work:work-runtime:2.4.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/ba87e4cfb2542d13d37a25f3ade9d004/work-runtime-2.4.0/AndroidManifest.xml:138:25-85
+248            </intent-filter>
+249        </receiver>
+250
+251        <service
+251-->[androidx.room:room-runtime:2.2.5] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/d320f1229e191fd7d2f548e357821504/room-runtime-2.2.5/AndroidManifest.xml:25:9-28:40
+252            android:name="androidx.room.MultiInstanceInvalidationService"
+252-->[androidx.room:room-runtime:2.2.5] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/d320f1229e191fd7d2f548e357821504/room-runtime-2.2.5/AndroidManifest.xml:26:13-74
+253            android:directBootAware="true"
+253-->[androidx.room:room-runtime:2.2.5] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/d320f1229e191fd7d2f548e357821504/room-runtime-2.2.5/AndroidManifest.xml:27:13-43
+254            android:exported="false" /> <!-- Needs to be explicitly declared on P+ -->
+254-->[androidx.room:room-runtime:2.2.5] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/d320f1229e191fd7d2f548e357821504/room-runtime-2.2.5/AndroidManifest.xml:28:13-37
+255        <uses-library
+255-->[com.google.android.gms:play-services-maps:17.0.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/c49f988695e89cd60930907666403e39/play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
+256            android:name="org.apache.http.legacy"
+256-->[com.google.android.gms:play-services-maps:17.0.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/c49f988695e89cd60930907666403e39/play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
+257            android:required="false" />
+257-->[com.google.android.gms:play-services-maps:17.0.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/c49f988695e89cd60930907666403e39/play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
+258
+259        <activity
+259-->[com.google.android.gms:play-services-base:17.3.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/7804ac9ea6106b900ece1df54dd8e9cf/play-services-base-17.3.0/AndroidManifest.xml:23:9-26:75
+260            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+260-->[com.google.android.gms:play-services-base:17.3.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/7804ac9ea6106b900ece1df54dd8e9cf/play-services-base-17.3.0/AndroidManifest.xml:24:13-79
+261            android:exported="false"
+261-->[com.google.android.gms:play-services-base:17.3.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/7804ac9ea6106b900ece1df54dd8e9cf/play-services-base-17.3.0/AndroidManifest.xml:25:13-37
+262            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+262-->[com.google.android.gms:play-services-base:17.3.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/7804ac9ea6106b900ece1df54dd8e9cf/play-services-base-17.3.0/AndroidManifest.xml:26:13-72
+263
+264        <meta-data
+264-->[com.google.android.gms:play-services-basement:17.3.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/d7eba75626af07ae9cdba4364a6292cd/play-services-basement-17.3.0/AndroidManifest.xml:23:9-25:69
+265            android:name="com.google.android.gms.version"
+265-->[com.google.android.gms:play-services-basement:17.3.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/d7eba75626af07ae9cdba4364a6292cd/play-services-basement-17.3.0/AndroidManifest.xml:24:13-58
+266            android:value="@integer/google_play_services_version" />
+266-->[com.google.android.gms:play-services-basement:17.3.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/d7eba75626af07ae9cdba4364a6292cd/play-services-basement-17.3.0/AndroidManifest.xml:25:13-66
+267
+268        <provider
+268-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/662fdfd14d040a01aab9dbbe0d3927ae/lifecycle-process-2.2.0/AndroidManifest.xml:25:9-29:43
+269            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+269-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/662fdfd14d040a01aab9dbbe0d3927ae/lifecycle-process-2.2.0/AndroidManifest.xml:26:13-79
+270            android:authorities="com.alfa.group.bosch.android.lifecycle-process"
+270-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/662fdfd14d040a01aab9dbbe0d3927ae/lifecycle-process-2.2.0/AndroidManifest.xml:27:13-69
+271            android:exported="false"
+271-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/662fdfd14d040a01aab9dbbe0d3927ae/lifecycle-process-2.2.0/AndroidManifest.xml:28:13-37
+272            android:multiprocess="true" />
+272-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/lewan/gradle/.gradle/caches/transforms-2/files-2.1/662fdfd14d040a01aab9dbbe0d3927ae/lifecycle-process-2.2.0/AndroidManifest.xml:29:13-40
+273    </application>
+274
+275</manifest>

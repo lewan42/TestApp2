@@ -1,0 +1,116 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply from: 'build-props.gradle'
+apply plugin: 'kotlin-android-extensions' //fixme delete
+
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        applicationId "com.alfa.group.bosch.android"
+        minSdkVersion 21
+        targetSdkVersion 30
+
+        versionCode 005
+        versionName "0.0.5"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs {
+        release {
+            storeFile file(build_props.KSTOREFLE)
+            storePassword build_props.KSTOREPWD
+            keyAlias build_props.ALSKEY
+            keyPassword build_props.ALSPWD
+        }
+    }
+    buildTypes {
+        debug {
+            versionNameSuffix "d"
+            resValue "string", "build_props_api_url", build_props.api_url_dev
+        }
+        demo {
+            versionNameSuffix "t"
+            resValue "string", "build_props_api_url", build_props.api_url
+            signingConfig signingConfigs.debug
+        }
+        release {
+            resValue "string", "build_props_api_url", build_props.api_url
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.kotlinx_coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.kotlinx_coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$versions.kotlinx_coroutines"
+    implementation "androidx.room:room-runtime:$versions.room_version"
+    kapt "androidx.room:room-compiler:$versions.room_version"
+    implementation "androidx.room:room-ktx:$versions.room_version"
+    testImplementation "androidx.room:room-testing:$versions.room_version"
+    implementation "androidx.core:core-ktx:$versions.androidx_core"
+    implementation "androidx.appcompat:appcompat:$versions.androidx_appcompat"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.androidx_constraintlayout"
+    implementation "androidx.viewpager2:viewpager2:$versions.androidx_viewpager2"
+    implementation "androidx.lifecycle:lifecycle-extensions:$versions.androidx_lifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.androidx_lifecycle"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$versions.androidx_lifecycle"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.androidx_lifecycle"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$versions.androidx_lifecycle"
+    implementation "androidx.fragment:fragment-ktx:$versions.androidx_fragment"
+    implementation "androidx.navigation:navigation-fragment-ktx:$versions.androidx_navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$versions.androidx_navigation"
+    implementation "androidx.recyclerview:recyclerview:$versions.androidx_recycleView"
+    implementation "androidx.work:work-runtime:$versions.androidx_work"
+    implementation "androidx.work:work-runtime-ktx:$versions.androidx_work"
+    implementation "com.github.santalu:maskara:$versions.santalu_maskinput"
+    implementation "io.michaelrocks:libphonenumber-android:$versions.libphonenumber"
+    implementation "com.google.android.material:material:$versions.android_material"
+    implementation "com.github.bumptech.glide:glide:$versions.glide"
+    implementation "com.google.android.gms:play-services-location:$versions.gms_location"
+    implementation "com.google.code.gson:gson:$versions.gson"
+    implementation "com.squareup.okhttp3:okhttp:$versions.okhttp"
+    implementation "com.squareup.okhttp3:logging-interceptor:$versions.okhttp"
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+    implementation "com.jakewharton.timber:timber:$versions.dbg_timber"
+    implementation "com.google.dagger:dagger:$versions.dagger"
+    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
+    testImplementation "junit:junit:$versions.test_junit"
+    androidTestImplementation "androidx.test.ext:junit:$versions.test_androidx_junit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.test_androidx_espresso_core"
+    implementation "com.github.doyaaaaaken:kotlin-csv-jvm:$versions.csv"
+    implementation "com.google.android.gms:play-services-location:17.1.0"
+    implementation "com.google.android.gms:play-services-maps:17.0.0"
+    implementation "com.github.jrvansuita:PickImage:v2.5"
+    implementation "com.github.bumptech.glide:glide:4.10.0"
+}
+
+apply plugin: 'com.google.gms.google-services'
+
