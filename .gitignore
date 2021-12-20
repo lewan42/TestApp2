@@ -3,3 +3,5 @@
 /bosch-mtprotocol
 /app/build-props.gradle
 /app/google-services.json
+/gradle
+/.gradle
