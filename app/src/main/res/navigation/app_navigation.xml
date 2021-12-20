@@ -82,12 +82,16 @@
             android:id="@+id/action_profile_to_union_measurement_list"
             app:destination="@id/unionMeasurementFragment" />
         <action
-            android:id="@+id/action_profile_to_calibration"
-            app:destination="@id/calibrationFragment" />
+            android:id="@+id/action_profile_to_lab"
+            app:destination="@id/labFragment" />
+    </fragment>
 
-        <!--        <action-->
-        <!--            android:id="@+id/action_profile_to_report"-->
-        <!--            app:destination="@id/reportFragment" />-->
+    <fragment
+        android:id="@+id/labFragment"
+        android:name="dev.fabula.android.measurements.lab.ui.LabFragment"
+        android:label="LabFragment"
+        tools:layout="@layout/lab_fragment">
+
     </fragment>
 
     <fragment
@@ -402,7 +406,7 @@
         android:id="@+id/canopyFragment"
         android:name="dev.fabula.android.canopy.ui.CanopyFragment"
         android:label="CanopyFragment"
-        tools:layout="@layout/canopy_fragment">
+        tools:layout="@layout/_canopy_fragment">
 
         <argument
             android:name="uid_platform"
@@ -426,7 +430,7 @@
         android:id="@+id/dimensionsFenceFragment"
         android:name="dev.fabula.android.dimensions.fence.ui.DimensionsFenceFragment"
         android:label="DimensionsFenceFragment"
-        tools:layout="@layout/dimensions_fence_fragment">
+        tools:layout="@layout/_dimensions_fence_fragment">
         <argument
             android:name="dimensions_count"
             app:argType="integer" />

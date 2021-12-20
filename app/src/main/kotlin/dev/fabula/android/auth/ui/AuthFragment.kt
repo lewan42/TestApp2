@@ -2,7 +2,6 @@ package dev.fabula.android.auth.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import dev.fabula.android.R
@@ -22,6 +21,7 @@ class AuthFragment : ViewModelFragment<AuthFragmentBinding>(R.layout.auth_fragme
         super.onAttach(context)
         AuthComponent.create(context).inject(this)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,7 +49,6 @@ class AuthFragment : ViewModelFragment<AuthFragmentBinding>(R.layout.auth_fragme
                 return
             }
             progressBar.visibility = View.VISIBLE
-            Log.e("AuthFragment ","singIn")
             viewModel.trySingIn(email.text.toString(), password.text.toString())
         }
     }

@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import dev.fabula.android.dimensions.fence.model.DimensionsFence
+import dev.fabula.android.measurements.model.Measurement
 import dev.fabula.android.platform.model.Platform
 
 @Dao
@@ -30,6 +31,9 @@ interface DimensionsFenceDao {
     @Query("SELECT * FROM gabarittor WHERE platform_uid=:uidPlatform")
     fun getDimensionsFenceOfPlatform(uidPlatform: String): List<DimensionsFence>
 
+    @Query("SELECT EXISTS(SELECT * FROM gabarittor WHERE platform_uid=:uidParent)")
+    fun isExists(uidParent: String): Boolean
+
     @Query("UPDATE gabarittor SET direction = :direction WHERE uid =:uid")
     fun updateMeasurementOfDimension(uid: String, direction: String)
 
@@ -47,6 +51,13 @@ interface DimensionsFenceDao {
     @Query("UPDATE gabarittor SET flag_edited = :flag WHERE uid =:uid")
     fun updateFlagEdited(uid: String, flag: Boolean)
 
+    // not use
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertWithReplace(dimensionsFence: DimensionsFence)
+
+    @Insert()
+    fun insert(dimensionsFence: DimensionsFence)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(dimensionsFence: List<DimensionsFence>): List<Long>
 }

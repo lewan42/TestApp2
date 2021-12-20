@@ -4,7 +4,6 @@ apply plugin: 'kotlin-kapt'
 apply from: 'build-props.gradle'
 apply plugin: 'kotlin-android-extensions' //fixme delete
 
-
 android {
     compileSdkVersion 30
 
@@ -36,6 +35,7 @@ android {
             resValue "string", "build_props_api_url", build_props.api_url
             signingConfig signingConfigs.debug
         }
+
         release {
             resValue "string", "build_props_api_url", build_props.api_url
             minifyEnabled true
@@ -105,7 +105,7 @@ dependencies {
     testImplementation "junit:junit:$versions.test_junit"
     androidTestImplementation "androidx.test.ext:junit:$versions.test_androidx_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$versions.test_androidx_espresso_core"
-    implementation "com.github.doyaaaaaken:kotlin-csv-jvm:$versions.csv"
+    implementation "com.github.doyaaaaaken:kotlin-csv-jvm:0.12.0"
     implementation "com.google.android.gms:play-services-location:17.1.0"
     implementation "com.google.android.gms:play-services-maps:17.0.0"
     implementation "com.github.jrvansuita:PickImage:v2.5"

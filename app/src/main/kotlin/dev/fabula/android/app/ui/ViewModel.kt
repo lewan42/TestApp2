@@ -17,7 +17,7 @@ abstract class BaseViewModel : ViewModel() {
     val error: LiveData<Event<Throwable>>
         get() = _error
 
-    protected fun fetchData(block: suspend () -> Unit) {
+    fun fetchData(block: suspend () -> Unit) {
         (progress as MutableLiveData).value = true
         viewModelScope.launch {
             try {

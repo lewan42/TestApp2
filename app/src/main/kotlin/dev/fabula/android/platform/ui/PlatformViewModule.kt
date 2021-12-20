@@ -7,6 +7,7 @@ import dev.fabula.android.app.ui.BaseViewModel
 import dev.fabula.android.app.ui.Event
 import dev.fabula.android.auth.remote.AuthResponse
 import dev.fabula.android.canopy.model.Canopy
+import dev.fabula.android.dimensions.fence.model.DimensionsFence
 import dev.fabula.android.platform.model.Platform
 import dev.fabula.android.platform.repo.PlatformRepository
 import kotlinx.coroutines.Dispatchers
@@ -30,6 +31,10 @@ class PlatformViewModule @Inject constructor(
     val canopy: LiveData<Event<Canopy>>
         get() = _canopy
 
+    private val _dimensionsFencesList = MutableLiveData<Event<List<DimensionsFence>>>()
+    val dimensionsFencesList: LiveData<Event<List<DimensionsFence>>>
+        get() = _dimensionsFencesList
+
 
     private val _support = MutableLiveData<Event<Canopy>>()
     val support: LiveData<Event<Canopy>>
@@ -51,6 +56,15 @@ class PlatformViewModule @Inject constructor(
             }
         }
     }
+
+    fun getDimensionsFencesOfPlatform(uidPlatform: String, countDimensionsFence: Int) {
+        viewModelScope.launch {
+            return@launch withContext(Dispatchers.IO) {
+                _dimensionsFencesList.postValue(Event(repository.getDimensionFences(uidPlatform, countDimensionsFence)))
+            }
+        }
+    }
+
 
     fun update(
         uidPlatform: String,

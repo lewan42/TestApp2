@@ -12,15 +12,10 @@ public class Util {
         const val ACTION_SYNC_CONNECTION_RECEIVED_STATE = "ACTION_SYNC_CONNECTION_RECEIVED_STATE"
 
         const val station: String = "Station"
-        const val stationName: String = "Станция"
-        const val platform: String = "Платформа"
-        const val canopy: String = "Навес"
-        const val bridgeCrossing: String = "Мостовой переход"
+        //const val platform: String = "Платформа"
+        //const val canopy: String = "Навес"
         const val support: String = "опора"
-        const val supportName: String = "Опора"
-        const val sectionRailway: String = "Участок железной дороги"
         const val peregon: String = "Peregon"
-        const val peregonName: String = "Перегон"
 
         var NFC_TAG = MutableLiveData<Tag?>()
         var NFC_TAG_NEXT = true
@@ -35,15 +30,6 @@ public class Util {
         var CERTIFICATE_5 = "Лазерный дальномер Bosch GLM 250 VF Professional №80627 LC ."
 
 
-        const val type_create_measurement: String = "Create"
-        const val type_update_measurement: String = "Update"
-
-        const val platform_peregovay: String = "Береговая"
-        const val platform_ostravnaya: String = "Островная"
-
-        const val platform_high: String = "Высокая"
-        const val platform_down: String = "Низкая"
-
         const val canopy_type_north = 0
         const val canopy_type_center = 1
         const val canopy_type_south = 2
@@ -53,8 +39,6 @@ public class Util {
         const val height_carrier_wire = "высота несущего провода"
         const val zigzag_carrier_wire = "зигзаг несущего провода"
 
-        const val support_type = "опора"
-        const val support_bridge_type = "опора мостового перехода"
         const val platform_type_measurement = "платформа"
         const val dimensions_fence_type = "габарит торцевого ограждения"
         const val dimensions_canopy_type = "габарит навеса"

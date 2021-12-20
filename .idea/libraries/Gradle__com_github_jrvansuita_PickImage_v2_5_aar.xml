@@ -1,17 +1,16 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.jrvansuita:PickImage:v2.5@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/gradle/.gradle/caches/transforms-2/files-2.1/9be81a238a468974f1f2e1e45560f931/PickImage-v2.5/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4e9fdde5335ae194a554c2ada6893195/PickImage-v2.5/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/gradle/.gradle/caches/transforms-2/files-2.1/9be81a238a468974f1f2e1e45560f931/PickImage-v2.5/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/gradle/.gradle/caches/transforms-2/files-2.1/9be81a238a468974f1f2e1e45560f931/PickImage-v2.5/res" />
-      <root url="file://$USER_HOME$/gradle/.gradle/caches/transforms-2/files-2.1/9be81a238a468974f1f2e1e45560f931/PickImage-v2.5/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4e9fdde5335ae194a554c2ada6893195/PickImage-v2.5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4e9fdde5335ae194a554c2ada6893195/PickImage-v2.5/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4e9fdde5335ae194a554c2ada6893195/PickImage-v2.5/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/gradle/.gradle/caches/modules-2/files-2.1/com.github.jrvansuita/PickImage/v2.5/2e733eaff3fe47e297f48f733448a739b1f7ce6e/PickImage-v2.5-sources.jar!/" />
-      <root url="jar://$USER_HOME$/gradle/.gradle/caches/modules-2/files-2.1/com.github.jrvansuita/PickImage/v2.5/80ee5ebb3226b8092067cd942b986044e59b4cfb/PickImage-v2.5-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jrvansuita/PickImage/v2.5/80ee5ebb3226b8092067cd942b986044e59b4cfb/PickImage-v2.5-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

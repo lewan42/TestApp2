@@ -19,9 +19,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.navigation.findNavController
 import dev.fabula.android.R
 import dev.fabula.android.app.BaseApp
@@ -30,7 +28,7 @@ import dev.fabula.android.camera.CameraHandler
 import dev.fabula.android.camera.CameraViewModel
 import timber.log.Timber
 import java.io.IOException
-import kotlin.math.sin
+
 
 class AppActivity : AppCompatActivity() {
 
@@ -142,7 +140,6 @@ class AppActivity : AppCompatActivity() {
     }
 
     fun initNfcAdapter() {
-
         val nfcManager = getSystemService(Context.NFC_SERVICE) as NfcManager
         adapter = nfcManager.defaultAdapter
     }
@@ -179,41 +176,9 @@ class AppActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         Timber.d("onNewIntent $intent")
-        Log.e("AAAA", "AAAAASSSSS")
 
         if (Util.NFC_TAG_NEXT) {
             Util.NFC_TAG.value = intent.getParcelableExtra<Tag>(NfcAdapter.EXTRA_TAG)
         }
     }
-
-//    companion object {
-//
-//
-//
-//        private var adapter: NfcAdapter? = null
-//        fun initNfcAdapter(activity: AppActivity) {
-//
-//            val nfcManager = activity.getSystemService(Context.NFC_SERVICE) as NfcManager
-//            adapter = nfcManager.defaultAdapter
-//        }
-//
-//        fun enableNfcForegroundDispatch(activity: AppActivity) {
-//            try {
-//                val intent =
-//                    Intent(activity, javaClass).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-//                val nfcPendingIntent = PendingIntent.getActivity(activity, 0, intent, 0)
-//                adapter?.enableForegroundDispatch(activity, nfcPendingIntent, null, null)
-//            } catch (ex: IllegalStateException) {
-//                Log.e("getTag()", "Error enabling NFC foreground dispatch", ex)
-//            }
-//        }
-//
-//        fun disableNfcForegroundDispatch(activity: AppActivity) {
-//            try {
-//                adapter?.disableForegroundDispatch(activity)
-//            } catch (ex: IllegalStateException) {
-//                Log.e("getTag()", "Error disabling NFC foreground dispatch", ex)
-//            }
-//        }
-//    }
 }

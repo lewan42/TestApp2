@@ -24,7 +24,6 @@ import dev.fabula.android.station.peregon.model.StationPeregon
 import dev.fabula.android.support.dao.SupportDao
 import dev.fabula.android.support.model.Support
 import dev.fabula.android.wire.carrier.dao.CarrierWireDao
-import dev.fabula.android.wire.carrier.di.CarrierWireDaoModule
 import dev.fabula.android.wire.carrier.model.CarrierWire
 import dev.fabula.android.wire.contact.dao.ContactWireDao
 import dev.fabula.android.wire.contact.model.ContactWire

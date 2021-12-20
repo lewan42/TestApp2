@@ -1,13 +1,10 @@
 package dev.fabula.android.bluetooth.adapter
 
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import dev.fabula.android.app.util.Util
-import dev.fabula.android.bluetooth.GLMDeviceController
 import dev.fabula.android.bluetooth.bluetooth.BLEService
 import dev.fabula.android.bluetooth.bluetooth.MTBluetoothDevice
 import dev.fabula.android.bluetooth.ui.BluetoothFragment

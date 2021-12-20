@@ -2,7 +2,6 @@ package dev.fabula.android.report.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dev.fabula.android.app.ui.BaseViewModel
 import dev.fabula.android.app.ui.Event
@@ -12,15 +11,11 @@ import dev.fabula.android.dimensions.fence.model.DimensionsWithMeasure
 import dev.fabula.android.dimensions.fence.repo.DimensionsFenceRepository
 import dev.fabula.android.measurements.list.repo.MeasurementsRepository
 import dev.fabula.android.measurements.model.Measurement
-import dev.fabula.android.measurements.type.model.MeasurementType
 import dev.fabula.android.platform.model.Platform
 import dev.fabula.android.platform.repo.PlatformRepository
-import dev.fabula.android.railway.model.Railway
 import dev.fabula.android.railway.repo.RailwayRepository
 import dev.fabula.android.report.repo.ReportRepository
-import dev.fabula.android.screen.measurements.model.ListItem
 import dev.fabula.android.screen.measurements.repo.ScreenMeasurementsRepository
-import dev.fabula.android.section.model.RailwaySection
 import dev.fabula.android.section.repo.RailwaySectionRepository
 import dev.fabula.android.station.peregon.model.StationPeregon
 import dev.fabula.android.station.peregon.repo.StationPeregonRepository

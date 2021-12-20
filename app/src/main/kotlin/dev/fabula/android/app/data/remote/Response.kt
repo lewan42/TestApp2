@@ -1,16 +1,13 @@
 package dev.fabula.android.app.data.remote
 
 import com.google.gson.annotations.SerializedName
-import retrofit2.Retrofit
-import java.io.IOException
-import java.lang.RuntimeException
 
-class Response<R>(
-    @SerializedName("result") private val result: R?,
+class Response<T>(
+    @SerializedName("result") private val result: T?,
     @SerializedName("error") val error: Error?
 ) {
 
-    val data: R
+    val data: T
         get() = error?.let { throw RemoteServiceException(it) }
             ?: result
             ?: throw RemoteServiceException(Error(404, "Empty data!"))

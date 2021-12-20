@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import dev.fabula.android.app.ui.BaseViewModel
 import dev.fabula.android.app.ui.Event
 import dev.fabula.android.canopy.model.Canopy
+import dev.fabula.android.dimensions.fence.model.DimensionsFence
+import dev.fabula.android.dimensions.fence.model.DimensionsFenceWithMeasurement
 import dev.fabula.android.measurements.list.repo.MeasurementsRepository
 import dev.fabula.android.measurements.model.Measurement
 import dev.fabula.android.measurements.type.model.MeasurementType
@@ -30,17 +32,21 @@ class MeasurementsListViewModel @Inject constructor(
     val measurementCanopy: LiveData<List<Measurement>>
         get() = _measurementCanopy
 
-    private val _countLastMeasurementPlatforms = MutableLiveData<List<Measurement>>()
-    val countLastMeasurementPlatforms: LiveData<List<Measurement>>
+    private val _countLastMeasurementPlatforms = MutableLiveData<Event<List<Measurement>>>()
+    val countLastMeasurementPlatforms: LiveData<Event<List<Measurement>>>
         get() = _countLastMeasurementPlatforms
 
-    private val _countLastMeasurementBridge = MutableLiveData<List<Measurement>>()
-    val countLastMeasurementBridge: LiveData<List<Measurement>>
+    private val _countLastMeasurementBridge = MutableLiveData<Event<List<Measurement>>>()
+    val countLastMeasurementBridge: LiveData<Event<List<Measurement>>>
         get() = _countLastMeasurementBridge
 
-    private val _countLastMeasurementCanopy = MutableLiveData<List<Measurement>>()
-    val countLastMeasurementCanopy: LiveData<List<Measurement>>
+    private val _countLastMeasurementCanopy = MutableLiveData<Event<List<Measurement>>>()
+    val countLastMeasurementCanopy: LiveData<Event<List<Measurement>>>
         get() = _countLastMeasurementCanopy
+
+    private val _countLastMeasurementDimensionFence = MutableLiveData<Event<List<DimensionsFenceWithMeasurement>>>()
+    val countLastMeasurementDimensionFence: LiveData<Event<List<DimensionsFenceWithMeasurement>>>
+        get() = _countLastMeasurementDimensionFence
 
 
     private val _canopiesOfPlatform = MutableLiveData<List<Canopy>>()
@@ -73,7 +79,7 @@ class MeasurementsListViewModel @Inject constructor(
     fun getCountLastMeasurementsOfPlatform(uidPlatform: String, count: Int) {
         viewModelScope.launch {
             return@launch withContext(Dispatchers.IO) {
-                _countLastMeasurementPlatforms.postValue(repository.getCountLastMeasurementsOfPlatform(uidPlatform, count))
+                _countLastMeasurementPlatforms.postValue(Event(repository.getCountLastMeasurementsOfPlatform(uidPlatform, count)))
             }
         }
     }
@@ -81,7 +87,7 @@ class MeasurementsListViewModel @Inject constructor(
     fun getCountLastMeasurementsOfBridge(uidBridge: String, count: Int) {
         viewModelScope.launch {
             return@launch withContext(Dispatchers.IO) {
-                _countLastMeasurementBridge.postValue(repository.getCountLastMeasurementsOfBridge(uidBridge, count))
+                _countLastMeasurementBridge.postValue(Event(repository.getCountLastMeasurementsOfBridge(uidBridge, count)))
             }
         }
     }
@@ -89,7 +95,16 @@ class MeasurementsListViewModel @Inject constructor(
     fun getCountLastMeasurementsOfCanopy(uidCanopy: String, count: Int) {
         viewModelScope.launch {
             return@launch withContext(Dispatchers.IO) {
-                _countLastMeasurementCanopy.postValue(repository.getCountLastMeasurementsOfCanopy(uidCanopy, count))
+                _countLastMeasurementCanopy.postValue(Event(repository.getCountLastMeasurementsOfCanopy(uidCanopy, count)))
+            }
+        }
+    }
+
+
+    fun getCountLastMeasurementsOfDimensionFences(dimensionFences: List<DimensionsFence>, count: Int) {
+        viewModelScope.launch {
+            return@launch withContext(Dispatchers.IO) {
+                _countLastMeasurementDimensionFence.postValue(Event(repository.getCountLastMeasurementsOfDimensionsFence(dimensionFences, count)))
             }
         }
     }

@@ -64,3 +64,35 @@ data class MeasurementRequest(
 data class MeasurementResponse(
     val results: List<Measurement>
 )
+
+data class MeasureCalibration(
+    var L1: Double,
+    var a1: Double,
+    var L0: Double,
+    var dh: Double
+)
+
+data class MeasureCalc(
+    var length: String,
+    var height: String,
+    var L2: Double,
+    var a2: Double,
+    var ugol: String,
+    var gipotinuza: String,
+    var info: String,
+    var isMeasureOverNormal: Boolean,
+    var whichDirection: String?
+)
+
+data class BoschMeasurement(
+    var result: Double,
+    var devMode: Double,
+    var gipotinuza: Double,
+    var ugol: Double
+)
+class LittleMeasurement(
+    var L: Double,
+    var Hvn: Double,
+    var Hmin: Double,
+    var info: String
+)

@@ -7,7 +7,7 @@ import androidx.room.Query
 import dev.fabula.android.canopy.model.Canopy
 
 @Dao
-interface CanopyDao {
+interface  CanopyDao {
 
     @Query("DELETE FROM canopy")
     fun deleteAll()

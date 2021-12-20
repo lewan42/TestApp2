@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<network-security-config>
-    <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">cdk-perm.net</domain>
-        <domain includeSubdomains="true">matrona.uniiq.ru</domain>
-    </domain-config>
-</network-security-config>

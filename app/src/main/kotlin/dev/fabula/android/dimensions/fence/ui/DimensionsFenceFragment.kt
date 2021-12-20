@@ -16,7 +16,7 @@ import dev.fabula.android.dimensions.fence.model.DimensionSaveDB
 import timber.log.Timber
 
 class DimensionsFenceFragment :
-    ViewModelFragment<DimensionsFenceFragmentBinding>(R.layout.dimensions_fence_fragment) {
+    ViewModelFragment<DimensionsFenceFragmentBinding>(R.layout._dimensions_fence_fragment) {
 
     private val platformUID get() = arguments?.getString("uid_platform")
     private val platformName get() = arguments?.getString("name_platform")
@@ -55,8 +55,6 @@ class DimensionsFenceFragment :
 
             platformUID?.let {
                 dimensionCount?.let { count ->
-                    //viewModel.createDimensionsIfNotExist(platformUID, count)
-
                     if (count == 2) {
                         row3.visibility = View.GONE
                         row4.visibility = View.GONE

@@ -13,6 +13,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -21,8 +22,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.model.LatLng
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.button.MaterialButtonToggleGroup
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputLayout
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import dev.fabula.android.BuildConfig
 import dev.fabula.android.R
 import dev.fabula.android.app.ui.*
@@ -32,11 +37,13 @@ import dev.fabula.android.bluetooth.GLMDeviceController.*
 import dev.fabula.android.camera.CameraViewModel
 import dev.fabula.android.databinding.CreateMeasurementsFragmentBinding
 import dev.fabula.android.dimensions.fence.model.DimensionsFence
+import dev.fabula.android.dimensions.fence.model.DimensionsFenceTransit
 import dev.fabula.android.measurements.create.adapter.CreateMeasurementsListAdapter
 import dev.fabula.android.measurements.create.di.CreateMeasurementsComponent
-import dev.fabula.android.measurements.model.BoschMeasurements
+import dev.fabula.android.measurements.model.MeasureCalc
 import dev.fabula.android.measurements.model.Measurement
-import kotlinx.android.synthetic.main.canopy_fragment.view.*
+import dev.fabula.android.measurements.receiver.MeasurementReceiver
+import kotlinx.android.synthetic.main._canopy_fragment.view.*
 import kotlinx.android.synthetic.main.create_measurements_fragment.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -44,7 +51,6 @@ import timber.log.Timber
 import java.lang.Math.cos
 import java.util.*
 import kotlin.math.*
-
 
 class CreateMeasurementsFragment :
     ViewModelFragment<CreateMeasurementsFragmentBinding>(R.layout.create_measurements_fragment) {
@@ -63,43 +69,33 @@ class CreateMeasurementsFragment :
 
     private val viewModel: CreateMeasurementsViewModel by activityViewModel()
     private val viewModelCamera: CameraViewModel by activityViewModel()
+
     private val uidPlatform get() = arguments?.getString("uid_platform")
-    private val uidPlatformOfDimension get() = arguments?.getString("uid_platform_of_dimension")
     private val uidCanopy get() = arguments?.getString("uid_canopy")
     private val uidContactWire get() = arguments?.getString("uid_contact_wire")
     private val uidCarrierWire get() = arguments?.getString("uid_carrier_wire")
     private val uidMeasurementType get() = arguments?.getString("uid_measurement_type")
 
-    private val uidDimension get() = arguments?.getString("uid_dimension")
-    private val stationDimension get() = arguments?.getString("station_dimension")
+    private val dimensionsFencesTransitJson get() = arguments?.getString("dimension_fences_json_data")
+
+    private var dimensionsFencesTransit: DimensionsFenceTransit? = null
+
     private val uidBridge get() = arguments?.getString("uid_bridge")
-    private val canopyType get() = arguments?.getInt("type_canopy")
 
     private val uid get() = arguments?.getString("uid")
-    private val type get() = arguments?.getString("type")
     private var alertDialogCalib: AlertDialog? = null
 
-
-    private var placeLast: LatLng? = null
-    private var placeNew: LatLng? = null
-
-    //private var tmpMeasure: BoschOtgItemList? = null
     private var imageCommentBitmap: Bitmap? = null
     private var uidMeasurement: String? = null
     private var _flag_created: Boolean? = null
 
+    private lateinit var measurementReceiver: MeasurementReceiver
+
     private lateinit var adapter: CreateMeasurementsListAdapter
 
-    private var measurements: MutableList<BoschMeasurements> = mutableListOf()
+    private var measurements: MutableList<MeasureCalc> = mutableListOf()
 
-    /**
-     * Code used in requesting runtime permissions.
-     */
     private val REQUEST_PERMISSIONS_REQUEST_CODE = 34
-
-    /**
-     * Represents a geographical location.
-     */
     private var mCurrentLocation: Location? = null
 
     private val mFusedLocationClient: FusedLocationProviderClient by lazy {
@@ -110,14 +106,18 @@ class CreateMeasurementsFragment :
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        CreateMeasurementsComponent.create(context)
-            .inject(this)
+        CreateMeasurementsComponent.create(context).inject(this)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        measurementReceiver.destroyReceiver()
     }
 
     private fun dialogNorms() {
         val view: View = layoutInflater.inflate(R.layout.dialog_height_width_norms, null)
         val alertDialog = AlertDialog.Builder(requireContext()).create()
-        alertDialog.setTitle("Нормы габаритов приближения строения")
+        alertDialog.setTitle(resources.getString(R.string.norms))
         alertDialog.setCancelable(false)
         alertDialog.setView(view)
 
@@ -127,22 +127,39 @@ class CreateMeasurementsFragment :
         _width.text = Util.WIDTH_NORM.toString()
         _height.text = Util.HEIGHT_NORM.toString()
 
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Сохранить") { _, _ ->
+        alertDialog.setButton(
+            AlertDialog.BUTTON_POSITIVE,
+            resources.getString(R.string.save)
+        ) { _, _ ->
             Util.WIDTH_NORM = _width.text.toString().toInt()
             Util.HEIGHT_NORM = _height.text.toString().toInt()
         }
 
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Закрыть") { _, _ ->
+        alertDialog.setButton(
+            AlertDialog.BUTTON_NEGATIVE,
+            resources.getString(R.string.action_close)
+        ) { _, _ ->
 
         }
 
         alertDialog.show()
     }
 
+    @SuppressLint("CutPasteId")
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requestLastLocation(true)
+
+        dimensionsFencesTransitJson?.let { json ->
+            dimensionsFencesTransit =
+                Gson().fromJson(json, object : TypeToken<DimensionsFenceTransit?>() {}.type)
+
+            if (dimensionsFencesTransit!!.listDf.isEmpty()) {
+                createDirectionDimensionsFences()
+            }
+        }
+
         CALIBRATION_FLAG = false
         myView = view
         dialogNorms()
@@ -154,136 +171,293 @@ class CreateMeasurementsFragment :
 
         alertDialogCalib = AlertDialog.Builder(requireContext()).create()
 
-        val filter = IntentFilter(ACTION_SYNC_CONTAINER_RECEIVED)
+        measurementReceiver = MeasurementReceiver(requireContext(), ACTION_SYNC_CONTAINER_RECEIVED)
+        measurementReceiver.initializeReceiver()
 
-        val receiver: BroadcastReceiver = object : BroadcastReceiver() {
-            override fun onReceive(context: Context?, intent: Intent) {
+        measurementReceiver.boschMeasurement.event(viewLifecycleOwner) { boschMeasure ->
 
-                var prevResult = Float.MIN_VALUE.toDouble()
+            if (!isACTIVE)
+                return@event
 
-                var result = intent.extras!!.getFloat(EXTRA_MEASUREMENT).toDouble()
-                var devMode = intent.extras!!.getInt(EXTRA_MEASUREMENT_TYPE).toDouble()
-                var gipotinuza = intent.extras!!.getFloat(EXTRA_MEASUREMENT_COMP1).toDouble()
-                var ugol = intent.extras!!.getFloat(EXTRA_MEASUREMENT_COMP2).toDouble()
+            if (CALIBRATION_FLAG) {
 
-                Log.e("BroadcastReceiver2", "$result / $gipotinuza / $ugol / $devMode")
+                boschMeasure.gipotinuza *= 1000.0
+                L1 = boschMeasure.gipotinuza
+                a1 = boschMeasure.ugol
 
+                L0 = ((L1 + 760) / 2)
 
-                if (prevResult != gipotinuza) {
-                    prevResult = gipotinuza
-                } else {
-                    return
-                }
+                dh = abs(2 * L0 * sin(Math.toRadians(a1)))
 
-                if (!isACTIVE)
-                    return
+                CALIBRATION_FLAG = false
 
-                if (CALIBRATION_FLAG) {
+                Toast.makeText(requireContext(), "Устройство откалибровано", Toast.LENGTH_SHORT)
+                    .show()
 
-                    gipotinuza *= 1000.0
-                    L1 = gipotinuza
-                    a1 = ugol
+                alertDialogCalib?.hide()
 
-                    L0 = ((L1 + 760) / 2).toDouble()
+                if (measurements.size > 0) {
+                    measurements.forEach { measure ->
 
-                    dh = abs(2 * L0 * sin(Math.toRadians(a1)))
+                        val littleMeasurement = measurementReceiver.calculateMeasure(
+                            L0,
+                            L1,
+                            measure.L2,
+                            a1,
+                            measure.a2,
+                            requireContext(),
+                            dh
+                        )
+                        measure.info = littleMeasurement.info
 
-                    CALIBRATION_FLAG = false
-
-
-                    Toast.makeText(requireContext(), "Устройство откалибровано", Toast.LENGTH_SHORT)
-                        .show()
-
-                    alertDialogCalib?.hide()
-
-                    if (measurements.size > 0) {
-                        measurements.forEach { measure ->
-
-                            val littleMeasurement = calculateMeasure(measure.L2, measure.a2)
-                            measure.info = littleMeasurement.info
-
-                            uidPlatform?.let {
-                                measure.length = cutMeasurement(littleMeasurement.L.toString())
-                                measure.height = cutMeasurement(littleMeasurement.Hvn.toString())
-                                measure.isMeasureOverNormal = littleMeasurement.L < Util.WIDTH_NORM || littleMeasurement.Hvn < Util.HEIGHT_NORM
-                            }
-
-                            uidCanopy?.let {
-                                measure.length = cutMeasurement(littleMeasurement.L.toString())
-                                measure.height = cutMeasurement(littleMeasurement.Hvn.toString())
-                                measure.isMeasureOverNormal = littleMeasurement.L < Util.WIDTH_NORM || littleMeasurement.Hvn < Util.HEIGHT_NORM
-                            }
-
-                            stationDimension?.let {
-                                measure.length = cutMeasurement(littleMeasurement.L.toString())
-                                measure.height = cutMeasurement(littleMeasurement.Hvn.toString())
-                                measure.isMeasureOverNormal = littleMeasurement.L < Util.WIDTH_NORM || littleMeasurement.Hvn < Util.HEIGHT_NORM
-                            }
-
-                            uidContactWire?.let {
-                                measure.length = "0.0"
-                                measure.height = cutMeasurement(littleMeasurement.Hmin.toString())
-                                measure.isMeasureOverNormal = littleMeasurement.Hmin < Util.HEIGHT_NORM
-                            }
-
-                            uidCarrierWire?.let {
-                                measure.length = "0.0"
-                                measure.height = cutMeasurement(littleMeasurement.Hmin.toString())
-                                measure.isMeasureOverNormal = littleMeasurement.Hmin < Util.HEIGHT_NORM
-                            }
-
-                            uidBridge?.let {
-                                measure.length = cutMeasurement(littleMeasurement.L.toString())
-                                measure.height = "0.0"
-                                measure.isMeasureOverNormal = littleMeasurement.L < Util.WIDTH_NORM
-                            }
+                        uidPlatform?.let {
+                            measure.length = cutMeasurement(littleMeasurement.L.toString())
+                            measure.height = cutMeasurement(littleMeasurement.Hvn.toString())
+                            measure.isMeasureOverNormal =
+                                littleMeasurement.L < Util.WIDTH_NORM || littleMeasurement.Hvn < Util.HEIGHT_NORM
                         }
 
-                        adapter.submitList(measurements)
-                        adapter.notifyDataSetChanged()
-                        Toast.makeText(requireContext(),"Результаты измерений перерасчитаны",Toast.LENGTH_LONG).show()
+                        uidCanopy?.let {
+                            measure.length = cutMeasurement(littleMeasurement.L.toString())
+                            measure.height = cutMeasurement(littleMeasurement.Hvn.toString())
+                            measure.isMeasureOverNormal =
+                                littleMeasurement.L < Util.WIDTH_NORM || littleMeasurement.Hvn < Util.HEIGHT_NORM
+                        }
+
+                        dimensionsFencesTransit?.let {
+                            measure.length = cutMeasurement(littleMeasurement.L.toString())
+                            measure.height = cutMeasurement(littleMeasurement.Hvn.toString())
+                            measure.isMeasureOverNormal =
+                                littleMeasurement.L < Util.WIDTH_NORM || littleMeasurement.Hvn < Util.HEIGHT_NORM
+                        }
+
+                        uidContactWire?.let {
+                            measure.length = "0.0"
+                            measure.height = cutMeasurement(littleMeasurement.Hmin.toString())
+                            measure.isMeasureOverNormal =
+                                littleMeasurement.Hmin < Util.HEIGHT_NORM
+                        }
+
+                        uidCarrierWire?.let {
+                            measure.length = "0.0"
+                            measure.height = cutMeasurement(littleMeasurement.Hmin.toString())
+                            measure.isMeasureOverNormal =
+                                littleMeasurement.Hmin < Util.HEIGHT_NORM
+                        }
+
+                        uidBridge?.let {
+                            measure.length = cutMeasurement(littleMeasurement.L.toString())
+                            measure.height = "0.0"
+                            measure.isMeasureOverNormal = littleMeasurement.L < Util.WIDTH_NORM
+                        }
                     }
 
-                } else {
+                    adapter.submitList(measurements)
+                    adapter.notifyDataSetChanged()
+                    Toast.makeText(
+                        requireContext(),
+                        "Результаты измерений перерасчитаны",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
 
-                    gipotinuza *= 1000.0
-                    L2 = gipotinuza
-                    a2 = ugol
+            } else {
 
-                    val littleMeasurement = calculateMeasure(L2, a2)
-                    val L = littleMeasurement.L
-                    val Hvn = littleMeasurement.Hvn
-                    val Hmin = littleMeasurement.Hmin
-                    val info = littleMeasurement.info
+                boschMeasure.gipotinuza *= 1000.0
+                L2 = boschMeasure.gipotinuza
+                a2 = boschMeasure.ugol
 
+                val littleMeasurement =
+                    measurementReceiver.calculateMeasure(L0, L1, L2, a1, a2, requireContext(), dh)
+                val L = littleMeasurement.L
+                val Hvn = littleMeasurement.Hvn
+                val Hmin = littleMeasurement.Hmin
+                val info = littleMeasurement.info
 
-                    uidPlatform?.let {
-                        checkMeasurement(L, true, Hvn, true, L2, a2, false, info)
-                    }
-                    uidCanopy?.let {
-                        checkMeasurement(L, true, Hvn, true, L2, a2, false, info)
-                    }
+                uidPlatform?.let {
+                    checkMeasurement(L, true, Hvn, true, L2, a2, null, info, null, false)
+                }
+                uidCanopy?.let {
+                    checkMeasurement(L, true, Hvn, true, L2, a2, null, info, null, false)
+                }
 
-                    stationDimension?.let {
-                        checkMeasurement(L, true, Hvn, true, L2, a2, true, info)
-                    }
+                //delete?
+                dimensionsFencesTransit?.let {
+                    checkMeasurement(
+                        L,
+                        true,
+                        Hvn,
+                        true,
+                        L2,
+                        a2,
+                        dimensionsFencesTransit!!.countDf,
+                        info,
+                        "", true
+                    )
+                }
 
-                    uidContactWire?.let {
-                        checkMeasurement(0.0, false, Hmin, true, L2, a2, true, info)
-                    }
+                uidContactWire?.let {
+                    checkMeasurement(0.0, false, Hmin, true, L2, a2, 1, info, null, false)
+                }
 
-                    uidCarrierWire?.let {
-                        checkMeasurement(0.0, false, Hmin, true, L2, a2, true, info)
-                    }
+                uidCarrierWire?.let {
+                    checkMeasurement(0.0, false, Hmin, true, L2, a2, 1, info, null, false)
+                }
 
-                    uidBridge?.let {
-                        checkMeasurement(L, true, 0.0, false, L2, a2, false, info)
-                    }
+                uidBridge?.let {
+                    checkMeasurement(L, true, 0.0, false, L2, a2, null, info, null, false)
                 }
             }
+
         }
 
-        requireContext().registerReceiver(receiver, filter)
+
+//        val filter = IntentFilter(ACTION_SYNC_CONTAINER_RECEIVED)
+//
+//        receiver = object : BroadcastReceiver() {
+//            override fun onReceive(context: Context?, intent: Intent) {
+//
+//                var prevResult = Float.MIN_VALUE.toDouble()
+//                val result = intent.extras!!.getFloat(EXTRA_MEASUREMENT).toDouble()
+//                val devMode = intent.extras!!.getInt(EXTRA_MEASUREMENT_TYPE).toDouble()
+//                var gipotinuza = intent.extras!!.getFloat(EXTRA_MEASUREMENT_COMP1).toDouble()
+//                val ugol = intent.extras!!.getFloat(EXTRA_MEASUREMENT_COMP2).toDouble()
+//
+//                Log.e("BroadcastReceiver2", "$result / $gipotinuza / $ugol / $devMode")
+//
+//                if (prevResult != gipotinuza) {
+//                    prevResult = gipotinuza
+//                } else {
+//                    return
+//                }
+//
+//                if (!isACTIVE)
+//                    return
+//
+//                if (CALIBRATION_FLAG) {
+//
+//                    gipotinuza *= 1000.0
+//                    L1 = gipotinuza
+//                    a1 = ugol
+//
+//                    L0 = ((L1 + 760) / 2).toDouble()
+//
+//                    dh = abs(2 * L0 * sin(Math.toRadians(a1)))
+//
+//                    CALIBRATION_FLAG = false
+//
+//
+//                    Toast.makeText(requireContext(), "Устройство откалибровано", Toast.LENGTH_SHORT)
+//                        .show()
+//
+//                    alertDialogCalib?.hide()
+//
+//                    if (measurements.size > 0) {
+//                        measurements.forEach { measure ->
+//
+//                            val littleMeasurement = calculateMeasure(measure.L2, measure.a2)
+//                            measure.info = littleMeasurement.info
+//
+//                            uidPlatform?.let {
+//                                measure.length = cutMeasurement(littleMeasurement.L.toString())
+//                                measure.height = cutMeasurement(littleMeasurement.Hvn.toString())
+//                                measure.isMeasureOverNormal =
+//                                    littleMeasurement.L < Util.WIDTH_NORM || littleMeasurement.Hvn < Util.HEIGHT_NORM
+//                            }
+//
+//                            uidCanopy?.let {
+//                                measure.length = cutMeasurement(littleMeasurement.L.toString())
+//                                measure.height = cutMeasurement(littleMeasurement.Hvn.toString())
+//                                measure.isMeasureOverNormal =
+//                                    littleMeasurement.L < Util.WIDTH_NORM || littleMeasurement.Hvn < Util.HEIGHT_NORM
+//                            }
+//
+//                            dimensionsFencesTransit?.let {
+//                                measure.length = cutMeasurement(littleMeasurement.L.toString())
+//                                measure.height = cutMeasurement(littleMeasurement.Hvn.toString())
+//                                measure.isMeasureOverNormal =
+//                                    littleMeasurement.L < Util.WIDTH_NORM || littleMeasurement.Hvn < Util.HEIGHT_NORM
+//                            }
+//
+//                            uidContactWire?.let {
+//                                measure.length = "0.0"
+//                                measure.height = cutMeasurement(littleMeasurement.Hmin.toString())
+//                                measure.isMeasureOverNormal =
+//                                    littleMeasurement.Hmin < Util.HEIGHT_NORM
+//                            }
+//
+//                            uidCarrierWire?.let {
+//                                measure.length = "0.0"
+//                                measure.height = cutMeasurement(littleMeasurement.Hmin.toString())
+//                                measure.isMeasureOverNormal =
+//                                    littleMeasurement.Hmin < Util.HEIGHT_NORM
+//                            }
+//
+//                            uidBridge?.let {
+//                                measure.length = cutMeasurement(littleMeasurement.L.toString())
+//                                measure.height = "0.0"
+//                                measure.isMeasureOverNormal = littleMeasurement.L < Util.WIDTH_NORM
+//                            }
+//                        }
+//
+//                        adapter.submitList(measurements)
+//                        adapter.notifyDataSetChanged()
+//                        Toast.makeText(
+//                            requireContext(),
+//                            "Результаты измерений перерасчитаны",
+//                            Toast.LENGTH_LONG
+//                        ).show()
+//                    }
+//
+//                } else {
+//
+//                    gipotinuza *= 1000.0
+//                    L2 = gipotinuza
+//                    a2 = ugol
+//
+//                    val littleMeasurement = calculateMeasure(L2, a2)
+//                    val L = littleMeasurement.L
+//                    val Hvn = littleMeasurement.Hvn
+//                    val Hmin = littleMeasurement.Hmin
+//                    val info = littleMeasurement.info
+//
+//                    uidPlatform?.let {
+//                        checkMeasurement(L, true, Hvn, true, L2, a2, null, info, null, false)
+//                    }
+//                    uidCanopy?.let {
+//                        checkMeasurement(L, true, Hvn, true, L2, a2, null, info, null, false)
+//                    }
+//
+//                    //delete?
+//                    dimensionsFencesTransit?.let {
+//                        checkMeasurement(
+//                            L,
+//                            true,
+//                            Hvn,
+//                            true,
+//                            L2,
+//                            a2,
+//                            dimensionsFencesTransit!!.countDf,
+//                            info,
+//                            "", true
+//                        )
+//                    }
+//
+//                    uidContactWire?.let {
+//                        checkMeasurement(0.0, false, Hmin, true, L2, a2, 1, info, null, false)
+//                    }
+//
+//                    uidCarrierWire?.let {
+//                        checkMeasurement(0.0, false, Hmin, true, L2, a2, 1, info, null, false)
+//                    }
+//
+//                    uidBridge?.let {
+//                        checkMeasurement(L, true, 0.0, false, L2, a2, null, info, null, false)
+//                    }
+//                }
+//            }
+//        }
+//        requireContext().registerReceiver(receiver, filter)
 
         binding = CreateMeasurementsFragmentBinding.bind(view).apply {
 
@@ -305,9 +479,6 @@ class CreateMeasurementsFragment :
 
                     _flag_created = it.flag_created
 
-//                    it.photo1?.let { photo1 ->
-//                        imageZamer.setImageBitmap(viewModelCamera.convertImage(photo1))
-//                    }
 
                     it.photo2?.let { photo2 ->
                         imageComment.setImageBitmap(viewModelCamera.convertImage(photo2))
@@ -321,7 +492,7 @@ class CreateMeasurementsFragment :
             btnCalibration.setOnClickListener {
                 val _view: View = layoutInflater.inflate(R.layout.calibration_dialog, null)
                 val alertDialog = AlertDialog.Builder(requireContext()).create()
-                alertDialog.setTitle("Значения каклибровки")
+                alertDialog.setTitle(resources.getString(R.string.calibration_values))
                 alertDialog.setCancelable(false)
                 alertDialog.setView(_view)
 
@@ -334,13 +505,16 @@ class CreateMeasurementsFragment :
                 _angle.text = a1.toString()
 
 
-                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Закрыть") { _, _ ->
+                alertDialog.setButton(
+                    AlertDialog.BUTTON_POSITIVE,
+                    resources.getString(R.string.action_close)
+                ) { _, _ ->
 
                 }
 
                 alertDialog.setButton(
                     AlertDialog.BUTTON_NEGATIVE,
-                    "Произвести калибровку"
+                    resources.getString(R.string.make_calibration)
                 ) { _, _ ->
                     waitCalibrationMeasurement()
                 }
@@ -394,47 +568,6 @@ class CreateMeasurementsFragment :
         }
     }
 
-    private fun calculateMeasure(
-        L2: Double,
-        a2: Double
-    ): LittleMeasurement {
-
-        val dx = L0 - L1
-        val dL = dx * cos(Math.toRadians(a1))
-        val dh3 =
-            (L0 - dx) * sin(Math.toRadians(a1))
-        val Ldk = cos(Math.toRadians(a2)) * L2
-        val Hdk = sin(Math.toRadians(a2)) * L2
-        val L = Ldk + dL
-        val Hvn = Hdk - dh3
-
-        val Hmin = if (a1 <= 0) {
-            Hvn - (abs(L0 * sin(Math.toRadians(a1))) * sin(
-                Math.toRadians(a2)
-            ))
-        } else {
-            Hvn
-        }
-
-        val info = String.format(
-            "[L0: %f]  - ось пути (мм)" +
-                    "\n[dh: %f] - возвышение рельса (мм)" +
-                    "\n[dx: %f] - отступ по оси (мм)" +
-                    "\n[dL: %f] - поправка по длине (мм)" +
-                    "\n[dh3: %f] - поправка по высоте (мм)" +
-                    "\n[Ldk: %f] - косвенная длина (мм)" +
-                    "\n[Hdk: %f] - косвенная высота (мм)" +
-                    "\n[L: %f] - длина от оси пути (мм)" +
-                    "\n[Hvn: %f] - высота от головки вн. рельса (мм)" +
-                    "\n[a1: %f] - угол наклона рельсов (мм)" +
-                    "\n[a2: %f] - угол от горизонта до точки (мм)" +
-                    "\n[Hmin: %f] - для контактного кабеля и горизонтальных объектов (мм)" +
-                    "\n\n",
-            L0, dh, dx, dL, dh3, Ldk, Hdk, L, Hvn, a1, a2, Hmin
-        )
-
-        return LittleMeasurement(L, Hvn, Hmin, info)
-    }
 
     private fun checkMeasurement(
         L: Double,
@@ -443,37 +576,52 @@ class CreateMeasurementsFragment :
         isCheckH: Boolean,
         L2: Double,
         a2: Double,
-        single: Boolean,
-        info: String
+        countPublicMeasure: Int?,
+        info: String,
+        whichDirection: String?,
+        isDimensionFence: Boolean
     ) {
-        if (isCheckL && isCheckH) {
 
+        if (countPublicMeasure != null) {
+            if (measurements.size >= countPublicMeasure) {
+                Toast.makeText(requireContext(), "Все измерения уже сделаны", Toast.LENGTH_SHORT)
+                    .show()
+                return
+            }
+        }
+
+        if (isDimensionFence && whichDirection?.isEmpty() == true) {
+            dialogWhichDirection(L, isCheckL, H, isCheckH, L2, a2, countPublicMeasure, info)
+            return
+        }
+
+        if (isCheckL && isCheckH) {
             if (L < Util.WIDTH_NORM || H < Util.HEIGHT_NORM) {
                 isACTIVE = false
-                dialogMeasureOverNorm(L, H, L2, a2, single, info)
+                dialogMeasureOverNorm(L, H, L2, a2, info, whichDirection)
 
             } else {
-                addMeasure(L, H, L2, a2, single, info, false)
+                addMeasure(L, H, L2, a2, info, false, whichDirection)
             }
 
         } else if (isCheckL && !isCheckH) {
 
             if (L < Util.WIDTH_NORM) {
                 isACTIVE = false
-                dialogMeasureOverNorm(L, H, L2, a2, single, info)
+                dialogMeasureOverNorm(L, H, L2, a2, info, whichDirection)
 
             } else {
-                addMeasure(L, H, L2, a2, single, info, false)
+                addMeasure(L, H, L2, a2, info, false, whichDirection)
             }
 
         } else if (!isCheckL && isCheckH) {
 
             if (H < Util.HEIGHT_NORM) {
                 isACTIVE = false
-                dialogMeasureOverNorm(L, H, L2, a2, single, info)
+                dialogMeasureOverNorm(L, H, L2, a2, info, whichDirection)
 
             } else {
-                addMeasure(L, H, L2, a2, single, info, false)
+                addMeasure(L, H, L2, a2, info, false, whichDirection)
             }
         }
     }
@@ -483,111 +631,76 @@ class CreateMeasurementsFragment :
         H: Double,
         L2: Double,
         a2: Double,
-        single: Boolean,
         info: String,
-        isMeasureOverNormal: Boolean
+        isMeasureOverNormal: Boolean,
+        whichDirection: String?
     ) {
-        if (!single) {
-            addMeasurementToList(
+        addMeasurementToList(
+            MeasureCalc(
                 cutMeasurement(L.toString()),
                 cutMeasurement(H.toString()),
                 L2,
                 a2,
                 "0.0",
-                "0.0", info, isMeasureOverNormal
-            )
-
-        } else{
-            measurements.clear()
-            addMeasurementToList(
-                cutMeasurement(L.toString()),
-                cutMeasurement(H.toString()),
-                L2,
-                a2,
                 "0.0",
-                "0.0", info, isMeasureOverNormal
+                info,
+                isMeasureOverNormal,
+                whichDirection
             )
-        }
+        )
     }
 
     private fun dialogMeasureOverNorm(
-        L: Double, H: Double, L2: Double, a2: Double, single: Boolean, info: String
+        L: Double, H: Double, L2: Double, a2: Double, info: String, whichDirection: String?
     ) {
-        var dialog = AlertDialog.Builder(myView.context).create()
-        dialog.setTitle("Значения измерения меньше нормы")
+        val dialog = AlertDialog.Builder(myView.context).create()
+        dialog.setTitle(resources.getString(R.string.value_measurement_less_norms))
         dialog.setCancelable(false)
 
-        dialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Перемерить") { _, _ ->
+        dialog.setButton(
+            AlertDialog.BUTTON_NEGATIVE,
+            resources.getString(R.string.re_measure)
+        ) { _, _ ->
             isACTIVE = true
         }
-        dialog.setButton(AlertDialog.BUTTON_POSITIVE, "Сохранить измерение") { _, _ ->
+        dialog.setButton(AlertDialog.BUTTON_POSITIVE, resources.getString(R.string.save)) { _, _ ->
             isACTIVE = true
-            addMeasure(L, H, L2, a2, single, info, true)
+            addMeasure(L, H, L2, a2, info, true, whichDirection)
         }
 
         dialog.show()
     }
 
     private fun waitCalibrationMeasurement() {
-
         CALIBRATION_FLAG = true
-
-        alertDialogCalib!!.setTitle("Калибровка")
+        alertDialogCalib!!.setTitle(resources.getString(R.string.calibration))
         alertDialogCalib!!.setCancelable(false)
-        alertDialogCalib!!.setMessage("Произведите измерение")
-
-        alertDialogCalib!!.setButton(AlertDialog.BUTTON_POSITIVE, "Отменить") { _, _ ->
-            CALIBRATION_FLAG = false
-        }
+        alertDialogCalib!!.setMessage(resources.getString(R.string.take_measurement))
+        alertDialogCalib!!.setButton(
+            AlertDialog.BUTTON_POSITIVE,
+            resources.getString(R.string.action_cancel)
+        ) { _, _ -> CALIBRATION_FLAG = false }
 
         alertDialogCalib!!.show()
     }
 
     private fun showTmpMeasurement(strMeasurement: String) {
-
         val dialog = AlertDialog.Builder(requireContext()).create()
-
-        dialog.setTitle("Подробные измерения")
+        dialog.setTitle(resources.getString(R.string.measurement_details))
         dialog.setCancelable(false)
         dialog.setMessage(strMeasurement)
-
-        dialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ок") { _, _ ->
-
-        }
-
+        dialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ок") { _, _ -> }
         dialog.show()
     }
 
 
     private fun addMeasurementToList(
-        length: String,
-        height: String,
-        L2: Double,
-        a2: Double,
-        ugol: String,
-        gipotinuza: String,
-        info: String,
-        isMeasureOverNormal: Boolean
+        measure: MeasureCalc
     ) {
-        measurements.add(
-            BoschMeasurements(
-                length,
-                height,
-                L2,
-                a2,
-                ugol,
-                gipotinuza,
-                info,
-                isMeasureOverNormal
-            )
-        )
+        measurements.add(measure)
 
         adapter.submitList(measurements)
         adapter.notifyDataSetChanged()
-    }
-
-    private fun pifagor(c: Double, k: Double): Double {
-        return sqrt((c.pow(2) - k.pow(2)))
     }
 
 
@@ -620,9 +733,7 @@ class CreateMeasurementsFragment :
                 flag_created = _flag_created
             }
 
-            //val izmerPhoto = viewModelCamera.convertImage(imageZamer)
             val commetPhoto = viewModelCamera.convertImage(imageComment)
-
 
             uidPlatform?.let { platform ->
                 Timber.i("Try send measurement to server uidPlatform")
@@ -666,7 +777,6 @@ class CreateMeasurementsFragment :
             uidCanopy?.let { canopy ->
                 Timber.i("Try send measurement to server uidCanopy")
 
-
                 val list: MutableList<Measurement> = mutableListOf()
                 measurements.forEach { bmc ->
                     list.add(
@@ -703,32 +813,34 @@ class CreateMeasurementsFragment :
 
                 Timber.i("uidCanopy create list measurement: ${list.size}")
                 viewModel.create(list)
-
-
             }
 
-            stationDimension?.let { station ->
+            dimensionsFencesTransit?.let { listDimens ->
                 Timber.i("Try send measurement to server stationDimension")
 
-                var dimen_uid = ""
-                if (flag_edited == null || flag_edited == false) {
-                    dimen_uid = UUID.randomUUID().toString()
-                } else {
-                    uidDimension?.let {
-                        dimen_uid = it
-                        Timber.i("stationDimension -> dimen_uid = it - > ${dimen_uid}")
+                var dimensionsFenceUid: String? = null
+
+
+                val list: MutableList<Measurement> = mutableListOf()
+
+                measurements.forEach { measure ->
+
+                    listDimens.listDf.forEach {
+                        if (it.direction == measure.whichDirection) dimensionsFenceUid = it.uid
                     }
-                }
+                    if (dimensionsFenceUid == null) Toast.makeText(
+                        requireContext(),
+                        "ERROR!!!",
+                        Toast.LENGTH_SHORT
+                    ).show()
 
-
-                uidPlatformOfDimension?.let { platformUidOfDimension ->
-                    viewModel.createDimensionAndMeasurement(
+                    list.add(
                         Measurement(
-                            uidMeasurement!!,
-                            measurements[0].gipotinuza,
-                            measurements[0].ugol,
-                            measurements[0].length,
-                            measurements[0].height,
+                            UUID.randomUUID().toString(),
+                            measure.gipotinuza,
+                            measure.ugol,
+                            measure.length,
+                            measure.height,
                             mCurrentLocation?.latitude.toString(),
                             mCurrentLocation?.longitude.toString(),
                             kmPath.text.toString().toDouble(),
@@ -741,7 +853,7 @@ class CreateMeasurementsFragment :
                             viewModelCamera.convertImage(imageCommentBitmap),
                             null,
                             null,
-                            dimen_uid,
+                            dimensionsFenceUid,
                             null,
                             null,
                             null,
@@ -749,15 +861,10 @@ class CreateMeasurementsFragment :
                             flag_created,
                             flag_edited,
                             getCurrentDateTimeStamp()
-                        ),
-                        DimensionsFence(
-                            dimen_uid,
-                            platformUidOfDimension,
-                            station,
-                            flag_created,
-                            flag_edited
                         )
                     )
+
+                    viewModel.create(list)
                 }
             }
 
@@ -864,6 +971,215 @@ class CreateMeasurementsFragment :
                 }
             }
         }
+    }
+
+    private fun buttonSetting(btn: Button, direction: String, visibility: Int) {
+        btn.text = direction
+        btn.visibility = visibility
+    }
+
+    @SuppressLint("CutPasteId")
+    private fun createDirectionDimensionsFences() {
+        val view: View = layoutInflater.inflate(R.layout.create_direction_dimensions_fences, null)
+        val alertDialog = AlertDialog.Builder(requireContext())
+            .setTitle(resources.getString(R.string.create_direction))
+            .setCancelable(false)
+            .setView(view)
+            .setPositiveButton(android.R.string.ok, null)
+            .create()
+
+        val tf1 = view.findViewById<TextInputLayout>(R.id.direction_1)
+        val tf2 = view.findViewById<TextInputLayout>(R.id.direction_2)
+        val tf3 = view.findViewById<TextInputLayout>(R.id.direction_3)
+        val tf4 = view.findViewById<TextInputLayout>(R.id.direction_4)
+
+        if (dimensionsFencesTransit!!.countDf == 2) {
+            tf3.visibility = View.GONE
+            tf4.visibility = View.GONE
+        }
+
+        val uidPlatform = dimensionsFencesTransit!!.parentPlatformUid
+        alertDialog.setOnShowListener {
+            val button: Button = (alertDialog as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)
+            button.setOnClickListener {
+                if (dimensionsFencesTransit!!.countDf == 2) {
+                    if (checkDirections(listOf(tf1, tf2))) {
+                        Toast.makeText(
+                            requireContext(),
+                            resources.getString(R.string.fill_in_all_fields),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+
+                        dimensionsFencesTransit!!.listDf =
+                            listOf(
+                                DimensionsFence(
+                                    UUID.randomUUID().toString(),
+                                    uidPlatform,
+                                    tf1.editText!!.text.toString(),
+                                    flag_created = true,
+                                    flag_edited = false
+                                ), DimensionsFence(
+                                    UUID.randomUUID().toString(),
+                                    uidPlatform,
+                                    tf2.editText!!.text.toString(),
+                                    flag_created = true,
+                                    flag_edited = false
+                                )
+                            )
+                        viewModel.createDimensionFences(dimensionsFencesTransit!!.listDf)
+
+                        alertDialog.dismiss()
+                    }
+                } else {
+                    if (checkDirections(listOf(tf1, tf2, tf3, tf4))) {
+                        Toast.makeText(
+                            requireContext(),
+                            resources.getString(R.string.fill_in_all_fields),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        dimensionsFencesTransit!!.listDf =
+                            listOf(
+                                DimensionsFence(
+                                    UUID.randomUUID().toString(),
+                                    uidPlatform,
+                                    tf1.editText!!.text.toString(),
+                                    flag_created = true,
+                                    flag_edited = false
+                                ), DimensionsFence(
+                                    UUID.randomUUID().toString(),
+                                    uidPlatform,
+                                    tf2.editText!!.text.toString(),
+                                    flag_created = true,
+                                    flag_edited = false
+                                ), DimensionsFence(
+                                    UUID.randomUUID().toString(),
+                                    uidPlatform,
+                                    tf3.editText!!.text.toString(),
+                                    flag_created = true,
+                                    flag_edited = false
+                                ), DimensionsFence(
+                                    UUID.randomUUID().toString(),
+                                    uidPlatform,
+                                    tf4.editText!!.text.toString(),
+                                    flag_created = true,
+                                    flag_edited = false
+                                )
+                            )
+                        alertDialog.dismiss()
+
+                        viewModel.createDimensionFences(dimensionsFencesTransit!!.listDf)
+                    }
+                }
+            }
+        }
+
+
+        alertDialog.show()
+    }
+
+    private fun checkDirections(inputLayout: List<TextInputLayout>): Boolean {
+        var flag = false
+        inputLayout.forEach {
+            if (it.editText!!.text.isEmpty() || it.editText!!.text.isBlank()) flag = true
+        }
+        return flag
+    }
+
+    @SuppressLint("CutPasteId")
+    private fun dialogWhichDirection(
+        L: Double,
+        isCheckL: Boolean,
+        H: Double,
+        isCheckH: Boolean,
+        L2: Double,
+        a2: Double,
+        countPublicMeasure: Int?,
+        info: String
+    ) {
+        val view: View =
+            layoutInflater.inflate(R.layout.question_which_direction_dimensions_fences, null)
+        val alertDialog = AlertDialog.Builder(requireContext())
+            .setTitle(resources.getString(R.string.select_direction))
+            .setCancelable(false)
+            .setView(view)
+            .setPositiveButton(android.R.string.ok, null)
+            .create()
+
+
+        val b1 = view.findViewById<MaterialButton>(R.id.button1)
+        b1.visibility = View.GONE
+
+        val b2 = view.findViewById<MaterialButton>(R.id.button2)
+        b2.visibility = View.GONE
+
+        val b3 = view.findViewById<MaterialButton>(R.id.button3)
+        b3.visibility = View.GONE
+
+        val b4 = view.findViewById<MaterialButton>(R.id.button4)
+        b4.visibility = View.GONE
+
+        println("CCCCCc")
+        println(dimensionsFencesTransit!!.listDf.toString())
+
+        dimensionsFencesTransit!!.listDf.forEachIndexed { index, df ->
+            println("$index / $df")
+            when (index) {
+                0 -> {
+                    println("1111")
+                    buttonSetting(b1, df.direction, View.VISIBLE)
+                }
+                1 -> {
+                    println("2222")
+                    buttonSetting(b2, df.direction, View.VISIBLE)
+                }
+                2 -> {
+                    println("3333")
+                    buttonSetting(b3, df.direction, View.VISIBLE)
+                }
+                3 -> {
+                    println("4444")
+                    buttonSetting(b4, df.direction, View.VISIBLE)
+                }
+            }
+        }
+
+        val menu = view.findViewById<MaterialButtonToggleGroup>(R.id.menu)
+
+        alertDialog.setOnShowListener {
+            val button: Button = (alertDialog as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)
+            button.setOnClickListener { // TODO Do something
+                val btn: Button? = view.findViewById(menu.checkedButtonId)
+                if (btn == null) {
+
+                    Toast.makeText(
+                        requireContext(),
+                        resources.getString(R.string.select_direction),
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                } else {
+                    // actionSelectedDirection.postValue(Event(btn.text.toString()))
+                    alertDialog.dismiss()
+                    checkMeasurement(
+                        L,
+                        isCheckL,
+                        H,
+                        isCheckH,
+                        L2,
+                        a2,
+                        countPublicMeasure,
+                        info,
+                        btn.text.toString(),
+                        true
+                    )
+                }
+            }
+        }
+
+
+        alertDialog.show()
     }
 
 
@@ -1016,11 +1332,4 @@ class CreateMeasurementsFragment :
             .subscribeToLifecycleEvents(this)
             .show()
     }
-
-    inner class LittleMeasurement(
-        var L: Double,
-        var Hvn: Double,
-        var Hmin: Double,
-        var info: String
-    )
 }

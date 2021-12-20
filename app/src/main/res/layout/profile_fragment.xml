@@ -81,7 +81,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
-            android:text="Синхронизация с сервером"
+            android:text="@string/sync_with_server"
             app:layout_constraintLeft_toRightOf="@+id/btn_bluetooth_bosch"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_connected_device_name" />
@@ -91,8 +91,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
-            android:text="Настройки блютуз"
-
+            android:text="@string/bluetooth_settings"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/btn_sync"
             app:layout_constraintTop_toBottomOf="@+id/tv_connected_device_name" />
@@ -102,86 +101,21 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
-            android:text="Фото синхронизация"
+            android:text="@string/photo_sync"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/btn_lab"
+            app:layout_constraintTop_toBottomOf="@id/btn_sync" />
+
+        <Button
+            android:id="@+id/btn_lab"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:text="@string/lab"
+            app:layout_constraintLeft_toRightOf="@+id/btn_add_photo"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_sync" />
 
-        <!--        <Button-->
-        <!--            android:id="@+id/btn_calibration"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_margin="12dp"-->
-        <!--            android:text="Калибровка"-->
-        <!--            app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--            app:layout_constraintRight_toLeftOf="@+id/btn_add_photo"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/btn_sync" />-->
-
-
-        <!--        <com.google.android.material.textfield.TextInputEditText-->
-        <!--            android:id="@+id/width_norm"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_margin="12dp"-->
-        <!--            android:hint="Норма длины"-->
-        <!--            android:inputType="number"-->
-        <!--            app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--            app:layout_constraintRight_toLeftOf="@+id/height_norm"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/line_one" />-->
-
-        <!--        <com.google.android.material.textfield.TextInputEditText-->
-        <!--            android:id="@+id/height_norm"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_margin="12dp"-->
-        <!--            android:hint="Норма высоты"-->
-        <!--            android:inputType="number"-->
-        <!--            app:layout_constraintLeft_toRightOf="@+id/width_norm"-->
-        <!--            app:layout_constraintRight_toRightOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/line_one" />-->
-
-        <!--        <Button-->
-        <!--            android:id="@+id/btn_save_norm"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginEnd="12dp"-->
-        <!--            android:text="Сохранить нормы"-->
-        <!--            app:layout_constraintLeft_toLeftOf="@+id/height_norm"-->
-        <!--            app:layout_constraintRight_toRightOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/height_norm" />-->
-
-        <!--        <View-->
-        <!--            android:id="@+id/line_one"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="1dp"-->
-        <!--            android:layout_marginTop="8dp"-->
-        <!--            android:layout_marginBottom="8dp"-->
-        <!--            android:background="@android:color/darker_gray"-->
-        <!--            app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--            app:layout_constraintRight_toRightOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/btn_add_photo" />-->
-
-        <!--        <View-->
-        <!--            android:id="@+id/line_two"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="1dp"-->
-        <!--            android:layout_marginTop="8dp"-->
-        <!--            android:layout_marginBottom="8dp"-->
-        <!--            android:background="@android:color/darker_gray"-->
-        <!--            app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--            app:layout_constraintRight_toRightOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/btn_save_norm" />-->
-
-        <!--        <Button-->
-        <!--            android:id="@+id/btn_create_report"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginEnd="12dp"-->
-        <!--            android:layout_marginTop="8dp"-->
-        <!--            android:text="Сформировать отчет"-->
-        <!--            app:layout_constraintLeft_toLeftOf="@+id/height_norm"-->
-        <!--            app:layout_constraintRight_toRightOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/line_two" />-->
 
         <Button
             android:id="@+id/btn_exit"

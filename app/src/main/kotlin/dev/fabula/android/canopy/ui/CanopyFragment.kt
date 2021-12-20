@@ -15,7 +15,7 @@ import dev.fabula.android.databinding.CanopyFragmentBinding
 import timber.log.Timber
 import java.lang.Exception
 
-class CanopyFragment : ViewModelFragment<CanopyFragmentBinding>(R.layout.canopy_fragment) {
+class CanopyFragment : ViewModelFragment<CanopyFragmentBinding>(R.layout._canopy_fragment) {
 
     private val platformUID get() = arguments?.getString("uid_platform")
     private val canopyUID get() = arguments?.getString("uid_canopy")

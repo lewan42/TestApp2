@@ -3,7 +3,6 @@
   <component name="FacetManager">
     <facet type="java-gradle" name="Java-Gradle">
       <configuration>
-        <option name="BUILD_FOLDER_PATH" value="$MODULE_DIR$/../../build" />
         <option name="BUILDABLE" value="false" />
       </configuration>
     </facet>
@@ -13,6 +12,9 @@
     <content url="file://$MODULE_DIR$/../..">
       <excludeFolder url="file://$MODULE_DIR$/../../.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../bosch-mtprotocol/build/.transforms/766fe6893ada28fbc7f0c3fae2cc9ba2" />
+      <excludeFolder url="file://$MODULE_DIR$/../../bosch-mtprotocol/build/generated" />
+      <excludeFolder url="file://$MODULE_DIR$/../../bosch-mtprotocol/bin" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

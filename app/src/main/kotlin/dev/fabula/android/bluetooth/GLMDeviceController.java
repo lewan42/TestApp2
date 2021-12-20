@@ -112,14 +112,12 @@ public class GLMDeviceController implements MTProtocolEventObserver {
         requestEDCSync.setKeypadBypass(EDCOutputMessage.ENABLE_KEYPAD_BYPASS);
         requestEDCSync.setRemoteCtrlData(EDCOutputMessage.REMOTE_CTRL_DATA);
         this.protocol.sendMessage(requestEDCSync);
-
     }
 
     @Override
     public void onEvent(MTProtocolEvent event) {
 
         ready = true;
-
 
         if (event instanceof MtProtocolFatalErrorEvent) {
 
@@ -140,7 +138,7 @@ public class GLMDeviceController implements MTProtocolEventObserver {
                     initSyncRequest = false;
                     return;
                 }
-                Log.d(TAG, "SyncInputMessageReceived: " + syncMessage.toString());
+
                 if (syncMessage.getMode() == SyncInputMessage.MEAS_MODE_SINGLE && syncMessage.getLaserOn() == 0) {
                     // Handle only distance measurements
                     broadcastMeasurement(ACTION_SYNC_CONTAINER_RECEIVED, syncMessage.getResult(), -1, -999, -999);
@@ -151,12 +149,10 @@ public class GLMDeviceController implements MTProtocolEventObserver {
                     initSyncRequest = false;
                     return;
                 }
-                Log.d(TAG, "Received EDC: " + message.toString());
+
                 EDCInputMessage edcMessage = (EDCInputMessage) message;
-                Log.d(TAG, "EDCInputMessageReceived: " + edcMessage.toString());
                 if (edcMessage.getDevMode() == EDCInputMessage.MODE_SINGLE_DISTANCE || edcMessage.getDevMode() == EDCInputMessage.MODE_CONTINUOUS_DISTANCE) {
                     // Handle only distance measurements
-                    Log.e(TAG, "ACTION_SYNC_CONTAINER_RECEIVED: send data" + edcMessage.toString());
                     broadcastMeasurement(ACTION_SYNC_CONTAINER_RECEIVED, edcMessage.getResult(), edcMessage.getDevMode(), edcMessage.getComp1(), edcMessage.getComp2());
                 }
                 else if(edcMessage.getDevMode() == EDCInputMessage.MODE_INDIRECT_HEIGHT || edcMessage.getDevMode() == EDCInputMessage.MODE_INDIRECT_LENGTH){
@@ -164,12 +160,8 @@ public class GLMDeviceController implements MTProtocolEventObserver {
                 }
             } else {
 
-                Log.d(TAG, "Received other message");
             }
         } else if (event instanceof MtProtocolRequestTimeoutEvent) {
-
-            // protocol timeout
-            Log.d(TAG, "Received MtProtocolRequestTimeoutEvent");
             context.sendBroadcast(new Intent(ACTION_ERROR));
         } else {
             Log.e(TAG, "Received unknown event");

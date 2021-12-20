@@ -6,14 +6,18 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.navigation.fragment.findNavController
+import com.google.gson.Gson
 import dev.fabula.android.R
 import dev.fabula.android.app.ui.*
 import dev.fabula.android.app.util.Util
 import dev.fabula.android.camera.CameraViewModel
 import dev.fabula.android.databinding.PlatformFragmentBinding
+import dev.fabula.android.dimensions.fence.model.DimensionsFence
+import dev.fabula.android.dimensions.fence.model.DimensionsFenceTransit
 import dev.fabula.android.list.items.model.ListItem
 import dev.fabula.android.list.items.model.PassedClass
 import dev.fabula.android.platform.di.PlatformComponent
+import kotlinx.android.synthetic.main.platform_fragment.*
 
 class PlatformFragment : ViewModelFragment<PlatformFragmentBinding>(R.layout.platform_fragment) {
 
@@ -39,12 +43,30 @@ class PlatformFragment : ViewModelFragment<PlatformFragmentBinding>(R.layout.pla
                 else showMessage(R.string.data_added_error)
             }
 
-            viewModel.canopy.event(viewLifecycleOwner) {canopy->
+            viewModel.canopy.event(viewLifecycleOwner) { canopy ->
                 val bundle = Bundle()
                 bundle.putSerializable("typeClass", PassedClass.Canopy)
                 bundle.putString("uid_canopy", canopy.uid)
                 findNavController().navigate(R.id.action_platform_to_measurements_list, bundle)
             }
+
+            viewModel.dimensionsFencesList.event(viewLifecycleOwner) { dimensionsFences ->
+                val bundle = Bundle()
+                bundle.putSerializable("typeClass", PassedClass.DimensionsFence)
+                bundle.putString(
+                    "dimension_fences_json_data",
+                    Gson().toJson(
+                        DimensionsFenceTransit(
+                            dimensionsFences,
+                            listItem!!.id,
+                            getCountDimensionsFencesOfPlatform()
+                        )
+                    )
+                )
+
+                findNavController().navigate(R.id.action_platform_to_measurements_list, bundle)
+            }
+
 
             listItem?.id?.let { uid ->
                 viewModel.getPlatformById(uid)
@@ -65,13 +87,13 @@ class PlatformFragment : ViewModelFragment<PlatformFragmentBinding>(R.layout.pla
                 }
             }
 
-            val array1 = arrayOf(Util.platform_high, Util.platform_down)
+            val array1 = arrayOf(resources.getString(R.string.high), resources.getString(R.string.low))
             val adapter1: ArrayAdapter<String> =
                 ArrayAdapter(requireContext(), android.R.layout.select_dialog_item, array1)
             type1.setAdapter(adapter1)
             type1.setText(array1[0], false)
 
-            val array2 = arrayOf(Util.platform_peregovay, Util.platform_ostravnaya)
+            val array2 = arrayOf(resources.getString(R.string.coastal), resources.getString(R.string.insular))
             val adapter2: ArrayAdapter<String> =
                 ArrayAdapter(requireContext(), android.R.layout.select_dialog_item, array2)
             type2.setAdapter(adapter2)
@@ -109,7 +131,7 @@ class PlatformFragment : ViewModelFragment<PlatformFragmentBinding>(R.layout.pla
                 }
             }
 
-            LayoutHeaderViewHolder(layoutHeader,requireContext()).apply {
+            LayoutHeaderViewHolder(layoutHeader, requireContext()).apply {
                 onItemClickImage = {
                     findNavController().navigate(R.id.action_platform_to_profile)
                 }
@@ -130,9 +152,8 @@ class PlatformFragment : ViewModelFragment<PlatformFragmentBinding>(R.layout.pla
                 val bundle = Bundle()
 
                 listItem?.id?.let { uidPlatform ->
-                    bundle.putParcelable("listItem", ListItem(uidPlatform, Util.platform))
+                    bundle.putParcelable("listItem", ListItem(uidPlatform, resources.getString(R.string.platform)))
                 }
-
                 findNavController().navigate(R.id.action_platform_to_report, bundle)
             }
 
@@ -140,33 +161,26 @@ class PlatformFragment : ViewModelFragment<PlatformFragmentBinding>(R.layout.pla
                 val bundle = Bundle()
 
                 listItem?.id?.let { uidPlatform ->
-                    bundle.putParcelable("listItem", ListItem(uidPlatform, Util.canopy))
+                    bundle.putParcelable("listItem", ListItem(uidPlatform, resources.getString(R.string.canopy)))
                 }
-
                 findNavController().navigate(R.id.action_platform_to_report, bundle)
             }
 
-            btnDimensionsFence.setOnClickListener {
-                val bundle = Bundle()
-                bundle.putSerializable("typeClass", PassedClass.DimensionsFence)
-                listItem?.id?.let { it1 -> bundle.putString("uid_platform", it1) }
-                listItem?.name?.let { it1 ->
-                    bundle.putString("name_platform", it1)
-                }
-                if (type2.text.toString() == Util.platform_peregovay)
-                    bundle.putInt("dimensions_count", 2)
-                else if (type2.text.toString() == Util.platform_ostravnaya)
-                    bundle.putInt("dimensions_count", 4)
-                findNavController().navigate(
-                    R.id.action_platform_to_dimensions_fence,
-                    bundle
-                )
-            }
 
             btnDimensionsCanopy.setOnClickListener {
 
                 listItem?.id?.let { it1 ->
                     viewModel.getCanopyOfPlatform(it1)
+                }
+            }
+
+            btnDimensionsFence.setOnClickListener {
+
+                listItem?.id?.let { it1 ->
+                    viewModel.getDimensionsFencesOfPlatform(
+                        it1,
+                        getCountDimensionsFencesOfPlatform()
+                    )
                 }
             }
 
@@ -187,5 +201,9 @@ class PlatformFragment : ViewModelFragment<PlatformFragmentBinding>(R.layout.pla
                 findNavController().navigate(R.id.action_platform_to_list_items_supports, bundle)
             }
         }
+    }
+
+    private fun getCountDimensionsFencesOfPlatform(): Int {
+        return if (type2.text.toString() == resources.getString(R.string.coastal)) 2 else 4
     }
 }

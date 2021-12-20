@@ -199,23 +199,31 @@ class SyncRepository @Inject constructor(
             try {
 
                 syncPlatform(listPlatforms)
-                Log.e("AA","11")
+                Log.e("upload_platform", listPlatforms.toString())
                 syncBridges(listBridgesCreated, listBridgesEdited)
-                Log.e("AA","22")
+
+                Log.e("upload_create_bridge", listBridgesCreated.toString())
+                Log.e("upload_edit_bridge", listBridgesEdited.toString())
+
                 syncSupport(listSupportCreated, listSupportEdited)
-                Log.e("AA","33")
+                Log.e("upload_create_support", listSupportCreated.toString())
+                Log.e("upload_edit_support", listSupportEdited.toString())
+
                 syncDimensionFence(listDimensionsFenceCreated, listDimensionsFenceEdited)
-                Log.e("AA","44")
+                Log.e("AA", "44")
                 syncCanopies(listCanopiesCreated, listCanopiesEdited)
-                Log.e("AA","55")
+                Log.e("AA", "55")
                 syncCarrierWire(listCarrierWireCreated)
-                Log.e("AA","66")
+                Log.e("AA", "66")
                 syncContactWire(listContactWireCreated)
-                Log.e("AA","77"+ listMeasurementsEdited.toString())
+
                 syncMeasurement(listMeasurementsCreated, listMeasurementsEdited)
-                Log.e("AA","88")
+                Log.e("upload_create_measure", listMeasurementsCreated.toString())
+                Log.e("upload_edit_measure", listMeasurementsEdited.toString())
+
+                Log.e("AA", "88")
                 syncStation(listStations)
-                Log.e("AA","99")
+                Log.e("AA", "99")
 
 
             } catch (e: Exception) {
@@ -290,13 +298,13 @@ class SyncRepository @Inject constructor(
     }
 
     private fun insertPlatforms(platformList: List<Platform>) {
-       // Log.e("QQQQQQQQ=", platformList.size.toString())
-       // Log.e("QQQQQQQQ2=", platformList.toString())
+        // Log.e("QQQQQQQQ=", platformList.size.toString())
+        // Log.e("QQQQQQQQ2=", platformList.toString())
         try {
             platformList.forEach { platform ->
                 if (platform.owner == auth.getUserID()) {
                     platformDao.insertWithReplace(platform)
-                     Timber.i("Add: $platform")
+                    Timber.i("Add: $platform")
                 }
             }
         } catch (e: Exception) {
@@ -638,7 +646,7 @@ class SyncRepository @Inject constructor(
         Log.e("CreateSuccess", "ssssssss")
 
         listMeasurementUpdate.forEach { measurement ->
-             Log.e("syncMeasure REQUEST:", "$measurement")
+            Log.e("syncMeasure REQUEST:", "$measurement")
             val response = createMeasurementsApi.update(
                 measurement.uid,
                 MeasurementRequest(

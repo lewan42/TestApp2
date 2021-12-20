@@ -34,5 +34,4 @@ class GlideModule {
             .error(R.drawable.ic_image_broken_24dp)
             .fallback(R.drawable.ic_image_fallback_24dp)
             .transition(DrawableTransitionOptions.withCrossFade())
-
 }

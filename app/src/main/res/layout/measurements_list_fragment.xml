@@ -23,9 +23,13 @@
 
         <TextView
             android:id="@+id/text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Количество последних измерений:"
+            android:maxLines="2"
+            android:lines="2"
+            android:gravity="center|start"
+            app:layout_constraintRight_toLeftOf="@+id/count_day_container"
+            android:text="@string/count_last_measurement"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -37,6 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/content_margin_small"
             app:hintEnabled="true"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintRight_toLeftOf="@+id/search_measure"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/text"
             app:layout_constraintTop_toTopOf="parent">
@@ -52,7 +58,6 @@
             android:id="@+id/search_measure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/content_margin_small"
             android:src="@drawable/ic_search_measure"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"

@@ -145,7 +145,7 @@ class SupportFragment : ViewModelFragment<SupportFragmentBinding>(R.layout.suppo
                     onItemClickButtonBack = {
                         findNavController().navigateUp()
                     }
-                }.bind("Опора ${it.name}")
+                }.bind("${resources.getString(R.string.support)} ${it.name}")
 
                 viewModel.getSupportById(it.id)
 

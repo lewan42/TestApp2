@@ -45,7 +45,7 @@ class ScreenMeasurementsFragment :
             val bundle = Bundle()
             bundle.putString("type", "${railway?.name}, ${railwaySection?.name}")
 
-            if (it.type == Util.support) {
+            if (it.type == resources.getString(R.string.support)) {
                 bundle.putParcelable("support", ListItem(it.uid, it.name))
                 findNavController().navigate(
                     R.id.action_screen_measurements_to_support,

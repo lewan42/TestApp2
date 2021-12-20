@@ -41,9 +41,9 @@ class ListItemsFragment :
 
         if (typeClass != null)
             adapter = when (typeClass) {
-                PassedClass.Platform -> ListItemsAdapter("Платформа")
-                PassedClass.BridgeCrossing -> ListItemsAdapter("Мостовой переход")
-                PassedClass.Support -> ListItemsAdapter("Опора")
+                PassedClass.Platform -> ListItemsAdapter(resources.getString(R.string.platform))
+                PassedClass.BridgeCrossing -> ListItemsAdapter(resources.getString(R.string.bridge_cross))
+                PassedClass.Support -> ListItemsAdapter(resources.getString(R.string.support))
                 else -> ListItemsAdapter("")
             }
 
@@ -70,6 +70,7 @@ class ListItemsFragment :
                         )
                     }
 
+                    //not use!?
                     PassedClass.DimensionsFence -> {
                         Timber.e("adapter.onItemClick PassedClass.DimensionsFence")
                         uidPlatform?.let {
@@ -228,10 +229,10 @@ class ListItemsFragment :
 
     private fun convertTypeClassToName(typeClass: String): String {
         return when (typeClass) {
-            "Platform" -> "Платформы"
-            "BridgeCrossing" -> "Мостовые переходы"
-            "Support" -> "Опоры"
-            "DimensionsFence" -> "Габариты торцевых ограждений"
+            "Platform" -> resources.getString(R.string.platforms)
+            "BridgeCrossing" -> resources.getString(R.string.bridges_crossing)
+            "Support" -> resources.getString(R.string.supports)
+            "DimensionsFence" -> resources.getString(R.string.dimensions_of_the_end_fence)
             else -> ""
         }
     }

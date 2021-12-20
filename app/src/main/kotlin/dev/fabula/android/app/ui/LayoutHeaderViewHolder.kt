@@ -18,7 +18,6 @@ class LayoutHeaderViewHolder(
     private val context: Context
 ) {
 
-
     var onItemClickImage: ((View) -> Unit)? = null
     var onItemClickButtonBack: ((View) -> Unit)? = null
 
@@ -31,6 +30,10 @@ class LayoutHeaderViewHolder(
     fun bind(strTitleName: String?) {
         layoutHeader.layoutHeaderText.text = strTitleName
         initializeCallbacks()
+    }
+
+    fun hideLayoutImageProfile(){
+        layoutHeader.layoutHeaderImage.visibility = View.INVISIBLE
     }
 
     private fun initializeCallbacks() {

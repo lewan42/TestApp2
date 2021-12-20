@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -23,7 +22,7 @@
             android:id="@+id/currentDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Дата не выбрана"
+            android:text="@string/date_not_selected"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/btnDate"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -34,7 +33,7 @@
             android:id="@+id/btnDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Выбрать дату"
+            android:text="@string/select_date"
             app:layout_constraintLeft_toRightOf="@+id/currentDate"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_header" />
@@ -56,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/content_margin_small"
                 android:layout_marginEnd="@dimen/content_margin_small"
-                android:hint="км"
+                android:hint="@string/km"
                 app:hintEnabled="true"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/start_pk_container_canopy"
@@ -76,7 +75,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/content_margin_small"
-                android:hint="пк"
+                android:hint="@string/pk"
                 app:hintEnabled="true"
                 app:layout_constraintLeft_toRightOf="@+id/start_km_container_canopy"
                 app:layout_constraintRight_toRightOf="parent"
@@ -97,10 +96,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/content_margin_small"
                 android:layout_marginEnd="@dimen/content_margin_small"
-                android:hint="Тип участка"
+                android:hint="@string/type_site"
                 app:hintEnabled="true"
-                app:layout_constraintRight_toLeftOf="@+id/range_canopy_container"
                 app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/range_canopy_container"
                 app:layout_constraintTop_toBottomOf="@+id/start_pk_container_canopy">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -117,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/content_margin_small"
                 android:layout_marginEnd="@dimen/content_margin_small"
-                android:hint="Промеры через"
+                android:hint="@string/step_measurement"
                 app:hintEnabled="true"
                 app:layout_constraintLeft_toRightOf="@+id/canopy_type_container"
                 app:layout_constraintRight_toRightOf="parent"
@@ -147,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/content_margin_small"
                 android:layout_marginEnd="@dimen/content_margin_small"
-                android:hint="км"
+                android:hint="@string/km"
                 app:hintEnabled="true"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/start_pk_container"
@@ -167,7 +166,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/content_margin_small"
-                android:hint="пк"
+                android:hint="@string/pk"
                 app:hintEnabled="true"
                 app:layout_constraintLeft_toRightOf="@+id/start_km_container"
                 app:layout_constraintRight_toLeftOf="@+id/start_metr_container"
@@ -188,7 +187,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/content_margin_small"
                 android:layout_marginTop="@dimen/content_margin_small"
-                android:hint="м"
+                android:hint="@string/m"
                 app:hintEnabled="true"
                 app:layout_constraintLeft_toRightOf="@+id/start_pk_container"
                 app:layout_constraintRight_toRightOf="parent"
@@ -209,7 +208,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/content_margin_small"
                 android:layout_marginEnd="@dimen/content_margin_small"
-                android:hint="км"
+                android:hint="@string/km"
                 app:hintEnabled="true"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/end_pk_container"
@@ -229,7 +228,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/content_margin_small"
-                android:hint="пк"
+                android:hint="@string/pk"
                 app:hintEnabled="true"
                 app:layout_constraintLeft_toRightOf="@+id/end_km_container"
                 app:layout_constraintRight_toLeftOf="@+id/end_metr_container"
@@ -250,7 +249,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/content_margin_small"
                 android:layout_marginTop="@dimen/content_margin_small"
-                android:hint="м"
+                android:hint="@string/m"
                 app:hintEnabled="true"
                 app:layout_constraintLeft_toRightOf="@+id/end_pk_container"
                 app:layout_constraintRight_toRightOf="parent"
@@ -282,7 +281,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/content_margin_small"
                 android:layout_marginEnd="@dimen/content_margin_small"
-                android:hint="План пути"
+                android:hint="@string/plan_path"
                 app:hintEnabled="true"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/r_container"
@@ -302,7 +301,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/content_margin_small"
-                android:hint="R"
+                android:hint="@string/r"
                 app:hintEnabled="true"
                 app:layout_constraintLeft_toRightOf="@+id/plan_path_container"
                 app:layout_constraintRight_toLeftOf="@+id/h_container"
@@ -323,7 +322,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/content_margin_small"
                 android:layout_marginTop="@dimen/content_margin_small"
-                android:hint="h"
+                android:hint="@string/h"
                 app:hintEnabled="true"
                 app:layout_constraintLeft_toRightOf="@+id/r_container"
                 app:layout_constraintRight_toRightOf="parent"
@@ -354,7 +353,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/content_margin_small"
                 android:layout_marginEnd="@dimen/content_margin_small"
-                android:hint="Со стороны"
+                android:hint="@string/from_side"
                 app:hintEnabled="true"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/range_step_container"
@@ -374,7 +373,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/content_margin_small"
-                android:hint="Расстояние от торца"
+                android:hint="@string/end_distance"
                 app:hintEnabled="true"
                 app:layout_constraintLeft_toRightOf="@+id/direction_container"
                 app:layout_constraintRight_toLeftOf="@+id/number_path_container"
@@ -395,7 +394,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/content_margin_small"
                 android:layout_marginTop="@dimen/content_margin_small"
-                android:hint="№ пути"
+                android:hint="@string/symbol_number_path"
                 app:hintEnabled="true"
                 app:layout_constraintLeft_toRightOf="@+id/range_step_container"
                 app:layout_constraintRight_toRightOf="parent"
@@ -426,7 +425,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/content_margin_small"
-                android:hint="Промеры в створе каждого блока на"
+                android:hint="@string/measurements_of_each_block_for"
                 app:hintEnabled="true"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -446,7 +445,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/content_margin_small"
-                android:hint="Норма, L"
+                android:hint="@string/width_norm_mm"
                 app:hintEnabled="true"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/height_norm_container"
@@ -467,7 +466,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/content_margin_small"
                 android:layout_marginTop="@dimen/content_margin_small"
-                android:hint="Норма, H"
+                android:hint="@string/height_norm_mm"
                 app:hintEnabled="true"
                 app:layout_constraintLeft_toRightOf="@+id/width_norm_container"
                 app:layout_constraintRight_toRightOf="parent"
@@ -497,7 +496,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="145dp"
                 android:layout_marginTop="@dimen/content_margin_small"
-                android:hint="Тип измерительного прибора, инв.No, сертификат"
+                android:hint="@string/type_measurement_device"
                 app:hintEnabled="true"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -531,7 +530,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="145dp"
                 android:layout_marginTop="@dimen/content_margin_small"
-                android:hint="Прочие нарушения"
+                android:hint="@string/other_violations"
                 app:hintEnabled="true"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -566,7 +565,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/content_margin_small"
-            android:hint="Должность"
+            android:hint="@string/position"
             app:hintEnabled="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -584,7 +583,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/content_margin_small"
-            android:hint="ФИО"
+            android:hint="@string/full_name_sumbols"
             app:hintEnabled="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -614,7 +613,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/content_margin_small"
-            android:hint="Должность"
+            android:hint="@string/position"
             app:hintEnabled="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -632,7 +631,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/content_margin_small"
-            android:hint="ФИО"
+            android:hint="@string/full_name_sumbols"
             app:hintEnabled="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -662,7 +661,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/content_margin_small"
-            android:hint="Должность"
+            android:hint="@string/position"
             app:hintEnabled="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -681,7 +680,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/content_margin_small"
-            android:hint="ФИО"
+            android:hint="@string/full_name_sumbols"
             app:hintEnabled="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -700,7 +699,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            android:text="Сформировать отчет"
+            android:text="@string/create_report"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -716,136 +715,6 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_header" />
-
-        <!--        <com.google.android.material.textfield.TextInputLayout-->
-        <!--            android:id="@+id/container_type_measurement"-->
-        <!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:hint="Объект измерения"-->
-        <!--            android:textSize="14sp"-->
-        <!--            app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--            app:layout_constraintRight_toRightOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/layout_header">-->
-
-        <!--            <AutoCompleteTextView-->
-        <!--                android:id="@+id/type_measurement"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="50dp"-->
-        <!--                android:focusable="false"-->
-        <!--                android:focusableInTouchMode="true"-->
-        <!--                android:inputType="none"-->
-        <!--                android:textSize="14sp" />-->
-        <!--        </com.google.android.material.textfield.TextInputLayout>-->
-
-        <!--        <com.google.android.material.textfield.TextInputLayout-->
-        <!--            android:id="@+id/platform_container"-->
-        <!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="4dp"-->
-        <!--            android:hint="Платформа"-->
-        <!--            app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--            app:layout_constraintRight_toRightOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/container_type_measurement">-->
-
-        <!--            <AutoCompleteTextView-->
-        <!--                android:id="@+id/platform"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="50dp"-->
-        <!--                android:focusable="false"-->
-        <!--                android:focusableInTouchMode="true"-->
-        <!--                android:inputType="none"-->
-        <!--                android:textSize="14sp" />-->
-        <!--        </com.google.android.material.textfield.TextInputLayout>-->
-
-        <!--    <com.google.android.material.textfield.TextInputLayout-->
-        <!--        android:id="@+id/object_section_railway_container"-->
-        <!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
-        <!--        android:layout_width="0dp"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_marginTop="4dp"-->
-        <!--        android:hint="Объект участка железной дороги"-->
-        <!--        app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--        app:layout_constraintRight_toRightOf="parent"-->
-        <!--        app:layout_constraintTop_toBottomOf="@+id/section_railway_container">-->
-
-        <!--        <AutoCompleteTextView-->
-        <!--            android:id="@+id/object_section_railway"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="50dp"-->
-        <!--            android:focusable="false"-->
-        <!--            android:focusableInTouchMode="true"-->
-        <!--            android:inputType="none"-->
-        <!--            android:textSize="14sp" />-->
-        <!--    </com.google.android.material.textfield.TextInputLayout>-->
-
-        <!--    <com.google.android.material.textfield.TextInputLayout-->
-        <!--        android:id="@+id/station_container"-->
-        <!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
-        <!--        android:layout_width="0dp"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_marginTop="4dp"-->
-        <!--        android:hint="Станция"-->
-        <!--        android:visibility="gone"-->
-        <!--        app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--        app:layout_constraintRight_toRightOf="parent"-->
-        <!--        app:layout_constraintTop_toBottomOf="@+id/object_section_railway_container">-->
-
-        <!--        <AutoCompleteTextView-->
-        <!--            android:id="@+id/station"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="50dp"-->
-        <!--            android:focusable="false"-->
-        <!--            android:focusableInTouchMode="true"-->
-        <!--            android:inputType="none"-->
-        <!--            android:textSize="14sp" />-->
-        <!--    </com.google.android.material.textfield.TextInputLayout>-->
-
-        <!--    <com.google.android.material.textfield.TextInputLayout-->
-        <!--        android:id="@+id/peregon_container"-->
-        <!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
-        <!--        android:layout_width="0dp"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_marginTop="4dp"-->
-        <!--        android:hint="Перегон"-->
-        <!--        android:visibility="gone"-->
-        <!--        app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--        app:layout_constraintRight_toRightOf="parent"-->
-        <!--        app:layout_constraintTop_toBottomOf="@+id/station_container">-->
-
-        <!--        <AutoCompleteTextView-->
-        <!--            android:id="@+id/peregon"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="50dp"-->
-        <!--            android:focusable="false"-->
-        <!--            android:focusableInTouchMode="true"-->
-        <!--            android:inputType="none"-->
-        <!--            android:textSize="14sp" />-->
-        <!--    </com.google.android.material.textfield.TextInputLayout>-->
-
-        <!--    <com.google.android.material.textfield.TextInputLayout-->
-        <!--        android:id="@+id/station_support_container"-->
-        <!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
-        <!--        android:layout_width="0dp"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_marginTop="4dp"-->
-        <!--        android:hint="Опора"-->
-        <!--        android:visibility="gone"-->
-        <!--        app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--        app:layout_constraintRight_toRightOf="parent"-->
-        <!--        app:layout_constraintTop_toBottomOf="@+id/peregon_container">-->
-
-        <!--        <AutoCompleteTextView-->
-        <!--            android:id="@+id/station_support"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="50dp"-->
-        <!--            android:focusable="false"-->
-        <!--            android:focusableInTouchMode="true"-->
-        <!--            android:inputType="none"-->
-        <!--            android:textSize="14sp" />-->
-        <!--    </com.google.android.material.textfield.TextInputLayout>-->
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

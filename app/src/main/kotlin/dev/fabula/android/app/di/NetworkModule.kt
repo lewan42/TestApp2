@@ -39,10 +39,10 @@ class NetworkModule {
     @Provides
     fun provideHttpClient(context: Context, auth: AppAuth): OkHttpClient =
         OkHttpClient.Builder()
-            .apply {
-                if (BuildConfig.DEBUG)
-                    addNetworkInterceptor(provideLoggingInterceptor())
-            }
+//            .apply {
+//                if (BuildConfig.DEBUG)
+//                    addNetworkInterceptor(provideLoggingInterceptor())
+//            }
             .connectionSpecs(mutableListOf(ConnectionSpec.CLEARTEXT))
             .addInterceptor(provideErrorsInterceptor())
             .addInterceptor(provideAuthInterceptor(auth))

@@ -2,9 +2,12 @@ package dev.fabula.android.measurements.list.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import dev.fabula.android.R
 import dev.fabula.android.app.ui.LayoutHeaderViewHolder
 import dev.fabula.android.app.ui.ViewModelFragment
@@ -12,9 +15,13 @@ import dev.fabula.android.app.ui.event
 import dev.fabula.android.app.ui.hideKeyboard
 import dev.fabula.android.app.util.Util
 import dev.fabula.android.databinding.MeasurementsListFragmentBinding
+import dev.fabula.android.dimensions.fence.model.DimensionsFence
+import dev.fabula.android.dimensions.fence.model.DimensionsFenceTransit
+import dev.fabula.android.dimensions.fence.model.DimensionsFenceWithMeasurement
 import dev.fabula.android.measurements.list.adapter.MeasurementsListAdapter
 import dev.fabula.android.measurements.list.di.MeasurementsListComponent
-import kotlinx.android.synthetic.main.measurements_list_fragment.view.*
+import dev.fabula.android.measurements.model.Measurement
+
 
 class MeasurementsListFragment :
     ViewModelFragment<MeasurementsListFragmentBinding>(R.layout.measurements_list_fragment) {
@@ -22,6 +29,9 @@ class MeasurementsListFragment :
     private val uidPlatform get() = arguments?.getString("uid_platform")
     private val uidBridge get() = arguments?.getString("uid_bridge")
     private val uidCanopy get() = arguments?.getString("uid_canopy")
+
+    private val dimensionFenceTransit get() = arguments?.getString("dimension_fences_json_data")
+
     private lateinit var adapter: MeasurementsListAdapter
     private var startCountMeasure = 1
 
@@ -37,57 +47,67 @@ class MeasurementsListFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = when {
-            uidPlatform != null -> MeasurementsListAdapter("платформы")
-            uidBridge != null -> MeasurementsListAdapter("спуска")
-            uidCanopy != null -> MeasurementsListAdapter("навеса")
-            else -> MeasurementsListAdapter("")
-        }
+        adapter = MeasurementsListAdapter()
 
-        adapter.onItemClick = { measurement ->
+        adapter.onItemClick = { itemRow ->
             val bundle = Bundle()
-            if (measurement.parent_platform_uid != null)
-                bundle.putString("uid_platform", measurement.parent_platform_uid)
 
-            if (measurement.parent_most_perehod_uid != null)
-                bundle.putString("uid_bridge", measurement.parent_most_perehod_uid)
+            when (itemRow) {
+                is Measurement -> {
+                    if (itemRow.parent_platform_uid != null)
+                        bundle.putString("uid_platform", itemRow.parent_platform_uid)
 
-            if (measurement.parent_gabarit_naves_uid != null)
-                bundle.putString("uid_canopy", measurement.parent_gabarit_naves_uid)
+                    if (itemRow.parent_most_perehod_uid != null)
+                        bundle.putString("uid_bridge", itemRow.parent_most_perehod_uid)
 
-            bundle.putString("uid", measurement.uid)
+                    if (itemRow.parent_gabarit_naves_uid != null)
+                        bundle.putString("uid_canopy", itemRow.parent_gabarit_naves_uid)
+
+                    bundle.putString("uid", itemRow.uid)
+                }
+
+                is DimensionsFenceWithMeasurement ->{
+                    itemRow.measurements?.let{ measure ->
+                        if (itemRow.measurements != null)
+                            bundle.putString("uid_dimension", measure.parent_gabarit_tor_uid)
+
+                        bundle.putString("uid", measure.uid)
+                    }
+                }
+            }
+
             findNavController().navigate(R.id.create_measurementsFragment, bundle)
         }
 
-        viewModel.countLastMeasurementPlatforms.observe(viewLifecycleOwner) {
+        viewModel.countLastMeasurementPlatforms.event(viewLifecycleOwner) {
+            println("result MeasurementsListFragment uidPlatform ${it.toString()}")
+
             adapter.submitList(it)
             adapter.notifyDataSetChanged()
             binding?.progressBar?.visibility = View.INVISIBLE
-            Toast.makeText(requireContext(), "Найдено ${it.size} измерений", Toast.LENGTH_SHORT).show()
+            showCountMeasurement(it.size)
         }
 
-        viewModel.countLastMeasurementBridge.observe(viewLifecycleOwner) {
+        viewModel.countLastMeasurementBridge.event(viewLifecycleOwner) {
             adapter.submitList(it)
             adapter.notifyDataSetChanged()
             binding?.progressBar?.visibility = View.INVISIBLE
-            Toast.makeText(requireContext(), "Найдено ${it.size} измерений", Toast.LENGTH_SHORT).show()
+            showCountMeasurement(it.size)
         }
 
-        viewModel.countLastMeasurementCanopy.observe(viewLifecycleOwner) {
+        viewModel.countLastMeasurementCanopy.event(viewLifecycleOwner) {
             adapter.submitList(it)
             adapter.notifyDataSetChanged()
             binding?.progressBar?.visibility = View.INVISIBLE
-            Toast.makeText(requireContext(), "Найдено ${it.size} измерений", Toast.LENGTH_SHORT).show()
+            showCountMeasurement(it.size)
         }
 
-        viewModel.uidCanopyOfPlatform.event(viewLifecycleOwner) {
-            it?.let {
-
-                bundle.putString("uid_canopy", it)
-                findNavController().navigate(R.id.canopyFragment, bundle)
-            }
+        viewModel.countLastMeasurementDimensionFence.event(viewLifecycleOwner) {
+            adapter.submitList(it)
+            adapter.notifyDataSetChanged()
+            binding?.progressBar?.visibility = View.INVISIBLE
+            showCountMeasurement(it.size)
         }
-
 
         binding = MeasurementsListFragmentBinding.bind(view).apply {
             recyclerView.adapter = adapter
@@ -95,22 +115,49 @@ class MeasurementsListFragment :
             countDay.setText(startCountMeasure.toString())
 
             searchMeasure.setOnClickListener {
-                if(countDay.text.toString() == ""){
-                    Toast.makeText(requireContext(), "Введите количество последних измерений", Toast.LENGTH_LONG).show()
-                }else {
+                if (countDay.text.toString().isEmpty() || countDay.text.toString().isBlank()) {
+                    Toast.makeText(
+                        requireContext(),
+                        resources.getString(R.string.enter_the_number_of_last_measurements),
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
                     hideKeyboard()
                     uidPlatform?.let { uidPlatform ->
-                        viewModel.getCountLastMeasurementsOfPlatform(uidPlatform, countDay.text.toString().toInt())
+                        println("start MeasurementsListFragment uidPlatform $uidPlatform")
+                        viewModel.getCountLastMeasurementsOfPlatform(
+                            uidPlatform,
+                            countDay.text.toString().toInt()
+                        )
                         progressBar.visibility = View.VISIBLE
                     }
 
                     uidBridge?.let { uidBridge ->
-                        viewModel.getCountLastMeasurementsOfBridge(uidBridge, countDay.text.toString().toInt())
+                        viewModel.getCountLastMeasurementsOfBridge(
+                            uidBridge,
+                            countDay.text.toString().toInt()
+                        )
                         progressBar.visibility = View.VISIBLE
                     }
 
                     uidCanopy?.let { uidCanopy ->
-                        viewModel.getCountLastMeasurementsOfCanopy(uidCanopy, countDay.text.toString().toInt())
+                        viewModel.getCountLastMeasurementsOfCanopy(
+                            uidCanopy,
+                            countDay.text.toString().toInt()
+                        )
+                        progressBar.visibility = View.VISIBLE
+                    }
+
+                    dimensionFenceTransit?.let { json ->
+                        val dimensionsFencesTransit: DimensionsFenceTransit = Gson().fromJson(
+                            json,
+                            object : TypeToken<DimensionsFenceTransit?>() {}.type
+                        )
+
+                        viewModel.getCountLastMeasurementsOfDimensionFences(
+                            dimensionsFencesTransit.listDf,
+                            countDay.text.toString().toInt()
+                        )
                         progressBar.visibility = View.VISIBLE
                     }
                 }
@@ -147,7 +194,24 @@ class MeasurementsListFragment :
                 }
             }
 
-            LayoutHeaderViewHolder(layoutHeader,requireContext()).apply {
+            dimensionFenceTransit?.let { json ->
+                val dimensionsFenceTransit: DimensionsFenceTransit = Gson().fromJson(
+                    json,
+                    object : TypeToken<DimensionsFenceTransit?>() {}.type
+                )
+
+                viewModel.getCountLastMeasurementsOfDimensionFences(
+                    dimensionsFenceTransit.listDf,
+                    countDay.text.toString().toInt()
+                )
+
+                btnAdd.setOnClickListener {
+                    bundle.putString("dimension_fences_json_data", json)
+                    viewModel.getTypeMeasurementByType(Util.dimensions_fence_type)
+                }
+            }
+
+            LayoutHeaderViewHolder(layoutHeader, requireContext()).apply {
                 onItemClickImage = {
                     findNavController().navigate(R.id.action_measurements_list_to_profile)
                 }
@@ -158,19 +222,27 @@ class MeasurementsListFragment :
         }
     }
 
-    private fun getHeaderName():String{
+    private fun showCountMeasurement(count: Int) {
+        Toast.makeText(
+            requireContext(),
+            "${resources.getString(R.string.found)} $count ${resources.getString(R.string.measurements_)}",
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    private fun getHeaderName(): String {
         uidPlatform?.let { _ ->
-            return "Измерения платформы"
+            return resources.getString(R.string.platform_measurement)
         }
 
         uidBridge?.let { _ ->
-            return "Измерения мостового перехода"
+            return resources.getString(R.string.bridge_cross_measurement)
         }
 
         uidCanopy?.let { _ ->
-            return "Измерения навеса"
+            return resources.getString(R.string.canopy_measurement)
         }
 
-        return "Измерения"
+        return resources.getString(R.string.measurements)
     }
 }

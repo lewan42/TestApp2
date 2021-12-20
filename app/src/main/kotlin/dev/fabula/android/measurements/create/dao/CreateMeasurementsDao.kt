@@ -34,14 +34,17 @@ interface CreateMeasurementsDao {
     @Query("SELECT * FROM measurement WHERE parent_platform_uid=:uidPlatform")
     fun getMeasurementsOfPlatform(uidPlatform: String): List<Measurement>
 
-    @Query("select * from (select distinct DATE(created_at, 'unixepoch') as date from measurement WHERE parent_platform_uid=:uidPlatform order by date desc limit :count) sub join measurement m on sub.date = DATE(m.created_at, 'unixepoch')")
+    @Query("select * from (select distinct DATE(created_at, 'unixepoch') as date from measurement order by date desc limit :count) sub join measurement m on sub.date = DATE(m.created_at, 'unixepoch') WHERE parent_platform_uid=:uidPlatform")
     fun getCountLastMeasurementsOfPlatform(uidPlatform: String, count: Int): List<Measurement>
 
-    @Query("select * from (select distinct DATE(created_at, 'unixepoch') as date from measurement WHERE parent_most_perehod_uid=:uidBridge order by date desc limit :count) sub join measurement m on sub.date = DATE(m.created_at, 'unixepoch')")
+    @Query("select * from (select distinct DATE(created_at, 'unixepoch') as date from measurement order by date desc limit :count) sub join measurement m on sub.date = DATE(m.created_at, 'unixepoch') WHERE parent_most_perehod_uid=:uidBridge")
     fun getCountLastMeasurementsOfBridge(uidBridge: String, count: Int): List<Measurement>
 
-    @Query("select * from (select distinct DATE(created_at, 'unixepoch') as date from measurement WHERE parent_gabarit_naves_uid=:uidCanopy order by date desc limit :count) sub join measurement m on sub.date = DATE(m.created_at, 'unixepoch')")
+    @Query("select * from (select distinct DATE(created_at, 'unixepoch') as date from measurement order by date desc limit :count) sub join measurement m on sub.date = DATE(m.created_at, 'unixepoch') WHERE parent_gabarit_naves_uid=:uidCanopy")
     fun getCountLastMeasurementsOfCanopy(uidCanopy: String, count: Int): List<Measurement>
+
+    @Query("select * from (select distinct DATE(created_at, 'unixepoch') as date from measurement order by date desc limit :count) sub join measurement m on sub.date = DATE(m.created_at, 'unixepoch') WHERE parent_gabarit_tor_uid=:uidDimensionFence")
+    fun getCountLastMeasurementsOfDimensionsFence(uidDimensionFence: String, count: Int): List<Measurement>
 
     @Query("SELECT * FROM measurement WHERE parent_most_perehod_uid=:uidBridge")
     fun getMeasurementsOfBridge(uidBridge: String): List<Measurement>
@@ -50,7 +53,7 @@ interface CreateMeasurementsDao {
     fun getMeasurementById(uid: String): Measurement
 
     @Query("SELECT * FROM measurement WHERE parent_gabarit_tor_uid=:uidDimension")
-    fun getMeasurementOfDimensionsFence(uidDimension: String): Measurement
+    fun getMeasurementOfDimensionsFence(uidDimension: String): Measurement?
 
     @Query("SELECT * FROM measurement WHERE parent_gabarit_naves_uid=:uid")
     fun getMeasurementsOfCanopy(uid: String): List<Measurement>

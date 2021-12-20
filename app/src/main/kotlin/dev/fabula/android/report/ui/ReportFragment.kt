@@ -46,7 +46,7 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
     private var stationType: String = ""
     private var measurementPlatformListTor: List<DimensionsWithMeasure>? = null
 
-    private var signature: String = setWithoutSignature()
+    private lateinit var signature: String
 
     var dateAndTime: Calendar = Calendar.getInstance()
 
@@ -54,8 +54,7 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        ReportComponent.create(context)
-            .inject(this)
+        ReportComponent.create(context).inject(this)
     }
 
     private fun setInitialDateTime() {
@@ -69,15 +68,14 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
             listItem?.let {
                 when (it.name) {
 
-                    Util.platform -> {
+                    resources.getString(R.string.platform) -> {
                         viewModel.getMeasurementsOfPlatform(it.id)
                     }
-                    Util.canopy -> {
+                    resources.getString(R.string.canopy) -> {
                         viewModel.getCanopyOfPlatform(it.id)
                     }
                 }
             }
-
         }
     }
 
@@ -107,6 +105,7 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        signature = setWithoutSignature()
         setInitialDateTime()
         setDeviceNull()
 
@@ -117,13 +116,13 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
 
                 when (it.name) {
 
-                    Util.platform -> {
+                    resources.getString(R.string.platform) -> {
 
                         certificate.setText(Util.CERTIFICATE_3 + " " + Util.CERTIFICATE_4)
                         reportToCanopy.visibility = View.GONE
                         reportToPlatform.visibility = View.VISIBLE
                     }
-                    Util.canopy -> {
+                    resources.getString(R.string.canopy) -> {
 
                         reportToCanopy.visibility = View.VISIBLE
                         reportToPlatform.visibility = View.GONE
@@ -186,7 +185,10 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
 
             viewModel.station.observe(requireActivity(), {
                 platformStation = it
-                stationType = if (it.type_of == "Station") "Станция" else "Перегон"
+                stationType =
+                    if (it.type_of == "Station") "${resources.getString(R.string.station)}" else "${
+                        resources.getString(R.string.peregon)
+                    }"
             })
 
             viewModel.dimensionFence.observe(requireActivity(), {
@@ -196,21 +198,25 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
 
             btnCreateReport.setOnClickListener {
 
-                if (currentDate.text.equals("Дата не выбрана")) {
-                    Toast.makeText(requireContext(), "Выберите дату", Toast.LENGTH_LONG).show()
+                if (currentDate.text.equals(resources.getString(R.string.date_not_selected))) {
+                    Toast.makeText(
+                        requireContext(),
+                        resources.getString(R.string.select_date),
+                        Toast.LENGTH_LONG
+                    ).show()
                     return@setOnClickListener
                 }
 
 
                 val builder = AlertDialog.Builder(requireContext())
                 with(builder) {
-                    setTitle("Формирование отчета")
-                    setMessage("Подписать документ?")
-                    setPositiveButton("Да") { dialog, whichButton ->
+                    setTitle(resources.getString(R.string.creating_report))
+                    setMessage(resources.getString(R.string.sign_document))
+                    setPositiveButton(resources.getString(R.string.yes)) { dialog, whichButton ->
                         dialog.dismiss()
                         signature()
                     }
-                    setNegativeButton("Нет") { dialog, whichButton ->
+                    setNegativeButton(resources.getString(R.string.no)) { dialog, whichButton ->
                         dialog.dismiss()
                         report()
                     }
@@ -221,14 +227,14 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
                 }
             }
 
-            LayoutHeaderViewHolder(layoutHeader,requireContext()).apply {
+            LayoutHeaderViewHolder(layoutHeader, requireContext()).apply {
                 onItemClickImage = {
                     findNavController().navigate(R.id.action_report_to_profile)
                 }
                 onItemClickButtonBack = {
                     findNavController().navigateUp()
                 }
-            }.bind("Формирование отчета: ${listItem?.name}")
+            }.bind("${resources.getString(R.string.creating_report)}: ${listItem?.name}")
         }
     }
 
@@ -239,9 +245,9 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
         listItem?.let {
             when (it.name) {
 
-                Util.platform -> {
+                resources.getString(R.string.platform) -> {
                     curMeasurementList?.let { measure ->
-                        if(measure.isNotEmpty()) {
+                        if (measure.isNotEmpty()) {
                             htmlData = getPlatformReport(measure)
 
                             webView.loadDataWithBaseURL(
@@ -251,26 +257,34 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
                                 "UTF-8",
                                 null
                             )
-                        }else{
-                            Toast.makeText(requireContext(), "Нет измерений в эту дату", Toast.LENGTH_LONG).show()
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                resources.getString(R.string.not_measurement_in_selection_date),
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     }
 
                 }
-                Util.canopy -> {
+                resources.getString(R.string.canopy) -> {
                     curMeasurementList?.let { measure ->
-                        if(measure.isNotEmpty()){
-                        htmlData = getCanopyReport(measure)
+                        if (measure.isNotEmpty()) {
+                            htmlData = getCanopyReport(measure)
 
-                        webView.loadDataWithBaseURL(
-                            null,
-                            htmlData,
-                            "text/HTML",
-                            "UTF-8",
-                            null
-                        )
-                        }else{
-                            Toast.makeText(requireContext(), "Нет измерений в эту дату", Toast.LENGTH_LONG).show()
+                            webView.loadDataWithBaseURL(
+                                null,
+                                htmlData,
+                                "text/HTML",
+                                "UTF-8",
+                                null
+                            )
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                resources.getString(R.string.not_measurement_in_selection_date),
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     }
                 }
@@ -290,15 +304,15 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
     }
 
     private fun webView() {
-        var fileName = "Отчет.pdf"
+        var fileName = "${resources.getString(R.string.report)}.pdf"
         listItem?.let {
             when (it.name) {
 
-                Util.platform -> {
-                    fileName = "Отчет платформы.pdf"
+                resources.getString(R.string.platform) -> {
+                    fileName = "${resources.getString(R.string.report_platform)}.pdf"
                 }
-                Util.canopy -> {
-                    fileName = "Отчет габаритов навеса.pdf"
+                resources.getString(R.string.canopy) -> {
+                    fileName = "${resources.getString(R.string.report_canopy)}.pdf"
                 }
             }
         }
@@ -339,22 +353,40 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
 
     private fun setWithoutSignature(): String {
         return "<div class=\"signature\">" +
-                "    <h4 style=\"text-align: center; margin: 8px; color: darkblue;font-weight: bold\">Документ не имеет электронной подписи</h4>" +
+                "    <h4 style=\"text-align: center; margin: 8px; color: darkblue;font-weight: bold\">${
+                    resources.getString(
+                        R.string.document_have_not_electronic_signature
+                    )
+                }</h4>" +
                 "</div>"
     }
 
     private fun setSignature(key1: String, key2: String): String {
         return "<div class=\"signature\" style=\"bottom: 10%;\">" +
-                "    <h4 style=\"text-align: center; margin: 8px; color: darkblue;font-weight: bold\">Документ подписан электронной" +
-                "        подписью</h4>" +
-                "    <h5 class=\"inl-txt\" style=\"margin: 8px 0 8px 8px; color: darkblue\">Сертификат: </h5>" +
+                "    <h4 style=\"text-align: center; margin: 8px; color: darkblue;font-weight: bold\">${
+                    resources.getString(
+                        R.string.document_have_not_electronic_signature
+                    )
+                }</h4>" +
+                "    <h5 class=\"inl-txt\" style=\"margin: 8px 0 8px 8px; color: darkblue\">${
+                    resources.getString(
+                        R.string.certificate
+                    )
+                }: </h5>" +
                 "    <h5 class=\"inl-txt\" style=\"margin: 8px 0; color: darkblue\">" + key1 + "</h5>" +
                 "</div>" +
                 "" +
                 "<div class=\"signature\" style=\"bottom: 1%;\">" +
-                "    <h4 style=\"text-align: center; margin: 8px; color: darkblue;font-weight: bold\">Документ подписан электронной" +
-                "        подписью</h4>" +
-                "    <h5 class=\"inl-txt\" style=\"margin: 8px 0 8px 8px; color: darkblue\">Сертификат: </h5>" +
+                "    <h4 style=\"text-align: center; margin: 8px; color: darkblue;font-weight: bold\">${
+                    resources.getString(
+                        R.string.document_have_not_electronic_signature
+                    )
+                }</h4>" +
+                "    <h5 class=\"inl-txt\" style=\"margin: 8px 0 8px 8px; color: darkblue\">${
+                    resources.getString(
+                        R.string.certificate
+                    )
+                }: </h5>" +
                 "    <h5 class=\"inl-txt\" style=\"margin: 8px 0; color: darkblue\">" + key2 + "</h5>" +
                 "</div>"
     }
@@ -367,15 +399,15 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
         var key1: String = ""
 
         with(builder1) {
-            setTitle("Подписание документа")
-            setMessage("Приложите метку NFC 1")
+            setTitle(resources.getString(R.string.signature_document))
+            setMessage(resources.getString(R.string.attach_nfc_tag_one))
             setCancelable(false)
 
-            setNegativeButton("Отмена") { dialog1, whichButton ->
+            setNegativeButton(resources.getString(R.string.action_cancel)) { dialog1, whichButton ->
                 dialog1.dismiss()
             }
 
-            var dialog1 = builder1.create()
+            val dialog1 = builder1.create()
             dialog1.show()
 
 
@@ -404,7 +436,7 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
         CoroutineScope(Dispatchers.Main).launch {
 
             val progressDialog = ProgressDialog(requireContext())
-            progressDialog.setMessage("Пожалуйста, подождите")
+            progressDialog.setMessage(resources.getString(R.string.please_and_wait))
             progressDialog.setCancelable(false)
             progressDialog.setCanceledOnTouchOutside(false)
             progressDialog.show()
@@ -415,15 +447,15 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
             val builder1 = AlertDialog.Builder(requireContext())
 
             with(builder1) {
-                setTitle("Подписание документа")
-                setMessage("Приложите метку NFC 2")
+                setTitle(resources.getString(R.string.signature_document))
+                setMessage(resources.getString(R.string.attach_nfc_tag_two))
                 setCancelable(false)
 
-                setNegativeButton("Отмена") { dialog1, whichButton ->
+                setNegativeButton(resources.getString(R.string.action_cancel)) { dialog1, whichButton ->
                     dialog1.dismiss()
                 }
 
-                var dialog1 = builder1.create()
+                val dialog1 = builder1.create()
                 dialog1.show()
 
                 Util.NFC_TAG_NEXT = true
@@ -528,7 +560,7 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
                 "" +
                 "<body>" +
                 "" +
-                "<p style=\"display: block; text-align: center\">ВЕДОМОСТЬ</p>" +
+                "<p style=\"display: block; text-align: center\">${resources.getString(R.string.bill)}</p>" +
                 "<div>" +
                 "    <p class=\"inl-txt\"></p>" +
                 "    <p class=\"inl-txt\" style=\"text-decoration: underline; float:right;\">" + currentDate.text.toString() + "</p>" +
@@ -536,14 +568,14 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
                 "" +
                 "<div class=\"row\" style=\"display: block; border-bottom: 2px solid black\">" +
                 "    <div class=\"inl-txt\">" +
-                "        <p class=\"inl-txt\">промеров габарита навеса</p>" +
+                "        <p class=\"inl-txt\">${resources.getString(R.string.measurement_of_size_canopy)}</p>" +
                 "        <p class=\"inl-txt underline\">VALUE</p>" +
                 "    </div>" +
                 "</div>" +
                 "" +
                 "<div class=\"row\" style=\"display: block; border-bottom: 2px solid black\">" +
                 "    <div class=\"inl-txt\">" +
-                "        <p class=\"inl-txt\">пассажирской платформы на станции (остановочном пункте) </p>" +
+                "        <p class=\"inl-txt\">${resources.getString(R.string.passenger_platform_on_station)}</p>" +
                 "        <p class=\"inl-txt\">VALUE</p>" +
                 "    </div>" +
                 "</div>" +
@@ -554,20 +586,20 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
                 "    <tr>" +
                 "        <th colspan=\"6\" style=\"text-align: left\">" +
                 "            <div>" +
-                "                <p class=\"inl-txt\">Привязка:</p>" +
+                "                <p class=\"inl-txt\">${resources.getString(R.string.binding)}:</p>" +
                 "                <p class=\"inl-txt underline\">VALUE</p>" +
-                "                <p class=\"inl-txt\">км, </p>" +
+                "                <p class=\"inl-txt\">${resources.getString(R.string.km)}, </p>" +
                 "                <p class=\"inl-txt underline\">VALUE</p>" +
-                "                <p class=\"inl-txt\">пк </p>" +
+                "                <p class=\"inl-txt\">${resources.getString(R.string.pk)} </p>" +
                 "            </div>" +
                 "        </th>" +
                 "        <th colspan=\"6\" style=\"text-align: left\">" +
                 "            <div>" +
-                "                <p class=\"inl-txt\">Привязка:</p>" +
+                "                <p class=\"inl-txt\">${resources.getString(R.string.binding)}:</p>" +
                 "                <p class=\"inl-txt underline\">VALUE</p>" +
-                "                <p class=\"inl-txt\">км, </p>" +
+                "                <p class=\"inl-txt\">${resources.getString(R.string.km)}, </p>" +
                 "                <p class=\"inl-txt underline\">VALUE</p>" +
-                "                <p class=\"inl-txt\">пк </p>" +
+                "                <p class=\"inl-txt\">${resources.getString(R.string.pk)} </p>" +
                 "            </div>" +
                 "        </th>" +
                 "    </tr>" +
@@ -585,20 +617,20 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
                 "    <tr>" +
                 "        <th colspan=\"6\" style=\"text-align: left\">" +
                 "            <div>" +
-                "                <p class=\"inl-txt\">Промеры осуществлялись со стороны</p>" +
+                "                <p class=\"inl-txt\">${resources.getString(R.string.measurement_made_from_side)}</p>" +
                 "                <p class=\"inl-txt underline\">VALUE</p>" +
-                "                <p class=\"inl-txt\"> каждые </p>" +
+                "                <p class=\"inl-txt\"> ${resources.getString(R.string.each)} </p>" +
                 "                <p class=\"inl-txt underline\">VALUE</p>" +
-                "                <p class=\"inl-txt\">м</p>" +
+                "                <p class=\"inl-txt\">${resources.getString(R.string.m)}</p>" +
                 "            </div>" +
                 "        </th>" +
                 "        <th colspan=\"6\" style=\"text-align: left\">" +
                 "            <div>" +
-                "                <p class=\"inl-txt\">Промеры осуществлялись со стороны</p>" +
+                "                <p class=\"inl-txt\">${resources.getString(R.string.measurement_made_from_side)}</p>" +
                 "                <p class=\"inl-txt underline\">VALUE</p>" +
-                "                <p class=\"inl-txt\"> каждые </p>" +
+                "                <p class=\"inl-txt\"> ${resources.getString(R.string.each)} </p>" +
                 "                <p class=\"inl-txt underline\">VALUE</p>" +
-                "                <p class=\"inl-txt\">м</p>" +
+                "                <p class=\"inl-txt\">${resources.getString(R.string.m)}</p>" +
                 "            </div>" +
                 "        </th>" +
                 "    </tr>" +
@@ -606,13 +638,13 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
                 "    <tr>" +
                 "        <th colspan=\"6\" style=\"text-align: center\">" +
                 "            <div>" +
-                "                <p class=\"inl-txt\">№ пути</p>" +
+                "                <p class=\"inl-txt\">${resources.getString(R.string.symbol_number_path)}</p>" +
                 "                <p class=\"inl-txt underline\">VALUE</p>" +
                 "            </div>" +
                 "        </th>" +
                 "        <th colspan=\"6\" style=\"text-align: center\">" +
                 "            <div>" +
-                "                <p class=\"inl-txt\">№ пути</p>" +
+                "                <p class=\"inl-txt\">${resources.getString(R.string.symbol_number_path)}</p>" +
                 "                <p class=\"inl-txt underline\">VALUE</p>" +
                 "            </div>" +
                 "        </th>" +
@@ -641,10 +673,10 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
                 "" +
                 "    <tr>" +
                 "        <th colspan=\"6\" style=\"text-align: center\">" +
-                "            <p class=\"inl-txt\">Норма</p>" +
+                "            <p class=\"inl-txt\">${resources.getString(R.string.norm)}</p>" +
                 "        </th>" +
                 "        <th colspan=\"6\" style=\"text-align: center\">" +
-                "            <p class=\"inl-txt\">Норма</p>" +
+                "            <p class=\"inl-txt\">${resources.getString(R.string.norm)}</p>" +
                 "        </th>" +
                 "    </tr>" +
                 "" +
@@ -665,10 +697,10 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
                 "" +
                 "    <tr>" +
                 "        <th colspan=\"6\" style=\"text-align: center\">" +
-                "            <p class=\"inl-txt\">Допуски</p>" +
+                "            <p class=\"inl-txt\">${resources.getString(R.string.tolerances)}</p>" +
                 "        </th>" +
                 "        <th colspan=\"6\" style=\"text-align: center\">" +
-                "            <p class=\"inl-txt\">Допуски</p>" +
+                "            <p class=\"inl-txt\">${resources.getString(R.string.tolerances)}</p>" +
                 "        </th>" +
                 "    </tr>" +
                 "" +
@@ -689,10 +721,10 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
                 "" +
                 "    <tr>" +
                 "        <th colspan=\"6\" style=\"text-align: center\">" +
-                "            <p class=\"inl-txt\">Павильон, навес, (козырек)</p>" +
+                "            <p class=\"inl-txt\">${resources.getString(R.string.canopy)}</p>" +
                 "        </th>" +
                 "        <th colspan=\"6\" style=\"text-align: center\">" +
-                "            <p class=\"inl-txt\">Павильон, навес, (козырек)</p>" +
+                "            <p class=\"inl-txt\">${resources.getString(R.string.canopy)}</p>" +
                 "        </th>" +
                 "    </tr>" +
                 "" +
@@ -1081,38 +1113,4 @@ class ReportFragment : ViewModelFragment<ReportFragmentBinding>(R.layout.report_
         return dimensions
     }
 }
-
-
-/*
-fun sendMail(path: String) {  //Send this pdf to desired path.
-        val emailIntent = Intent(Intent.ACTION_SEND)
-        emailIntent.putExtra(
-            android.content.Intent.EXTRA_EMAIL,
-            arrayOf("your E-mail addresses")
-        )
-        emailIntent.putExtra(
-            android.content.Intent.EXTRA_SUBJECT,
-            "Your subject"
-        )
-        emailIntent.putExtra(
-            android.content.Intent.EXTRA_TEXT,
-            "This is an autogenerated mail"
-        )
-        val file = File(path)
-        val uri =
-            FileProvider.getUriForFile(requireContext(), "com.package.name.fileproviders", file)
-        emailIntent.type = "application/pdf"
-
-
-        emailIntent.putExtra(Intent.EXTRA_STREAM, uri)
-
-        startActivity(Intent.createChooser(emailIntent, "Отправить по почте"))
-    }
- */
-
-
-
-
-
-
 

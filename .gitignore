@@ -1,0 +1,5 @@
+# Project exclude paths
+/app/build/
+/bosch-mtprotocol
+/app/build-props.gradle
+/app/google-services.json

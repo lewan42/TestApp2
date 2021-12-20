@@ -13,12 +13,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/text"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/dimensions_bridge_crossing"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/layout_header" />-->
 
     <Button
         android:id="@+id/btn_dimensions_down"
@@ -34,7 +28,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_header"
-        tools:ignore="RtlSymmetry" />
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
 
     <Button
         android:id="@+id/btn_supports"
@@ -50,7 +44,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_dimensions_down"
-        tools:ignore="RtlSymmetry" />
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
 
     <Button
         android:id="@+id/btn_save"

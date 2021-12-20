@@ -2,14 +2,15 @@
   <library name="Gradle: androidx.lifecycle:lifecycle-viewmodel:2.2.0@aar">
     <CLASSES>
       <root url="file://$USER_HOME$/gradle/.gradle/caches/transforms-2/files-2.1/4cee1c45f926527b0383ca7d095d186c/lifecycle-viewmodel-2.2.0/res" />
-      <root url="file://$USER_HOME$/gradle/.gradle/caches/transforms-2/files-2.1/71abb962b91688edd82a39d9d38f9918/lifecycle-viewmodel-2.2.0/res" />
-      <root url="file://$USER_HOME$/gradle/.gradle/caches/transforms-2/files-2.1/d834b8865c9613bdf8334deb9d17ca14/lifecycle-viewmodel-2.2.0/res" />
-      <root url="jar://$USER_HOME$/gradle/.gradle/caches/transforms-2/files-2.1/4cee1c45f926527b0383ca7d095d186c/lifecycle-viewmodel-2.2.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/gradle/.gradle/caches/transforms-2/files-2.1/4cee1c45f926527b0383ca7d095d186c/lifecycle-viewmodel-2.2.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/gradle/.gradle/caches/transforms-2/files-2.1/f498b4042c8f92e81ddcb25061ee1655/lifecycle-viewmodel-2.2.0/res" />
+      <root url="file://$USER_HOME$/gradle/.gradle/caches/transforms-2/files-2.1/f33bfdc52cdaa18f6850342cd495a533/lifecycle-viewmodel-2.2.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f33bfdc52cdaa18f6850342cd495a533/lifecycle-viewmodel-2.2.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f33bfdc52cdaa18f6850342cd495a533/lifecycle-viewmodel-2.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f33bfdc52cdaa18f6850342cd495a533/lifecycle-viewmodel-2.2.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/gradle/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-viewmodel/2.2.0/4f90404dd52d3162217bf329db5afb32d373ec63/lifecycle-viewmodel-2.2.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-viewmodel/2.2.0/4f90404dd52d3162217bf329db5afb32d373ec63/lifecycle-viewmodel-2.2.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

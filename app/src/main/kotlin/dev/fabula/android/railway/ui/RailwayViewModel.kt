@@ -9,8 +9,7 @@ import javax.inject.Inject
 
 class RailwayViewModel @Inject constructor(
     repository: RailwayRepository
-) :
-    BaseViewModel() {
+) : BaseViewModel() {
 
     val allRailways: LiveData<List<Railway>> = repository.allRailways.asLiveData()
 }

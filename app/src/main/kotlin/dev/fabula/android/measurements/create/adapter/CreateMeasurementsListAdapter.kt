@@ -2,18 +2,18 @@ package dev.fabula.android.measurements.create.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import dev.fabula.android.R
 import dev.fabula.android.databinding.CreateMeasurementItemListBinding
-import dev.fabula.android.list.items.model.ListItem
-import dev.fabula.android.measurements.model.BoschMeasurements
+import dev.fabula.android.measurements.model.MeasureCalc
 
-typealias onItemClick = ((BoschMeasurements) -> Unit)
+typealias onItemClick = ((MeasureCalc) -> Unit)
 
 class CreateMeasurementsListAdapter :
-    ListAdapter<BoschMeasurements, CreateMeasurementsListAdapter.ViewHolder>(
+    ListAdapter<MeasureCalc, CreateMeasurementsListAdapter.ViewHolder>(
         CreateMeasurementsListDiffUtilCallback()
     ) {
 
@@ -36,7 +36,7 @@ class CreateMeasurementsListAdapter :
     inner class ViewHolder(val binding: CreateMeasurementItemListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: BoschMeasurements, pos: Int) {
+        fun bind(item: MeasureCalc, pos: Int) {
 
             binding.info.setOnClickListener {
                 onItemClick?.invoke(item)
@@ -45,6 +45,14 @@ class CreateMeasurementsListAdapter :
             binding.numberMeasure.text = "${pos + 1}."
             binding.length.text = item.length
             binding.height.text = item.height
+
+            item.whichDirection?.let {
+                binding.direction.text = it
+            }
+            if(item.whichDirection.isNullOrBlank()){
+                binding.direction.visibility = View.GONE
+                binding.textDir.visibility = View.GONE
+            }
 
             if(item.isMeasureOverNormal){
                 binding.info.setImageResource(R.drawable.ic_info_red)

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.provider.MediaStore
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import dev.fabula.android.R
 import timber.log.Timber
 
 class CameraHandler {
@@ -15,8 +16,8 @@ class CameraHandler {
         fun getPhotoFromGallery(activity: AppCompatActivity) {
 
             AlertDialog.Builder(activity)
-                .setTitle("Выберите изображение")
-                .setPositiveButton("Камера") { p0, p1 ->
+                .setTitle(activity.resources.getString(R.string.select_image))
+                .setPositiveButton(activity.resources.getString(R.string.camera)) { p0, p1 ->
                     try {
                         Timber.e("getPhotoFromGallery onCameraClick start")
                         val takePicture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -28,7 +29,7 @@ class CameraHandler {
                         p0?.dismiss()
                     }
                 }
-                .setNegativeButton("Галерея") { p0, p1 ->
+                .setNegativeButton(activity.resources.getString(R.string.gallery)) { p0, p1 ->
                     try {
 
                         val pickPhoto = Intent(

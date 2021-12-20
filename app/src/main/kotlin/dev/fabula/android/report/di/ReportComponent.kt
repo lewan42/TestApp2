@@ -48,7 +48,6 @@ import dev.fabula.android.wire.contact.di.ContactWireDaoModule
         CanopyDaoModule::class,
         ContactWireDaoModule::class,
         CarrierWireDaoModule::class,
-        StationApiModule::class,
         MeasurementTypeDaoModule::class,
         PlatformApiModule::class,
         CreateMeasurementsApiModule::class,

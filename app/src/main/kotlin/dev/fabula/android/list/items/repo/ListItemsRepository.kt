@@ -131,9 +131,7 @@ class ListItemsRepository @Inject constructor(
         }
     }
 
-    /*
-    contentType - к чему привязана опора (к "платформе") название
-     */
+
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun createSupport(uidPlatform: String, contentType: String): String? {
@@ -195,23 +193,4 @@ class ListItemsRepository @Inject constructor(
             return null
         }
     }
-
-//    @Suppress("RedundantSuspendModifier")
-//    @WorkerThread
-//    suspend fun createSupport(uidParent: String): String? {
-//        try {
-//            val uidBridge = UUID.randomUUID().toString()
-//            supportDao.insert(
-//                Support(
-//                    uidBridge,
-//                    uidPlatform,
-//                    "Мостовой переход",
-//                    owner
-//                )
-//            )
-//            return uidBridge
-//        } catch (e: Exception) {
-//            return null
-//        }
-//    }
 }

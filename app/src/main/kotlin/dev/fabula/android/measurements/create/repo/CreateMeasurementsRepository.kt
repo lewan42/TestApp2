@@ -39,6 +39,12 @@ class CreateMeasurementsRepository @Inject constructor(
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
+    suspend fun insertDimensionFences(dimensionsFence: List<DimensionsFence>): List<Long> {
+      return  dimensionsFenceDao.insertAll(dimensionsFence)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
     suspend fun insert(measurement: Measurement): Boolean {
         try {
             createMeasurementsDao.insert(measurement)

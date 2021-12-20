@@ -3,6 +3,8 @@ package dev.fabula.android.measurements.list.repo
 import androidx.annotation.WorkerThread
 import dev.fabula.android.canopy.dao.CanopyDao
 import dev.fabula.android.canopy.model.Canopy
+import dev.fabula.android.dimensions.fence.model.DimensionsFence
+import dev.fabula.android.dimensions.fence.model.DimensionsFenceWithMeasurement
 import dev.fabula.android.measurements.create.dao.CreateMeasurementsDao
 import dev.fabula.android.measurements.model.Measurement
 import dev.fabula.android.measurements.type.dao.MeasurementTypeDao
@@ -31,19 +33,39 @@ class MeasurementsRepository @Inject constructor(
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun getCountLastMeasurementsOfPlatform(uid: String, count:Int): List<Measurement> {
+    suspend fun getCountLastMeasurementsOfPlatform(uid: String, count: Int): List<Measurement> {
         return createMeasurementsDao.getCountLastMeasurementsOfPlatform(uid, count)
     }
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun getCountLastMeasurementsOfBridge(uid: String, count:Int): List<Measurement> {
+    suspend fun getCountLastMeasurementsOfBridge(uid: String, count: Int): List<Measurement> {
         return createMeasurementsDao.getCountLastMeasurementsOfBridge(uid, count)
     }
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun getCountLastMeasurementsOfCanopy(uid: String, count:Int): List<Measurement> {
+    suspend fun getCountLastMeasurementsOfDimensionsFence(
+        dimensionFences: List<DimensionsFence>,
+        count: Int
+    ): List<DimensionsFenceWithMeasurement> {
+
+        val resultList = mutableListOf<DimensionsFenceWithMeasurement>()
+
+        dimensionFences.forEach { df ->
+            val measurements =
+                createMeasurementsDao.getCountLastMeasurementsOfDimensionsFence(df.uid, count)
+            measurements.forEach {measure ->
+                resultList.add(DimensionsFenceWithMeasurement(df, measure))
+            }
+        }
+
+        return resultList
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun getCountLastMeasurementsOfCanopy(uid: String, count: Int): List<Measurement> {
         return createMeasurementsDao.getCountLastMeasurementsOfCanopy(uid, count)
     }
 

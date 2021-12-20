@@ -291,6 +291,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="labFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="list_itemFragment">
                     <value>
                       <LayoutPositions>
@@ -445,6 +457,11 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_platform_to_report">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                           </map>
                         </option>
                       </LayoutPositions>
@@ -471,12 +488,7 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="action_profile_to_calibration">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                            <entry key="action_profile_to_report">
+                            <entry key="action_profile_to_lab">
                               <value>
                                 <LayoutPositions />
                               </value>

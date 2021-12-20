@@ -1,30 +1,17 @@
 <resources>
     <string name="app_name">Альфа-Групп</string>
-
-    <!--    Экран профиля -->
     <string name="profile">Профиль</string>
     <string name="connected_device">Подключенное устройство:</string>
     <string name="devices">Устройства</string>
     <string name="disconnect">Отключить</string>
     <string name="exit">Выйти</string>
-
-
-    <!--    Экран Устройств -->
     <string name="devices_list">Список устройств</string>
     <string name="to_scan">Сканировать</string>
-
-
-    <!--    /////////////////////////////////////////////-->
-
     <string name="loading">Загрузка…</string>
-
     <string name="message_no_data">Нет данных</string>
-
-    <string name="message_confirm_action">Подтвердите действие</string>
     <string name="fill_station_name">Введите имя станции</string>
     <string name="message_error_connection">Отсутствует соединение, проверьте подключение..</string>
     <string name="message_error_unknown">Неизвестная ошибка, попробуйте позже..</string>
-
     <string name="message_error_http_404">Не найдено ¯\_(ツ)_/¯</string>
     <string name="message_error_http_401">Ошибка авторизации, попробуйте авторизоваться заново</string>
     <string name="message_error_http_300x">Ошибка прокси, проверьте подключение..</string>
@@ -33,27 +20,21 @@
     <string name="message_error_http_504x">Для отображения данных подключите интернет..</string>
     <string name="message_error_http_unknown">Неизвестная ошибка, проверьте подключение..</string>
     <string name="message_error_http">Ошибка авторизации</string>
-
     <string name="message_error_api_404">Нет данных ¯\_(ツ)_/¯</string>
-
     <string name="message_send_data">Отправка данных..</string>
     <string name="message_data_send_complete">Данные отправлены успешно!</string>
     <string name="message_send_data_failed">Отправка прервана!</string>
     <string name="message_load_data_failed">Загрузка прервана!</string>
     <string name="message_develop_state">В разработке..</string>
     <string name="message_operation_not_supported">Операция не поддерживается</string>
-
     <string name="action_try_now">Повторить</string>
     <string name="action_close">Закрыть</string>
     <string name="action_cancel">Отмена</string>
     <string name="action_ok">OK</string>
-
     <string name="settings">Настройки</string>
-
     <string name="splash_text_0">Ощути себя\nчастью мира\nкрасоты и гармонии!</string>
     <string name="splash_text_1">Всегда под рукой\nперсональные скидки,\nакции и новости</string>
     <string name="splash_text_2">Нажмите для получения\nдисконтной карты</string>
-
     <string name="auth_phone_input_mask" translatable="false">+# (###) ###-##-##</string>
     <string name="auth_phone_input_hint" translatable="false">+X (XXX) XXX-XX-XX</string>
     <string name="auth_phone_input_number">Введите номер телефона</string>
@@ -67,14 +48,11 @@
     <string name="auth_code_btn_retry">Отправить повторно</string>
     <string name="auth_code_btn_next">Далее</string>
     <string name="auth_code_retry_timer_wait">Недоступно! Дождитесь окончания таймера..</string>
-
     <string name="default_notification_channel_id">push-channel-default</string>
     <string name="default_notification_channel_name">Новости</string>
     <string name="message_notifications_disabled">Уведомления отключены, мы отправим Вам СМС</string>
-
     <string name="home_nav_bar_btn_home">Домой</string>
     <string name="home_nav_bar_btn_sale">Акции</string>
-
     <string name="app_shortcut_card_short">Акции</string>
     <string name="app_shortcut_card_long">Акции и Скидки</string>
     <string name="app_shortcut_card_disabled">Акциии и Скидки недоступны</string>
@@ -98,14 +76,14 @@
     <string name="dimensions_canopy">Измерение габаритов навеса:</string>
     <string name="send">Отправить</string>
     <string name="your_comment">Ваш коментарий</string>
-    <string name="seacrh">Поиск</string>
+    <string name="search">Поиск</string>
     <string name="number_path">Номер пути:</string>
     <string name="km_path">Километр пути:</string>
     <string name="piket">Пикет:</string>
     <string name="value">Величина</string>
     <string name="length">Длина</string>
     <string name="angle_of_slope">Угол наклона</string>
-    <string name="height">Высота</string>
+    <string name="height">Высота:</string>
     <string name="platform">Платформа</string>
     <string name="canopy">Навес</string>
     <string name="bridge_cross">Мостовой переход</string>
@@ -122,19 +100,15 @@
     <string name="zigzag_contact_wire_6000">Зигзаг контактного провода</string>
     <string name="height_carrier_wire_6000">Высота несущего провода</string>
     <string name="zigzag_carrier_wire_6000">Зигзаг несущего провода</string>
-
     <string name="fill_in_all_fields">Заполните все поля</string>
     <string name="need_create_measurement">Вы не сделали ни одного измерения</string>
     <string name="data_added_success">Данные сохранены</string>
     <string name="data_added_error">Ошибка сохранения данных</string>
-
     <string name="data_sync_success">Данные синхронизированы</string>
     <string name="data_sync_error">Ошибка синхронизирования данных</string>
-
     <string name="create_measurement_for_north">Для сохранения необходимо создать измерение для северного торца</string>
     <string name="create_measurement_for_center">Для сохранения необходимо создать измерение для центрального торца</string>
     <string name="create_measurement_for_south">Для сохранения необходимо создать измерение для южного торца</string>
-
     <string name="create_measurements">Для сохранения необходимо создать измерение для всех торцов</string>
     <string name="create_support_success">Опора сохранена</string>
     <string name="create_bridge_success">Мостовой переход сохранен</string>
@@ -144,14 +118,8 @@
     <string name="check_connect_to_bosch">Не удалось подключиться к устройству Bosch 120c. Проверьте подключение.</string>
     <string name="button_click_support">Нажмите кнопку сохранить для создания опоры</string>
     <string name="button_click_bridge">Нажмите кнопку сохранить для создания мостового перехода</string>
-
     <string name="data_otg_bosch_is_empty">Нет данных на устройстве Bosch</string>
     <string name="data_ble_bosch_is_empty">Нет ни одного созданного измерения</string>
-
-    <string name="fill_input_angle">Введите уголь альфа</string>
-    <string name="fill_correct_input_angle">Введите корректный</string>
-
-
     <string name="connected_to">Connected to </string>
     <string name="no_device_connected">No device connected</string>
     <string name="meter"> m</string>
@@ -167,5 +135,117 @@
     <string name="user">Пользователь</string>
     <string name="version">Версия</string>
     <string name="device_is_connect">Устройство подключено</string>
-
+    <string name="axis_of_the_path">Ось пути, мм</string>
+    <string name="make_measurement">Сделать измерения</string>
+    <string name="raising_the_rails">Возвышение рельсов, мм</string>
+    <string name="rail_slope">Наклон рельсов, мм</string>
+    <string name="width">Длина:</string>
+    <string name="calibration">Калибровка</string>
+    <string name="norms">Нормы</string>
+    <string name="comment">Комментарий</string>
+    <string name="width_norm_mm">Норма ширины, мм</string>
+    <string name="height_norm_mm">Норма высоты, мм</string>
+    <string name="count_last_measurement">Количество последних измерений:</string>
+    <string name="sync_with_server">Синхронизация с сервером</string>
+    <string name="bluetooth_settings">Настройки блютуз</string>
+    <string name="photo_sync">Фото синхронизация</string>
+    <string name="date_not_selected">Дата не выбрана</string>
+    <string name="select_date">Выбрать дату</string>
+    <string name="km">км</string>
+    <string name="pk">пк</string>
+    <string name="type_site">Тип участка</string>
+    <string name="step_measurement">Промеры через</string>
+    <string name="m">м</string>
+    <string name="plan_path">План пути</string>
+    <string name="r">R</string>
+    <string name="h">h</string>
+    <string name="from_side">Со стороны</string>
+    <string name="end_distance">Расстояние от торца</string>
+    <string name="symbol_number_path">№ пути</string>
+    <string name="measurements_of_each_block_for">Промеры в створе каждого блока на</string>
+    <string name="type_measurement_device">Тип измерительного прибора, инв.No, сертификат</string>
+    <string name="other_violations">Прочие нарушения</string>
+    <string name="position">Должность</string>
+    <string name="full_name_sumbols">ФИО</string>
+    <string name="create_report">Сформировать отчет</string>
+    <string name="sync">Синхронизация</string>
+    <string name="canopy_dimensions">Габариты навеса:</string>
+    <string name="report_measurement_of_platform">Отчет измерений платформы</string>
+    <string name="report_measurement_of_canopy">Отчет измерений навеса</string>
+    <string name="calibration_success">Устройство откалибровано</string>
+    <string name="make_calibration">Произвести калибровку</string>
+    <string name="value_measurement_less_norms">Значения измерения меньше нормы</string>
+    <string name="re_measure">Перемерить</string>
+    <string name="take_measurement">Произвести измерение</string>
+    <string name="measurement_details">Подробные измерения</string>
+    <string name="creating_report">Формирование отчета</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="sign_document">Подписать документ?</string>
+    <string name="signature_document">Подписание документа</string>
+    <string name="not_measurement_in_selection_date">Нет измерений в эту дату</string>
+    <string name="report">Отчет</string>
+    <string name="report_platform">Отчет платформы</string>
+    <string name="report_canopy">Отчет навеса</string>
+    <string name="attach_nfc_tag_one">Приложите метку NFC 1</string>
+    <string name="attach_nfc_tag_two">Приложите метку NFC 2</string>
+    <string name="please_and_wait">Пожалуйста, подождите</string>
+    <string name="document_have_not_electronic_signature">Документ не имеет электронной подписи</string>
+    <string name="document_have_electronic_signature">Документ подписан электронной подписью</string>
+    <string name="certificate">Сертификат</string>
+    <string name="bill">ВЕДОМОСТЬ</string>
+    <string name="measurement_of_size_canopy">промеров габарита навеса</string>
+    <string name="passenger_platform_on_station">пассажирской платформы на станции (остановочном пункте)</string>
+    <string name="binding">Связыкание</string>
+    <string name="measurement_made_from_side">Промеры осуществлялись со стороны</string>
+    <string name="each">каждые</string>
+    <string name="norm">Норма</string>
+    <string name="tolerances">Допуски</string>
+    <string name="question_before_exit">У вас есть не синхронизированные данные. В случае выхода из программы все не синхронизированные данные удалятся. Вы точно хотите выйти?</string>
+    <string name="select_image">Выберите изображение</string>
+    <string name="camera">Камера</string>
+    <string name="gallery">Галерея</string>
+    <string name="platform_measurement">Измерения платформы</string>
+    <string name="bridge_cross_measurement">Измерения мостового перехода</string>
+    <string name="canopy_measurement">Измерения навеса</string>
+    <string name="platforms">Платформы</string>
+    <string name="bridges_crossing">Мостовые переходы</string>
+    <string name="dimensions_of_end_fences">Габариты торцевых ограждений</string>
+    <string name="found">Найдено</string>
+    <string name="measurements_">измерений</string>
+    <string name="enter_the_number_of_last_measurements">Введите количество последних измерений</string>
+    <string name="calibration_values">Значения каклибровки</string>
+    <string name="select_direction">Выберите направление</string>
+    <string name="create_direction">Создание направлений</string>
+    <string name="direction">Направление</string>
+    <string name="track_axis">ось пути (мм)</string>
+    <string name="rail_elevation">возвышение рельса (мм)</string>
+    <string name="axis_offset">отступ по оси (мм)</string>
+    <string name="length_correction">поправка по длине (мм)</string>
+    <string name="height_correction">поправка по высоте (мм)</string>
+    <string name="indirect_length">косвенная длина (мм)</string>
+    <string name="indirect_height">косвенная высота (мм)</string>
+    <string name="length_from_track_axis">длина от оси пути (мм)</string>
+    <string name="height_from_the_head_of_the_inner_rail">высота от головки вн. рельса (мм)</string>
+    <string name="rail_inclination">угол наклона рельсов (мм)</string>
+    <string name="angle_from_horizon_to_point">угол от горизонта до точки (мм)</string>
+    <string name="for_overhead_cables_and_horizontal_objects">для контактного кабеля и горизонтальных объектов (мм)</string>
+    <string name="high">Высокая</string>
+    <string name="low">Низкая</string>
+    <string name="coastal">Береговая</string>
+    <string name="insular">Островная</string>
+    <string name="track_width">Ширина колеи</string>
+    <string name="track_height">Высота колеи</string>
+    <string name="lab">Лаборатория</string>
+    <string name="question_delete_item">Вы хотите удалить данное измерение?</string>
+    <string name="more_exist_measure">Можно сделать только 5 измерений</string>
+    <string name="you_make_not_all_measure">Вы сделали не все измерения!</string>
+    <string name="do_measure">Пожалуйста, выполните все измерения</string>
+    <string name="width_">Ширина</string>
+    <string name="height_">Высота</string>
+    <string name="lab_col_1">Действительное значение параметра на выходе измерительного канала, мм</string>
+    <string name="measurement_series">Серия измерений</string>
+    <string name="mean_mm">Среднее значение, мм</string>
+    <string name="infelicity_mm">Погрешность, мм</string>
+    <string name="allowable_infelicity_">Допустимая погрешность, %</string>
 </resources>

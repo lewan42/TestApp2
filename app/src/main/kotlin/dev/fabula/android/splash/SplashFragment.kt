@@ -38,11 +38,9 @@ class SplashFragment :
             val direction = if (isAuthorised()) {
 
                 if (isOnline) {
-                    Log.e("Is online", "da")
                     R.id.action_splash_to_sync_fragment
 
                 } else {
-                    Log.e("Is online", "noy")
                     R.id.action_splash_to_railway
                 }
 

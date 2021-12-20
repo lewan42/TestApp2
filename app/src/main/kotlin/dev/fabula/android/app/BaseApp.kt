@@ -13,7 +13,7 @@ class BaseApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-       // FirebaseAnalytics.getInstance(applicationContext)
+
 
         LoggingAndCrashes.init(BuildConfig.DEBUG)
     }

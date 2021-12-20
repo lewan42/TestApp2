@@ -108,7 +108,7 @@ class BluetoothFragment : ViewModelFragment<BluetoothFragmentBinding>(R.layout.b
                 onItemClickButtonBack = {
                     findNavController().navigateUp()
                 }
-            }.bind("Настройки Bluetooth")
+            }.bind(R.string.bluetooth_settings)
 
 
             viewModel.device.observe(viewLifecycleOwner) {
@@ -155,7 +155,6 @@ class BluetoothFragment : ViewModelFragment<BluetoothFragmentBinding>(R.layout.b
                 deviceController = GLMDeviceController(btService)
                 deviceController!!.init(btService!!.connection, btService!!.currentDevice)
                 deviceController!!.turnLaserOn()
-                Log.e("AAA", "LASER ON")
 
                 val intent = Intent(Util.ACTION_SYNC_CONNECTION_RECEIVED)
                 intent.putExtra(Util.ACTION_SYNC_CONNECTION_RECEIVED_STATE, true)
@@ -234,11 +233,8 @@ class BluetoothFragment : ViewModelFragment<BluetoothFragmentBinding>(R.layout.b
 
         // check if Bluetooth on and start it, if necessary
         if (btService != null && btService!!.enableBluetooth(requireActivity())) {
-            // start Bluetooth scan
-            Timber.e(" onResume zxc")
             startDiscovery()
         } else {
-            Timber.e("NIXUA")
             binding?.progressBle?.visibility = View.GONE
         }
     }
@@ -267,11 +263,7 @@ class BluetoothFragment : ViewModelFragment<BluetoothFragmentBinding>(R.layout.b
             REQUEST_CODE_ASK_PERMISSIONS_LOCATION -> if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permission Granted
                 if (btService != null && btService!!.enableBluetooth(requireActivity())) {
-                    // start Bluetooth scan
-                    Log.e(
-                        "ccccccc",
-                        "Device activity on permission result: start discovery"
-                    )
+
                     startDiscovery()
                 }
             } else {
