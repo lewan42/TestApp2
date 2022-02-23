@@ -4,13 +4,9 @@ import androidx.annotation.WorkerThread
 import dev.fabula.android.canopy.dao.CanopyDao
 import dev.fabula.android.dimensions.fence.dao.DimensionsFenceDao
 import dev.fabula.android.dimensions.fence.model.DimensionsFence
-import dev.fabula.android.measurements.create.api.CreateMeasurementsApi
 import dev.fabula.android.measurements.create.dao.CreateMeasurementsDao
 import dev.fabula.android.measurements.model.Measurement
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import timber.log.Timber
-import java.util.*
 import javax.inject.Inject
 
 class CreateMeasurementsRepository @Inject constructor(

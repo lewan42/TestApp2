@@ -637,35 +637,35 @@ class SyncRepository @Inject constructor(
                     )
                 }
 
-            val geolocationWrite = GeoLocationWrite(
-                point = PointWrite(
-                    measurement.lat?.toDouble() ?: 0.0,
-                    measurement.lng?.toDouble() ?: 0.0
-                ),
-                polygon = null,
-                geo_addition = GeoAdditionWrite(
-                    measurement.picket,
-                    measurement.km_way.toDouble(),
-                    measurement.way_number
-                )
-            )
+//            val geolocationWrite = GeoLocationWrite(
+//                point = PointWrite(
+//                    measurement.lat?.toDouble() ?: 0.0,
+//                    measurement.lng?.toDouble() ?: 0.0
+//                ),
+//                polygon = null,
+//                geo_addition = GeoAdditionWrite(
+//                    measurement.picket,
+//                    measurement.km_way.toDouble(),
+//                    measurement.way_number
+//                )
+//            )
 
-            val measurementWrite = MeasurementWrite(
-                null,
-                measurement.parent_platform_uid,
-                measurement.parent_gabarit_naves_uid,
-                measurement.parent_gabarit_tor_uid,
-                measurement.parent_main_wire_uid,
-                measurement.parent_contact_wire_uid,
-                measurement.parent_most_perehod_uid,
-                auth.getUserID()!!,
-                measurement.type_measurement_uid!!,
-                noteForMeasurementWriteSerializerForMeasurement,
-                null,
-                measurement.gipotinuza.toDouble(),
-                convertLongToTime(measurement.created_at),
-                geolocationWrite
-            )
+//            val measurementWrite = MeasurementWrite(
+//                null,
+//                measurement.parent_platform_uid,
+//                measurement.parent_gabarit_naves_uid,
+//                measurement.parent_gabarit_tor_uid,
+//                measurement.parent_main_wire_uid,
+//                measurement.parent_contact_wire_uid,
+//                measurement.parent_most_perehod_uid,
+//                auth.getUserID()!!,
+//                measurement.type_measurement_uid!!,
+//                noteForMeasurementWriteSerializerForMeasurement,
+//                null,
+//                measurement.gipotinuza.toDouble(),
+//                convertLongToTime(measurement.created_at),
+//                geolocationWrite
+//            )
 
 //            val response = createMeasurementsApi.create(
 //                MeasurementRequest(

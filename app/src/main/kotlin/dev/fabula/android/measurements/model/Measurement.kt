@@ -16,9 +16,9 @@ data class Measurement(
     val lat: String?,
     @SerializedName("long")
     val lng: String?,
-    val km_way: Int,
-    val way_number: Int,
-    val picket: Int,
+    val km_way: Double,
+    val way_number: String,
+    val picket: String?,
     val radius: Int = 0,
     val vozvishenie: Int = 0,
     val comment: String?,

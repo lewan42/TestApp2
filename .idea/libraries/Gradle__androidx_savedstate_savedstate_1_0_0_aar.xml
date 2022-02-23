@@ -5,12 +5,12 @@
       <root url="file://$USER_HOME$/gradle/.gradle/caches/transforms-2/files-2.1/ae1df1028ad1e1364375251b3df9d37d/savedstate-1.0.0/res" />
       <root url="file://$USER_HOME$/gradle/.gradle/caches/transforms-2/files-2.1/3b4b7384e026f985ddf84429a33c17c8/savedstate-1.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3b4b7384e026f985ddf84429a33c17c8/savedstate-1.0.0/res" />
-      <root url="jar://$USER_HOME$/gradle/.gradle/caches/transforms-2/files-2.1/3b4b7384e026f985ddf84429a33c17c8/savedstate-1.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/gradle/.gradle/caches/transforms-2/files-2.1/3b4b7384e026f985ddf84429a33c17c8/savedstate-1.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3b4b7384e026f985ddf84429a33c17c8/savedstate-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3b4b7384e026f985ddf84429a33c17c8/savedstate-1.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/gradle/.gradle/caches/modules-2/files-2.1/androidx.savedstate/savedstate/1.0.0/e6daf87ed227a6f80bb8accb466755a5ee01a652/savedstate-1.0.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.savedstate/savedstate/1.0.0/e6daf87ed227a6f80bb8accb466755a5ee01a652/savedstate-1.0.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

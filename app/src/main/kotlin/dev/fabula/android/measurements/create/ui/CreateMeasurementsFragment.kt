@@ -11,7 +11,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -43,12 +42,9 @@ import dev.fabula.android.measurements.create.di.CreateMeasurementsComponent
 import dev.fabula.android.measurements.model.MeasureCalc
 import dev.fabula.android.measurements.model.Measurement
 import dev.fabula.android.measurements.receiver.MeasurementReceiver
-import kotlinx.android.synthetic.main._canopy_fragment.view.*
-import kotlinx.android.synthetic.main.create_measurements_fragment.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import timber.log.Timber
-import java.lang.Math.cos
 import java.util.*
 import kotlin.math.*
 
@@ -527,10 +523,10 @@ class CreateMeasurementsFragment :
             }
 
             btnComment.setOnClickListener {
-                card_image_comment.visibility =
-                    if (card_image_comment.visibility == View.GONE) View.VISIBLE else View.GONE
-                comment_container.visibility =
-                    if (comment_container.visibility == View.GONE) View.VISIBLE else View.GONE
+                binding?.cardImageComment?.visibility =
+                    if (cardImageComment.visibility == View.GONE) View.VISIBLE else View.GONE
+                binding?.commentContainer?.visibility =
+                    if (commentContainer.visibility == View.GONE) View.VISIBLE else View.GONE
             }
 
             imageComment.setOnClickListener {
