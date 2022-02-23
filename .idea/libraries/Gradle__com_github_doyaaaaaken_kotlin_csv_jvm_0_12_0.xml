@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.doyaaaaaken:kotlin-csv-jvm:0.12.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.doyaaaaaken/kotlin-csv-jvm/0.12.0/f7643d222c1a83501f2d4ec8bec7d899f4dca6d2/kotlin-csv-jvm-0.12.0.jar!/" />
+      <root url="jar://$USER_HOME$/gradle/.gradle/caches/modules-2/files-2.1/com.github.doyaaaaaken/kotlin-csv-jvm/0.12.0/f7643d222c1a83501f2d4ec8bec7d899f4dca6d2/kotlin-csv-jvm-0.12.0.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.doyaaaaaken/kotlin-csv-jvm/0.12.0/768324d5f066db7fe801e6c114441c8a17a4f6af/kotlin-csv-jvm-0.12.0-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/gradle/.gradle/caches/modules-2/files-2.1/com.github.doyaaaaaken/kotlin-csv-jvm/0.12.0/768324d5f066db7fe801e6c114441c8a17a4f6af/kotlin-csv-jvm-0.12.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.doyaaaaaken/kotlin-csv-jvm/0.12.0/ac2c7ae6fe1b1580c566ecb2877b39eb36a06a4d/kotlin-csv-jvm-0.12.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/gradle/.gradle/caches/modules-2/files-2.1/com.github.doyaaaaaken/kotlin-csv-jvm/0.12.0/ac2c7ae6fe1b1580c566ecb2877b39eb36a06a4d/kotlin-csv-jvm-0.12.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

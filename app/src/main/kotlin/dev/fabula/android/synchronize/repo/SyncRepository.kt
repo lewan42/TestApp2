@@ -16,8 +16,7 @@ import dev.fabula.android.dimensions.fence.model.DimensionsFence
 import dev.fabula.android.dimensions.fence.model.DimensionsFenceRequest
 import dev.fabula.android.measurements.create.api.CreateMeasurementsApi
 import dev.fabula.android.measurements.create.dao.CreateMeasurementsDao
-import dev.fabula.android.measurements.model.Measurement
-import dev.fabula.android.measurements.model.MeasurementRequest
+import dev.fabula.android.measurements.model.*
 import dev.fabula.android.measurements.type.dao.MeasurementTypeDao
 import dev.fabula.android.measurements.type.model.MeasurementType
 import dev.fabula.android.platform.api.PlatformApi
@@ -48,6 +47,8 @@ import dev.fabula.android.wire.contact.model.ContactWireRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 class SyncRepository @Inject constructor(
@@ -177,8 +178,8 @@ class SyncRepository @Inject constructor(
         val listMeasurementsCreated: List<Measurement> =
             createMeasurementsDao.getMeasurementsCreated()
 
-        val listMeasurementsEdited: List<Measurement> =
-            createMeasurementsDao.getMeasurementsEdited()
+//        val listMeasurementsEdited: List<Measurement> =
+//            createMeasurementsDao.getMeasurementsEdited()
 
         val listCanopiesEdited: List<Canopy> = canopyDao.getCanopiesEdited()
         val listCanopiesCreated: List<Canopy> = canopyDao.getCanopiesCreated()
@@ -217,9 +218,10 @@ class SyncRepository @Inject constructor(
                 Log.e("AA", "66")
                 syncContactWire(listContactWireCreated)
 
-                syncMeasurement(listMeasurementsCreated, listMeasurementsEdited)
+                syncMeasurement(listMeasurementsCreated)
+
                 Log.e("upload_create_measure", listMeasurementsCreated.toString())
-                Log.e("upload_edit_measure", listMeasurementsEdited.toString())
+//                Log.e("upload_edit_measure", listMeasurementsEdited.toString())
 
                 Log.e("AA", "88")
                 syncStation(listStations)
@@ -573,7 +575,7 @@ class SyncRepository @Inject constructor(
                 )
             )
             if (!response.isSuccessful) {
-                Timber.e(response.errorBody().toString())
+
                 throw Exception("${response.code()}:${response.message()}")
             }
 
@@ -601,83 +603,139 @@ class SyncRepository @Inject constructor(
         }
     }
 
+    private fun convertLongToTime(time: Long): String {
+        val date = Date(time)
+        val format = SimpleDateFormat("yyyy.MM.dd HH:mm")
+        return format.format(date)
+    }
+
     private suspend fun syncMeasurement(
-        listMeasurementCreate: List<Measurement>,
-        listMeasurementUpdate: List<Measurement>
+        listMeasurementCreate: List<Measurement>
     ) {
 
-        Log.e("CreateStart", "ssssssss")
         listMeasurementCreate.forEach { measurement ->
-            // Log.e("syncMeasuremen REQUEST:", "$measurement")
-            val response = createMeasurementsApi.create(
-                MeasurementRequest(
-                    measurement.uid,
-                    measurement.gipotinuza,
-                    measurement.ugol_naklona,
-                    measurement.vertical_gabarit,
-                    measurement.horizontal_gabarit,
-                    measurement.km_way,
-                    measurement.way_number,
+
+            val noteForMeasurementWriteSerializerForMeasurement =
+                measurement.comment?.let { comment ->
+
+                    val attachmentWrite = AttachmentForNoteWriteSerializerForNote(
+                        AttachmentWrite(
+                            type = null,
+                            upload_file = ""
+                        )
+                    )
+
+                    listOf(
+                        NoteForMeasurementWriteSerializerForMeasurement(
+                            note = NoteWrite(
+                                subject = null,
+                                content = comment,
+                                attachment = listOf(attachmentWrite),
+                                type = null
+                            )
+                        )
+                    )
+                }
+
+            val geolocationWrite = GeoLocationWrite(
+                point = PointWrite(
+                    measurement.lat?.toDouble() ?: 0.0,
+                    measurement.lng?.toDouble() ?: 0.0
+                ),
+                polygon = null,
+                geo_addition = GeoAdditionWrite(
                     measurement.picket,
-                    measurement.radius,
-                    measurement.vozvishenie,
-                    measurement.comment,
-                    measurement.photo1,
-                    measurement.photo2,
-                    measurement.parent_platform_uid,
-                    measurement.parent_gabarit_naves_uid,
-                    measurement.parent_gabarit_tor_uid,
-                    measurement.parent_main_wire_uid,
-                    measurement.parent_contact_wire_uid,
-                    measurement.parent_most_perehod_uid,
-                    measurement.type_measurement_uid,
-                    measurement.created_at
+                    measurement.km_way.toDouble(),
+                    measurement.way_number
                 )
             )
-            if (!response.isSuccessful) {
-                Timber.e(response.errorBody().toString())
-                Log.e(response.errorBody().toString(), "ssssssss")
-                throw Exception("${response.code()}:${response.message()}")
-            }
+
+            val measurementWrite = MeasurementWrite(
+                null,
+                measurement.parent_platform_uid,
+                measurement.parent_gabarit_naves_uid,
+                measurement.parent_gabarit_tor_uid,
+                measurement.parent_main_wire_uid,
+                measurement.parent_contact_wire_uid,
+                measurement.parent_most_perehod_uid,
+                auth.getUserID()!!,
+                measurement.type_measurement_uid!!,
+                noteForMeasurementWriteSerializerForMeasurement,
+                null,
+                measurement.gipotinuza.toDouble(),
+                convertLongToTime(measurement.created_at),
+                geolocationWrite
+            )
+
+//            val response = createMeasurementsApi.create(
+//                MeasurementRequest(
+//                    measurement.uid,
+//                    measurement.gipotinuza,
+//                    measurement.ugol_naklona,
+//                    measurement.vertical_gabarit,
+//                    measurement.horizontal_gabarit,
+//                    measurement.km_way,
+//                    measurement.way_number,
+//                    measurement.picket,
+//                    measurement.radius,
+//                    measurement.vozvishenie,
+//                    measurement.comment,
+//                    measurement.photo1,
+//                    measurement.photo2,
+//                    measurement.parent_platform_uid,
+//                    measurement.parent_gabarit_naves_uid,
+//                    measurement.parent_gabarit_tor_uid,
+//                    measurement.parent_main_wire_uid,
+//                    measurement.parent_contact_wire_uid,
+//                    measurement.parent_most_perehod_uid,
+//                    measurement.type_measurement_uid,
+//                    measurement.created_at
+//                )
+//            )
+//            if (!response.isSuccessful) {
+//                Timber.e(response.errorBody().toString())
+//                Log.e(response.errorBody().toString(), "ssssssss")
+//                throw Exception("${response.code()}:${response.message()}")
+//            }
 
             createMeasurementsDao.updateFlagCreated(measurement.uid, false)
         }
 
         Log.e("CreateSuccess", "ssssssss")
 
-        listMeasurementUpdate.forEach { measurement ->
-            Log.e("syncMeasure REQUEST:", "$measurement")
-            val response = createMeasurementsApi.update(
-                measurement.uid,
-                MeasurementRequest(
-                    measurement.uid,
-                    measurement.gipotinuza,
-                    measurement.ugol_naklona,
-                    measurement.vertical_gabarit,
-                    measurement.horizontal_gabarit,
-                    measurement.km_way,
-                    measurement.way_number,
-                    measurement.picket,
-                    measurement.radius,
-                    measurement.vozvishenie,
-                    measurement.comment,
-                    measurement.photo1,
-                    measurement.photo2,
-                    measurement.parent_platform_uid,
-                    measurement.parent_gabarit_naves_uid,
-                    measurement.parent_gabarit_tor_uid,
-                    measurement.parent_main_wire_uid,
-                    measurement.parent_contact_wire_uid,
-                    measurement.parent_most_perehod_uid,
-                    measurement.type_measurement_uid,
-                    measurement.created_at
-                )
-            )
-            if (!response.isSuccessful) {
-                Timber.e(response.errorBody().toString())
-                throw Exception("${response.code()}:${response.message()}")
-            }
-            createMeasurementsDao.updateFlagEdited(measurement.uid, false)
-        }
+//        listMeasurementUpdate.forEach { measurement ->
+//            Log.e("syncMeasure REQUEST:", "$measurement")
+//            val response = createMeasurementsApi.update(
+//                measurement.uid,
+//                MeasurementRequest(
+//                    measurement.uid,
+//                    measurement.gipotinuza,
+//                    measurement.ugol_naklona,
+//                    measurement.vertical_gabarit,
+//                    measurement.horizontal_gabarit,
+//                    measurement.km_way,
+//                    measurement.way_number,
+//                    measurement.picket,
+//                    measurement.radius,
+//                    measurement.vozvishenie,
+//                    measurement.comment,
+//                    measurement.photo1,
+//                    measurement.photo2,
+//                    measurement.parent_platform_uid,
+//                    measurement.parent_gabarit_naves_uid,
+//                    measurement.parent_gabarit_tor_uid,
+//                    measurement.parent_main_wire_uid,
+//                    measurement.parent_contact_wire_uid,
+//                    measurement.parent_most_perehod_uid,
+//                    measurement.type_measurement_uid,
+//                    measurement.created_at
+//                )
+//            )
+//            if (!response.isSuccessful) {
+//                Timber.e(response.errorBody().toString())
+//                throw Exception("${response.code()}:${response.message()}")
+//            }
+//            createMeasurementsDao.updateFlagEdited(measurement.uid, false)
+//        }
     }
 }

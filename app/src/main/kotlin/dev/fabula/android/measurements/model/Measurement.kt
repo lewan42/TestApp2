@@ -16,9 +16,9 @@ data class Measurement(
     val lat: String?,
     @SerializedName("long")
     val lng: String?,
-    val km_way: Double?,
-    val way_number: String?,
-    val picket: String?,
+    val km_way: Int,
+    val way_number: Int,
+    val picket: Int,
     val radius: Int = 0,
     val vozvishenie: Int = 0,
     val comment: String?,
@@ -61,6 +61,70 @@ data class MeasurementRequest(
     val created_at: Long
 )
 
+data class MeasurementWrite(
+    val opora: String?,
+    val platform: String?,
+    val naves: String?,
+    val torcevoe_ograzdenie: String?,
+    val main_wire: String?,
+    val contact_wire: String?,
+    val bridge: String?,
+    val user: String,
+    val type: String,
+    val note: List<NoteForMeasurementWriteSerializerForMeasurement>?,
+    val attachment: List<AttachmentForMeasurementWriteSerializerForMeasurement>?,
+    val value: Double,
+    val date: String,
+    val geolocation: GeoLocationWrite
+)
+
+data class GeoLocationWrite(
+    val point: PointWrite,
+    val polygon: PolygonWrite?,
+    val geo_addition: GeoAdditionWrite
+)
+
+data class PointWrite(
+    val lat: Double,
+    val long: Double
+)
+
+data class PolygonWrite(
+    val polygon: String = ""
+)
+
+data class GeoAdditionWrite(
+    val picket: Int,
+    val km: Double,
+    val path: Int
+)
+
+data class AttachmentForMeasurementWriteSerializerForMeasurement(
+    val attachment: AttachmentWrite
+)
+
+data class NoteForMeasurementWriteSerializerForMeasurement(
+    val note: NoteWrite
+)
+
+data class NoteWrite(
+    val title: String = "Заголовок",
+    val subject: String?,
+    val content: String?,
+    val attachment: List<AttachmentForNoteWriteSerializerForNote>,
+    val type: String?
+)
+
+data class AttachmentForNoteWriteSerializerForNote(
+    val attachment: AttachmentWrite
+)
+
+data class AttachmentWrite(
+    val name: String = "Название фото",
+    val type: String?,
+    val upload_file: String
+)
+
 data class MeasurementResponse(
     val results: List<Measurement>
 )
@@ -90,6 +154,7 @@ data class BoschMeasurement(
     var gipotinuza: Double,
     var ugol: Double
 )
+
 class LittleMeasurement(
     var L: Double,
     var Hvn: Double,

@@ -5,14 +5,14 @@
       <root url="file://$USER_HOME$/gradle/.gradle/caches/transforms-2/files-2.1/71a7520939a7caeaf91eb46e00abac03/libphonenumber-android-8.12.31/res" />
       <root url="file://$USER_HOME$/gradle/.gradle/caches/transforms-2/files-2.1/480c10fd6275be35d9b4a2f26c056523/libphonenumber-android-8.12.31/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/480c10fd6275be35d9b4a2f26c056523/libphonenumber-android-8.12.31/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/480c10fd6275be35d9b4a2f26c056523/libphonenumber-android-8.12.31/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/480c10fd6275be35d9b4a2f26c056523/libphonenumber-android-8.12.31/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/gradle/.gradle/caches/transforms-2/files-2.1/480c10fd6275be35d9b4a2f26c056523/libphonenumber-android-8.12.31/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/gradle/.gradle/caches/transforms-2/files-2.1/480c10fd6275be35d9b4a2f26c056523/libphonenumber-android-8.12.31/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.michaelrocks/libphonenumber-android/8.12.31/304ab25bdd5b9c5cd80359374128fa55aff440b9/libphonenumber-android-8.12.31-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/gradle/.gradle/caches/modules-2/files-2.1/io.michaelrocks/libphonenumber-android/8.12.31/304ab25bdd5b9c5cd80359374128fa55aff440b9/libphonenumber-android-8.12.31-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.michaelrocks/libphonenumber-android/8.12.31/45e1e4050078537e14bfb2d551ad4e94ed520c03/libphonenumber-android-8.12.31-sources.jar!/" />
+      <root url="jar://$USER_HOME$/gradle/.gradle/caches/modules-2/files-2.1/io.michaelrocks/libphonenumber-android/8.12.31/45e1e4050078537e14bfb2d551ad4e94ed520c03/libphonenumber-android-8.12.31-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
